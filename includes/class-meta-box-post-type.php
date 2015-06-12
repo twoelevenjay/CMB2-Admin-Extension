@@ -40,9 +40,8 @@ class CMB2_Meta_Box_Post_Type {
 		protected $settings_page = '';
 
 	/**
-	* Initiate option object
-	* @param string $option_key Option key where data will be saved.
-	* TODO for now plugin will use one class, will consider 3 seperate classes in the future
+	* Initiate CMB2 Admin Extension object
+	* TODO for now plugin will use one main object, will consider 3 seperate objects in the future
 	* @since 0.0.1
 	*/
 	public function __construct() {

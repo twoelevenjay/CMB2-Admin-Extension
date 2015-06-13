@@ -15,6 +15,8 @@ CMB2 Admin Extension requires the most current version of the CMB2 plugin. You c
 
 ### Features:
 
+[![Join the chat at https://gitter.im/twoelevenjay/CMB2-Admin-Extension](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/twoelevenjay/CMB2-Admin-Extension?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 * Publish meta boxes from the post edit screen for the post edit screen
 * Work with basic usage 
 

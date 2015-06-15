@@ -96,6 +96,8 @@ class CMB2_Meta_Box_Post_Type {
 			'rewrite'             => true,
 			'supports'            => array( 'title' ),
 			'public'              => true,
+			'show_ui'             => true,
+			'show_in_menu'        => true,
 			'menu_position'       => 100,
 			'menu_icon'           => 'dashicons-feedback',
 			'show_in_admin_bar'   => false,
@@ -106,18 +108,6 @@ class CMB2_Meta_Box_Post_Type {
 			'publicly_queryable'  => false,
 			'capability_type'     => 'page',
 		);
-	
-		if ( $this->is_cmb2_allowed() ) {
-		
-			$args['show_ui'] = true;
-			$args['show_in_menu'] = true;
-		
-		}else{
-		
-			$args['show_ui'] = false;
-			$args['show_in_menu'] = false;
-		
-		}
 		register_post_type( 'meta_box', $args );
 		
 		
@@ -130,13 +120,9 @@ class CMB2_Meta_Box_Post_Type {
 	*/	
 	public function add_settings_page() {
 	
-		if ( $this->is_cmb2_allowed() ) {
-	
-			$this->settings_page = add_submenu_page( 'edit.php?post_type=meta_box', 'CMB2 Settings', 'CMB2 Settings', 'edit_posts', $this->settings_key, array( $this, 'settings_page' ) );
+		$this->settings_page = add_submenu_page( 'edit.php?post_type=meta_box', 'CMB2 Settings', 'CMB2 Settings', 'edit_posts', $this->settings_key, array( $this, 'settings_page' ) );
 		
-			add_action( "admin_print_styles-{$this->settings_page}", array( 'CMB2_hookup', 'enqueue_cmb_css' ) );
-		
-		}
+		add_action( "admin_print_styles-{$this->settings_page}", array( 'CMB2_hookup', 'enqueue_cmb_css' ) );
 	
 	}
 	
@@ -198,7 +184,7 @@ class CMB2_Meta_Box_Post_Type {
 		$cmb2_settings = get_option('_cmb2_settings');
 		$allowed_users = isset( $cmb2_settings['_cmb2_user_multicheckbox'] ) ? $cmb2_settings['_cmb2_user_multicheckbox'] : false;
 		
-		if ( $allowed_users && in_array( $current_user->ID, $allowed_users ) ) {
+		if ( $allowed_users && !in_array( $current_user->ID, $allowed_users ) ) {
 		
 			return true;
 		
@@ -218,7 +204,7 @@ class CMB2_Meta_Box_Post_Type {
 
 		global $wp_list_table;
 		
-		if ( !$this->is_cmb2_allowed() ) {
+		if ( $this->is_cmb2_allowed() ) {
 
 			$to_hide = array('cmb2/init.php', 'cmb2-admin-extension/cmb2-admin-extension.php');
 			$plugins = $wp_list_table->items;

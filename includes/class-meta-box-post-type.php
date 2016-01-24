@@ -262,9 +262,7 @@ class CMB2_Meta_Box_Post_Type {
 
 		foreach ( $users as $user ) {
 
-			$user_caps = $user->allcaps;
-
-			if ( $user_caps['update_plugins'] || $user_caps['install_plugins'] || $user_caps['delete_plugins'] || $user_caps['edit_theme_options'] ) {
+			if ( user_can( $user, 'update_plugins' ) || user_can( $user, 'install_plugins' ) || user_can( $user, 'delete_plugins' ) || user_can( $user, 'edit_theme_options' ) ) {
 
 				$user_options[ $user->ID ] = $user->display_name;
 

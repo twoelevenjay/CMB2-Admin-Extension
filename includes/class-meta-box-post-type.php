@@ -189,25 +189,30 @@ class CMB2_Meta_Box_Post_Type {
 	}
 
 	/**
-	* Determin if current user has permission to CMB2 view plugins
-	* @since  0.0.1
-	*/	
+	 * Determine if current user has permission to CMB2 view plugins
+	 * @since  0.0.1
+	 */
 	private function is_cmb2_allowed() {
-		
-		$current_user = wp_get_current_user();
-		$cmb2_settings = get_option('_cmb2_settings');
-		$allowed_users = isset( $cmb2_settings['_cmb2_user_multicheckbox'] ) ? $cmb2_settings['_cmb2_user_multicheckbox'] : false;
-		
-		if ( $allowed_users && in_array( $current_user->ID, $allowed_users ) ) {
-		
-			return true;
-		
-		}else{
-		
-			return false;
-			
-		}		
 
+		$cmb2_settings = get_option( '_cmb2_settings' );
+
+		if ( empty( $cmb2_settings ) ) {
+			// No settings saved.
+			return true;
+		}
+
+		$current_user  = wp_get_current_user();
+		$allowed_users = isset( $cmb2_settings['_cmb2_user_multicheckbox'] ) ? $cmb2_settings['_cmb2_user_multicheckbox'] : array();
+
+		if ( empty( $allowed_users ) || in_array( $current_user->ID, $allowed_users ) ) {
+
+			return true;
+
+		} else {
+
+			return false;
+
+		}
 	}
 
 	/**

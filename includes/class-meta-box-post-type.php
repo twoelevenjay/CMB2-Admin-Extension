@@ -12,62 +12,62 @@
  */
 class CMB2_Meta_Box_Post_Type {
 
-		/**
-		* Field prefix
-		* @var string
-		*/
-		private $prefix = '_cmb2_';
-
-		/**
-		* Settings key, and option page slug
-		* @var string
-		*/
-		private $settings_key = '_cmb2_settings';
-		/**
-		* Settings page metabox id
-		* @var string
-		*/
-		private $settings_metabox_id = '_cmb2_settings_metabox';
-		/**
-		* Settings Page title
-		* @var string
-		*/
-		protected $settings_title = '';
-		/**
-		* Settings Page hook
-		* @var string
-		*/
-		protected $settings_page = '';
+	/**
+	 * Field prefix
+	 * @var string
+	 */
+	private $prefix = '_cmb2_';
 
 	/**
-	* Initiate CMB2 Admin Extension object
-	* TODO for now plugin will use one main object, will consider 3 seperate objects in the future
-	* @since 0.0.1
-	*/
+	 * Settings key, and option page slug
+	 * @var string
+	 */
+	private $settings_key = '_cmb2_settings';
+	/**
+	 * Settings page metabox id
+	 * @var string
+	 */
+	private $settings_metabox_id = '_cmb2_settings_metabox';
+	/**
+	 * Settings Page title
+	 * @var string
+	 */
+	protected $settings_title = '';
+	/**
+	 * Settings Page hook
+	 * @var string
+	 */
+	protected $settings_page = '';
+
+	/**
+	 * Initiate CMB2 Admin Extension object
+	 * TODO for now plugin will use one main object, will consider 3 seperate objects in the future
+	 * @since 0.0.1
+	 */
 	public function __construct() {
-	
+
 		// TODO comment
-		
+
 		$this->settings_title = __( 'CMB2 Settings', 'cmb2-admin-extension' );
-		
+
 		add_action( 'init', array( $this, 'init_post_type' ) );
 		add_action( 'admin_init', array( $this, 'register_settings' ) );
 		add_action( 'admin_menu', array( $this, 'add_settings_page' ) );
 		add_action( 'add_meta_boxes', array( $this, 'remove_meta_box_slugdiv' ) );
 		add_action( 'admin_head', array( $this, 'hide_edit_slug_bar' ) );
 		add_action( 'pre_current_active_plugins', array( $this, 'hide_cmb2_plugins' ) );
-		
+
 		add_action( 'cmb2_init', array( $this, 'init_meta_box_settings' ) );
 		add_action( 'cmb2_init', array( $this, 'init_custom_field_settings' ) );
 		add_action( 'cmb2_init', array( $this, 'init_cmb2_settings_page' ) );
 		add_action( 'cmb2_init', array( $this, 'init_user_defined_meta_boxes_and_fields' ) );
-	
+
 	}
-	
+
 	/**
-	* Create the Meta Box post type
-	* @since  0.0.1
-	*/	
+	 * Create the Meta Box post type
+	 * @since  0.0.1
+	 */
 	public function init_post_type() {
 
 		$labels = array(
@@ -106,86 +106,86 @@ class CMB2_Meta_Box_Post_Type {
 			'publicly_queryable'  => false,
 			'capability_type'     => 'page',
 		);
-	
+
 		if ( $this->is_cmb2_allowed() ) {
-		
-			$args['show_ui'] = true;
+
+			$args['show_ui']      = true;
 			$args['show_in_menu'] = true;
-		
-		}else{
-		
-			$args['show_ui'] = false;
+
+		} else{
+
+			$args['show_ui']      = false;
 			$args['show_in_menu'] = false;
-		
+
 		}
 		register_post_type( 'meta_box', $args );
-		
-		
+
+
 
 	}
-	
+
 	/**
-	* Set up the plugin settings page
-	* @since  0.0.1
-	*/	
+	 * Set up the plugin settings page
+	 * @since  0.0.1
+	 */
 	public function add_settings_page() {
-	
+
 		if ( $this->is_cmb2_allowed() ) {
-	
+
 			$this->settings_page = add_submenu_page( 'edit.php?post_type=meta_box', 'CMB2 Settings', 'CMB2 Settings', 'edit_posts', $this->settings_key, array( $this, 'settings_page' ) );
-		
+
 			add_action( "admin_print_styles-{$this->settings_page}", array( 'CMB2_hookup', 'enqueue_cmb_css' ) );
-		
+
 		}
-	
+
 	}
-	
+
 	/**
-	* Set up the plugin settings page
-	* @since  0.0.1
-	*/	
+	 * Set up the plugin settings page
+	 * @since  0.0.1
+	 */
 	public function remove_meta_box_slugdiv() {
-	
+
 		remove_meta_box( 'slugdiv', 'page', 'normal' );
-	
+
 	}
-	
+
 	/**
-	* Set up the plugin settings page
-	* @since  0.0.1
-	*/	
+	 * Set up the plugin settings page
+	 * @since  0.0.1
+	 */
 	public function hide_edit_slug_bar() {
- 
+
 		global $post;
-	
-		if ( isset( $post->post_type ) && $post->post_type == 'meta_box' ) {
-	
+
+		if ( isset( $post->post_type ) && $post->post_type === 'meta_box' ) {
+
 			$hide_slugs = '<style type="text/css"> #edit-slug-box, #minor-publishing { display: none; }</style>';
 			echo $hide_slugs;
-		
+
 		}
- 
+
 	}
- 
+
 	public function register_settings() {
 
 		register_setting( $this->settings_key, $this->settings_key );
 
 	}
-	
+
 	/**
-	* Plugin settings page call back
-	* @since  0.0.1
-	*/	
+	 * Plugin settings page call back
+	 * @since  0.0.1
+	 */
 	public function settings_page() {
-	
+
 		?>
 		<div class="wrap cmb2-options-page <?php echo $this->settings_key; ?>">
 			<h2><?php echo $this->settings_title; ?></h2>
 			<?php cmb2_metabox_form( $this->settings_metabox_id, $this->settings_key, array( 'cmb_styles' => false ) ); ?>
 		</div>
 		<?php
-	
+
 	}
 
 	/**
@@ -211,60 +211,60 @@ class CMB2_Meta_Box_Post_Type {
 	}
 
 	/**
-	* Only show CMB2 plugins to users defined in settings
-	* @since  0.0.1
-	*/	
+	 * Only show CMB2 plugins to users defined in settings
+	 * @since  0.0.1
+	 */
 	function hide_cmb2_plugins() {
 
 		global $wp_list_table;
-		
-		if ( !$this->is_cmb2_allowed() ) {
 
-			$to_hide = array('cmb2/init.php', 'cmb2-admin-extension/cmb2-admin-extension.php');
+		if ( ! $this->is_cmb2_allowed() ) {
+
+			$to_hide = array( CMB2AE_CMB2_PLUGIN_FILE, 'cmb2-admin-extension/cmb2-admin-extension.php' );
 			$plugins = $wp_list_table->items;
 
 			foreach ( $plugins as $key => $val ) {
 
 				if ( in_array( $key, $to_hide ) ) {
-			
-					unset( $wp_list_table->items[$key] );
-	
+
+					unset( $wp_list_table->items[ $key ] );
+
 				}
 
 			}
-		
+
 		}
 
 	}
-	
+
 	/**
-	* Add show/hide options callback
-	* @since  0.0.1
-	*/	
+	 * Add show/hide options callback
+	 * @since  0.0.1
+	 */
 	public function show_hide_options() {
-	
+
 		// TODO make options field only show if a relavant field type is slected.
-		
+
 	}
-	
+
 	public function init_cmb2_settings_page() {
-	
+
 		$prefix = $this->prefix ;
-		
+
 		$users = get_users();
-		
+
 		$user_options = array();
-		
+
 		foreach ( $users as $user ) {
-		
+
 			$user_caps = $user->allcaps;
-	
+
 			if ( $user_caps['update_plugins'] || $user_caps['install_plugins'] || $user_caps['delete_plugins'] || $user_caps['edit_theme_options'] ) {
-			
-				$user_options[$user->ID] = $user->display_name;
-			
+
+				$user_options[ $user->ID ] = $user->display_name;
+
 			}
-	
+
 		}
 
 		$cmb_settings = new_cmb2_box( array(
@@ -287,28 +287,28 @@ class CMB2_Meta_Box_Post_Type {
 		) );
 
 	}
-	
+
 	/**
-	* Add custom meta box to the Meta Box post type
-	* @since  0.0.1
-	*/	
+	 * Add custom meta box to the Meta Box post type
+	 * @since  0.0.1
+	 */
 	public function init_meta_box_settings() {
 
 		// Start with an underscore to hide fields from custom fields list
 		$prefix = $this->prefix;
-		
-		$post_type_objects = get_post_types('', 'object');
-		
+
+		$post_type_objects = get_post_types( '', 'object' );
+
 		$post_types = array();
-		
+
 		foreach ( $post_type_objects as $post_type_object ) {
-			
-			if ( $post_type_object->show_ui && $post_type_object->name != 'meta_box') {
-			
-				$post_types[$post_type_object->name] = $post_type_object->label;
-			
+
+			if ( $post_type_object->show_ui && $post_type_object->name !== 'meta_box' ) {
+
+				$post_types[ $post_type_object->name ] = $post_type_object->label;
+
 			}
-		
+
 		}
 
 		/**
@@ -339,10 +339,10 @@ class CMB2_Meta_Box_Post_Type {
 			'type'    => 'radio',
 			'default' => 'high',
 			'options' => array(
-				'high' => __( 'High', 'cmb2-admin-extension' ),
-				'core' => __( 'Core', 'cmb2-admin-extension' ),
+				'high'    => __( 'High', 'cmb2-admin-extension' ),
+				'core'    => __( 'Core', 'cmb2-admin-extension' ),
 				'default' => __( 'Default', 'cmb2-admin-extension' ),
-				'low' => __( 'Low', 'cmb2-admin-extension' ),
+				'low'     => __( 'Low', 'cmb2-admin-extension' ),
 			),
 			'inline'  => true,
 		) );
@@ -355,17 +355,17 @@ class CMB2_Meta_Box_Post_Type {
 			'default' => 'advanced',
 			'options' => array(
 				'advanced' => __( 'Advanced', 'cmb2-admin-extension' ),
-				'normal' => __( 'Normal', 'cmb2-admin-extension' ),
-				'side' => __( 'Side', 'cmb2-admin-extension' ),
+				'normal'   => __( 'Normal', 'cmb2-admin-extension' ),
+				'side'     => __( 'Side', 'cmb2-admin-extension' ),
 			),
 			'inline'  => true,
 		) );
 
 		$cmb->add_field( array(
-			'name' => __( 'Show Names', 'cmb2-admin-extension' ),
-			'desc' => __( 'Show field names on the left', 'cmb2-admin-extension' ),
-			'id'   => $prefix . 'show_names',
-			'type' => 'checkbox',
+			'name'    => __( 'Show Names', 'cmb2-admin-extension' ),
+			'desc'    => __( 'Show field names on the left', 'cmb2-admin-extension' ),
+			'id'      => $prefix . 'show_names',
+			'type'    => 'checkbox',
 			'default' => 'on',
 		) );
 
@@ -384,11 +384,11 @@ class CMB2_Meta_Box_Post_Type {
 		) );
 
 	}
-	
+
 	/**
-	* Add custom fields to the Meta Box post type
-	* @since  0.0.1
-	*/	
+	 * Add custom fields to the Meta Box post type
+	 * @since  0.0.1
+	 */
 	public function init_custom_field_settings() {
 
 		// Start with an underscore to hide fields from custom fields list
@@ -415,7 +415,7 @@ class CMB2_Meta_Box_Post_Type {
 				'sortable'      => true, // beta
 			),
 		) );
-		
+
 		$cmb_group->add_group_field( $group_field_id, array(
 			'name'       => __( 'Name', 'cmb2-admin-extension' ),
 			'desc'       => __( 'Add a field name.', 'cmb2-admin-extension' ),
@@ -437,42 +437,42 @@ class CMB2_Meta_Box_Post_Type {
 			'type'             => 'select',
 			'show_option_none' => false,
 			'options'          => array(
-				'title' => 'title: An arbitrary title field *',
-				'text' => 'text: Text',
-				'text_small' => 'text_small: Text Small',
-				'text_medium' => 'text_medium: Text Medium',
-				'text_email' => 'text_email: Email',
-				'text_url' => 'text_url: URL',
-				'text_money' => 'text_money: Money',
-				'textarea' => 'textarea: Text Area',
-				'textarea_small' => 'textarea_small: Text Area Small',
-				'textarea_code' => 'textarea_code: Text Area Code',
-				'text_date' => 'text_date: Date Picker',
-				'text_time' => 'text_time: Time picker',
-				'select_timezone' => 'select_timezone: Time zone dropdown',
-				'text_date_timestamp' => 'text_date_timestamp: Date Picker (UNIX timestamp)',
-				'text_datetime_timestamp' => 'text_datetime_timestamp: Text Date/Time Picker Combo (UNIX timestamp)',
+				'title'                            => 'title: An arbitrary title field *',
+				'text'                             => 'text: Text',
+				'text_small'                       => 'text_small: Text Small',
+				'text_medium'                      => 'text_medium: Text Medium',
+				'text_email'                       => 'text_email: Email',
+				'text_url'                         => 'text_url: URL',
+				'text_money'                       => 'text_money: Money',
+				'textarea'                         => 'textarea: Text Area',
+				'textarea_small'                   => 'textarea_small: Text Area Small',
+				'textarea_code'                    => 'textarea_code: Text Area Code',
+				'text_date'                        => 'text_date: Date Picker',
+				'text_time'                        => 'text_time: Time picker',
+				'select_timezone'                  => 'select_timezone: Time zone dropdown',
+				'text_date_timestamp'              => 'text_date_timestamp: Date Picker (UNIX timestamp)',
+				'text_datetime_timestamp'          => 'text_datetime_timestamp: Text Date/Time Picker Combo (UNIX timestamp)',
 				'text_datetime_timestamp_timezone' => 'text_datetime_timestamp_timezone: Text Date/Time Picker/Time zone Combo (serialized DateTime object)',
-				'colorpicker' => 'colorpicker: Color picker',
-				'radio' => 'radio: Radio Buttons*',
-				'radio_inline' => 'radio_inline: Radio Buttons Inline*',
-				'taxonomy_radio' => 'taxonomy_radio: Taxonomy Radio Buttons*',
-				'taxonomy_radio_inline' => 'taxonomy_radio_inline: Taxonomy Radio Buttons Inline*',
-				'select' => 'select: Select',
-				'taxonomy_select' => 'taxonomy_select: Taxonomy Select*',
-				'checkbox' => 'checkbox: Checkbox*',
-				'multicheck' => 'multicheck: Multiple Checkboxes',
-				'multicheck_inline' => 'multicheck_inline: Multiple Checkboxes Inline',
-				'taxonomy_multicheck' => 'taxonomy_multicheck: Taxonomy Multiple Checkboxes*',
-				'taxonomy_multicheck_inline' => 'taxonomy_multicheck_inline: Taxonomy Multiple Checkboxes Inline',
-				'wysiwyg' => 'wysiwyg: (TinyMCE) *',
-				'file' => 'file: Image/File upload *†',
-				'file_list' => 'file_list: Image/File list upload',
-				'oembed' => 'oembed: Converts oembed urls (instagram, twitter, youtube, etc. oEmbed in the Codex)',
-				'group' => 'group: Hybrid field that supports adding other fields as a repeatable group. *',
+				'colorpicker'                      => 'colorpicker: Color picker',
+				'radio'                            => 'radio: Radio Buttons*',
+				'radio_inline'                     => 'radio_inline: Radio Buttons Inline*',
+				'taxonomy_radio'                   => 'taxonomy_radio: Taxonomy Radio Buttons*',
+				'taxonomy_radio_inline'            => 'taxonomy_radio_inline: Taxonomy Radio Buttons Inline*',
+				'select'                           => 'select: Select',
+				'taxonomy_select'                  => 'taxonomy_select: Taxonomy Select*',
+				'checkbox'                         => 'checkbox: Checkbox*',
+				'multicheck'                       => 'multicheck: Multiple Checkboxes',
+				'multicheck_inline'                => 'multicheck_inline: Multiple Checkboxes Inline',
+				'taxonomy_multicheck'              => 'taxonomy_multicheck: Taxonomy Multiple Checkboxes*',
+				'taxonomy_multicheck_inline'       => 'taxonomy_multicheck_inline: Taxonomy Multiple Checkboxes Inline',
+				'wysiwyg'                          => 'wysiwyg: (TinyMCE) *',
+				'file'                             => 'file: Image/File upload *†',
+				'file_list'                        => 'file_list: Image/File list upload',
+				'oembed'                           => 'oembed: Converts oembed urls (instagram, twitter, youtube, etc. oEmbed in the Codex)',
+				'group'                            => 'group: Hybrid field that supports adding other fields as a repeatable group. *',
 			),
 		) );
-		
+
 		$cmb_group->add_group_field( $group_field_id, array(
 			'name' => __( 'Repeatable', 'cmb2-admin-extension' ),
 			'desc' => __( 'Check this box to make the field repeatable. Field types marked with a "*" are not repeatable.', 'cmb2-admin-extension' ),
@@ -498,81 +498,81 @@ class CMB2_Meta_Box_Post_Type {
 
 	}
 
-	
+
 	/**
-	* cmbf() shortens the get_post_meta() function.
-	* @since  0.0.1
-	*/	
-	static function cmbf($ID, $field) {
-	
+	 * cmbf() shortens the get_post_meta() function.
+	 * @since  0.0.1
+	 */
+	static function cmbf( $ID, $field ) {
+
 		return get_post_meta( $ID, $field, true );
-		
+
 	}
-	
+
 	/**
-	* Loop through user defined meta_box and creates the custom meta boxes and fields.
-	* @since  0.0.1
-	*/	
+	 * Loop through user defined meta_box and creates the custom meta boxes and fields.
+	 * @since  0.0.1
+	 */
 	public function init_user_defined_meta_boxes_and_fields() {
-	
+
 		$args = array(
 			'post_type'        => 'meta_box',
 			'post_status'      => 'publish',
 			'posts_per_page'   => -1,
 		);
-		
+
 		$prefix = $this->prefix;
-	
+
 		$user_meta_boxes = get_posts( $args );
-		
+
 		foreach ( $user_meta_boxes as $user_meta_box ) {
-		
+
 			$ID = $user_meta_box->ID;
-		
-			$title = get_the_title( $ID );
-			$id = str_replace('-', '_', $user_meta_box->post_name);
-			$post_type = $this->cmbf( $ID, $prefix.'post_type_multicheckbox' );
-			$context = $this->cmbf( $ID, $prefix.'context_radio' );
-			$priority = $this->cmbf( $ID, $prefix.'priority_radio' );
-			$show_names = $this->cmbf( $ID, $prefix.'show_names' );
-			$cmb_styles = $this->cmbf( $ID, $prefix.'cmb_styles' );
-			$closed = $this->cmbf( $ID, $prefix.'cmb_styles' );
-			$fields = $this->cmbf( $ID, $prefix.'custom_field' );
+
+			$title      = get_the_title( $ID );
+			$id         = str_replace( '-', '_', $user_meta_box->post_name );
+			$post_type  = $this->cmbf( $ID, $prefix . 'post_type_multicheckbox' );
+			$context    = $this->cmbf( $ID, $prefix . 'context_radio' );
+			$priority   = $this->cmbf( $ID, $prefix . 'priority_radio' );
+			$show_names = $this->cmbf( $ID, $prefix . 'show_names' );
+			$cmb_styles = $this->cmbf( $ID, $prefix . 'cmb_styles' );
+			$closed     = $this->cmbf( $ID, $prefix . 'cmb_styles' );
+			$fields     = $this->cmbf( $ID, $prefix . 'custom_field' );
 
 			/**
-			* Initiate the metabox
-			*/
-			${'cmb_'.$id} = new_cmb2_box( array(
+			 * Initiate the metabox
+			 */
+			${ 'cmb_' . $id } = new_cmb2_box( array(
 				'id'            => $id,
 				'title'         => $title,
 				'object_types'  => $post_type, // Post type
 				'context'       => $context,
 				'priority'      => $priority,
 			) );
-			
+
 			foreach ( $fields as $field ) {
-			
+
 				$field_id = '_' . strtolower( str_replace( ' ', '_', $field['_cmb2_name_text'] ) );
-				$options = explode( PHP_EOL, $field['_cmb2_options_textarea'] );
+				$options  = explode( PHP_EOL, $field['_cmb2_options_textarea'] );
 				if ( isset( $field['_cmb2_repeatable_checkbox'] ) ) {
 					$repeatable = true;
 				}else{
 					$repeatable = false;
 				}
-				
+
 				foreach ( $options as $option) {
-				
+
 					$opt_arr = explode( ',', $option );
-				
-					if ( !isset( $opt_arr[1] ) ) {
+
+					if ( ! isset( $opt_arr[1] ) ) {
 						continue;
 					}
-					
-					$field_options[$opt_arr[0]] = $opt_arr[1];
-				
+
+					$field_options[ $opt_arr[0] ] = $opt_arr[1];
+
 				}
 
-				${'cmb_'.$id}->add_field( array(
+				${ 'cmb_'.$id }->add_field( array(
 					'name'       => $field['_cmb2_name_text'],
 					'desc'       => $field['_cmb2_decription_textarea'],
 					'id'         => $field_id ,
@@ -580,12 +580,9 @@ class CMB2_Meta_Box_Post_Type {
 					'options'    => $field_options,
 					'repeatable' => $repeatable,
 				) );
-			
+
 			}
-	
+
 		}
 	}
 }
-
-$cbm2 = new CMB2_Meta_Box_Post_Type();
-

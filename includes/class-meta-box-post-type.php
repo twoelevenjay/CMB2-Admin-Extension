@@ -132,7 +132,7 @@ class CMB2_Meta_Box_Post_Type {
 
 		if ( $this->is_cmb2_allowed() ) {
 
-			$this->settings_page = add_submenu_page( 'edit.php?post_type=meta_box', 'CMB2 Settings', 'CMB2 Settings', 'edit_posts', $this->settings_key, array( $this, 'settings_page' ) );
+			$this->settings_page = add_submenu_page( 'edit.php?post_type=meta_box', __( 'CMB2 Settings', 'cmb2-admin-extension' ), __( 'CMB2 Settings', 'cmb2-admin-extension' ), 'edit_posts', $this->settings_key, array( $this, 'settings_page' ) );
 
 			add_action( "admin_print_styles-{$this->settings_page}", array( 'CMB2_hookup', 'enqueue_cmb_css' ) );
 

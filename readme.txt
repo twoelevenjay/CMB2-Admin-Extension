@@ -1,4 +1,4 @@
-4=== CMB2 ===
+=== CMB2 Admin Extension ===
 Contributors:      twoelevenjay
 Donate link:       http://211j.com
 Tags:              metaboxes, forms, fields, options, settings
@@ -22,7 +22,7 @@ CMB2 Admin Extension requires the most current version of the CMB2 plugin. You c
 * None yet, but all are welcome
 
 ### Documentation
-* CMB2 documentation to come. It will be at [the CMB2 Admin Extension wiki](https://github.com/twoelevenjay/CMB2-Admin-Extension/wiki) on github.
+* CMB2 documentation to come. It will be at [the CMB2 Admin Extension wiki](https://github.com/twoelevenjay/CMB2-Admin-Extension/wiki) on GitHub.
 
 ### 3rd Party Resources
 
@@ -31,6 +31,9 @@ CMB2 Admin Extension requires the most current version of the CMB2 plugin. You c
 
 ### Contribution
 All contributions welcome. If you would like to submit a pull request, please check out the [trunk branch](https://github.com/twoelevenjay/CMB2-Admin-Extension/tree/trunk) and pull request against it. Please read the [CONTRIBUTING](https://github.com/twoelevenjay/CMB2-Admin-Extension/CONTRIBUTING.md) doc for more details.
+
+## 0.0.2 beta 06.15.2015
+* Hide UI for disallowed users. Previously only hid plugin table rows.
 
 ### 0.0.1 beta 06.10.2015
 * Initital release, is working but could use a lot more features.

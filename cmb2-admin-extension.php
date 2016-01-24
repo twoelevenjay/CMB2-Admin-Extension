@@ -13,7 +13,7 @@
  * Author URI:   http://211j.com
  * Contributors: 
  *
- * Version:      0.0.1
+ * Version:      0.0.2
  *
  * Text Domain:  cmb2-admin-extension
  * Domain Path:  languages

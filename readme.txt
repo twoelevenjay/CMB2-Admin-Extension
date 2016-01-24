@@ -7,6 +7,9 @@ Tested up to:      4.2.2
 Stable tag:        0.0.2
 License:           GPLv2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
+
+CMB2 Admin Extension adds a user interface for admins to create CMB2 meta boxes from the WordPress admin.
+
 == Description ==
 
 CMB2 Admin Extension adds a user interface for admins to create CMB2 meta boxes from the WordPress admin.
@@ -32,8 +35,15 @@ CMB2 Admin Extension requires the most current version of the CMB2 plugin. You c
 ### Contribution
 All contributions welcome. If you would like to submit a pull request, please check out the [trunk branch](https://github.com/twoelevenjay/CMB2-Admin-Extension/tree/trunk) and pull request against it. Please read the [CONTRIBUTING](https://github.com/twoelevenjay/CMB2-Admin-Extension/CONTRIBUTING.md) doc for more details.
 
-### 0.0.2 beta 06.15.2015
+== Changelog ==
+
+= 0.0.2 beta 06.15.2015 =
 * Hide UI for disallowed users. Previously only hid plugin table rows.
 
-### 0.0.1 beta 06.10.2015
+= 0.0.1 beta 06.10.2015 =
 * Initital release, is working but could use a lot more features.
+
+== Installation ==
+
+1. Extract the .zip file for this plugin and upload its contents to the `/wp-content/plugins/` directory. Alternatively, you can install directly from the Plugin directory within your WordPress Install.
+1. Activate the plugin through the "Plugins" menu in WordPress.

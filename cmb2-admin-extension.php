@@ -1,7 +1,7 @@
 <?php
 /**
  * @category     WordPress_Plugin
- * @package      CMB2
+ * @package      CMB2-Admin-Extension
  * @author       twoelevenjay
  * @license      GPL-2.0+
  * @link         http://211j.com
@@ -12,11 +12,9 @@
  * Author:       twoelevenjay
  * Author URI:   http://211j.com
  * Contributors: 
- *
  * Version:      0.0.2
- *
  * Text Domain:  cmb2-admin-extension
- * Domain Path:  languages
+ * Domain Path:  /languages
  *
  *
  * Released under the GPL license

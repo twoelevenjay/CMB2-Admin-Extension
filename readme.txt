@@ -2,9 +2,9 @@
 Contributors:      twoelevenjay
 Donate link:       http://211j.com
 Tags:              metaboxes, forms, fields, options, settings
-Requires at least: 4.0.0
-Tested up to:      4.2.2
-Stable tag:        0.0.2
+Requires at least: 4.0
+Tested up to:      4.4
+Stable tag:        0.0.3
 License:           GPLv2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -37,11 +37,27 @@ All contributions welcome. If you would like to submit a pull request, please ch
 
 == Changelog ==
 
+## 0.0.3 beta 01.24.2016
+* All thanks to jrfnl
+* Synced the GH repo with the WP repo to make sure it was up to date.
+* Removed some files from the repo which shouldn't have been there in the first place.
+* The readme wasn't properly parseable for the WP repo, fixed that.
+* Fixed the plugin header which referred to the wrong plugin.
+* Use CMB2_LOADED constant to check for CMB2.
+* Prefix the CMB2_PLUGIN_FILE constant so as not to confuse it with one coming from CMB2 native.
+* Don't hard-code the path to the plugins directory.
+* Properly encode variables used in the activation url.
+* Don't add the $cmb2 variable to the global namespace.
+* Prevent conflict in the global namespace by wrapping things in ! defined() and ! function_exists()
+* Fixed the is_cmb2_allowed() function which did not allow for new installs. The result of that was that after activation the plugin no longer showed in the plugins list, didn't show in the admin menu, couldn't be used nor deactivated, so rendered itself effectively useless.
+* Fixed undefined index notices. See: https://wordpress.org/support/topic/not-working-1299
+* Make settings page title translatable.
+
 = 0.0.2 beta 06.15.2015 =
 * Hide UI for disallowed users. Previously only hid plugin table rows.
 
 = 0.0.1 beta 06.10.2015 =
-* Initital release, is working but could use a lot more features.
+* Initial release, is working but could use a lot more features.
 
 == Installation ==
 

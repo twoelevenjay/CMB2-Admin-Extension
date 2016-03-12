@@ -1,3 +1,17 @@
 # folders and files to be ignored by git
 
+### SVN ###
 .svn
+/trunk/*
+
+### OSX ###
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes

@@ -153,10 +153,10 @@ class CMB2_Admin_Extension_Class {
 		$url = wp_nonce_url(
 			sprintf(
 				'plugins.php?action=activate&amp;plugin=%1$s&amp;plugin_status=%2$s&amp;paged=%3$s&amp;s=%4$s',
-				url_encode( $plugin_file ),
-				url_encode( $status ),
-				url_encode( $page ),
-				url_encode( $s )
+				urlencode( $plugin_file ),
+				urlencode( $status ),
+				urlencode( $page ),
+				urlencode( $s )
 			)
 		);
 

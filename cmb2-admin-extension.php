@@ -127,7 +127,7 @@ class CMB2_Admin_Extension_Class {
 
 		?>
 			<div class="error">
-				<p><?php esc_html_e( 'CMB2 Admin Extension depends on the last version of <a href="https://wordpress.org/plugins/cmb2/">the CMB2 plugin</a> to work!', 'cmb2-admin-extension' ); ?></p>
+				<p><?php echo wp_kses_post( __( 'CMB2 Admin Extension depends on the last version of <a href="https://wordpress.org/plugins/cmb2/">the CMB2 plugin</a> to work!', 'cmb2-admin-extension' ) ); ?></p>
 			</div>
 		<?php
 

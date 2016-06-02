@@ -61,7 +61,7 @@ class CMB2_Admin_Extension_Class {
 	 *
 	 * @var string
 	 */
-	const VERSION = '0.0.2';
+	const VERSION = '0.0.3';
 
 	/**
 	 * Instance of this class.

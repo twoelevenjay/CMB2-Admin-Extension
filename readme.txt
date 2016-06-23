@@ -3,8 +3,8 @@ Contributors:      twoelevenjay
 Donate link:       http://211j.com
 Tags:              metaboxes, forms, fields, options, settings
 Requires at least: 4.0
-Tested up to:      4.4
-Stable tag:        0.0.3
+Tested up to:      4.5
+Stable tag:        0.0.4
 License:           GPLv2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,7 +19,7 @@ CMB2 Admin Extension requires the most current version of the CMB2 plugin. You c
 ### Features:
 
 * Publish meta boxes from the post edit screen for the post edit screen
-* Work with basic usage 
+* Work with basic usage
 
 ### Translation
 * None yet, but all are welcome
@@ -37,6 +37,10 @@ All contributions welcome. If you would like to submit a pull request, please ch
 
 == Changelog ==
 
+## 0.0.4 beta 01.24.2016
+* Simplify admin notices, this fixes fatal error
+
+
 ## 0.0.3 beta 01.24.2016
 * All thanks to jrfnl
 * Synced the GH repo with the WP repo to make sure it was up to date.
@@ -53,10 +57,10 @@ All contributions welcome. If you would like to submit a pull request, please ch
 * Fixed undefined index notices. See: https://wordpress.org/support/topic/not-working-1299
 * Make settings page title translatable.
 
-= 0.0.2 beta 06.15.2015 =
+## 0.0.2 beta 06.15.2015
 * Hide UI for disallowed users. Previously only hid plugin table rows.
 
-= 0.0.1 beta 06.10.2015 =
+## 0.0.1 beta 06.10.2015
 * Initial release, is working but could use a lot more features.
 
 == Installation ==

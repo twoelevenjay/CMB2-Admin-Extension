@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 
 *
 
+## 0.0.4 beta 01.24.2016
+* Simplify admin notices, this fixes fatal error
+
 ## 0.0.3 beta 01.24.2016
 * All thanks to [jrfnl](https://github.com/jrfnl)
 * Synced the GH repo with the WP repo to make sure it was up to date.

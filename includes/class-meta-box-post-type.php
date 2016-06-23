@@ -556,33 +556,42 @@ class CMB2_Meta_Box_Post_Type {
 			foreach ( $fields as $field ) {
 
 				$field_id = '_' . strtolower( str_replace( ' ', '_', $field['_cmb2_name_text'] ) );
-				$options  = explode( PHP_EOL, $field['_cmb2_options_textarea'] );
-				if ( isset( $field['_cmb2_repeatable_checkbox'] ) ) {
+				$options = $field['_cmb2_options_textarea'];
+				if ( isset( $field['_cmb2_repeatable_checkbox'] ) && $field['_cmb2_repeatable_checkbox'] == 'on' ) {
 					$repeatable = true;
 				}else{
 					$repeatable = false;
 				}
 
-				foreach ( $options as $option) {
-
-					$opt_arr = explode( ',', $option );
-
-					if ( ! isset( $opt_arr[1] ) ) {
-						continue;
-					}
-
-					$field_options[ $opt_arr[0] ] = $opt_arr[1];
-
-				}
-
-				${ 'cmb_'.$id }->add_field( array(
+				$field_args = array(
 					'name'       => $field['_cmb2_name_text'],
 					'desc'       => $field['_cmb2_decription_textarea'],
 					'id'         => $field_id ,
 					'type'       => $field['_cmb2_field_type_select'],
-					'options'    => $field_options,
 					'repeatable' => $repeatable,
-				) );
+				);
+
+				if ( $options ) {
+
+					$options = explode( PHP_EOL, $options );
+
+					foreach ( $options as $option ) {
+
+						$opt_arr = explode( ',', $option );
+
+						if ( ! isset( $opt_arr[1] ) ) {
+							continue;
+						}
+
+						$field_options[ $opt_arr[0] ] = $opt_arr[1];
+
+					}
+
+					$field_args['options'] = $field_options;
+
+				}
+
+				${ 'cmb_'.$id }->add_field( $field_args );
 
 			}
 

@@ -574,19 +574,15 @@ class CMB2_Meta_Box_Post_Type {
 				if ( $options ) {
 
 					$options = explode( PHP_EOL, $options );
-
 					foreach ( $options as $option ) {
 
 						$opt_arr = explode( ',', $option );
-
 						if ( ! isset( $opt_arr[1] ) ) {
 							continue;
 						}
-
 						$field_options[ $opt_arr[0] ] = $opt_arr[1];
 
 					}
-
 					$field_args['options'] = $field_options;
 
 				}

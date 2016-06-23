@@ -5,7 +5,10 @@ All notable changes to this project will be documented in this file.
 
 *
 
-## 0.0.4 beta 01.24.2016
+## 0.0.5 beta 06.23.2016
+* Minor field output fixes
+
+## 0.0.4 beta 06.22.2016
 * Simplify admin notices, this fixes fatal error
 
 ## 0.0.3 beta 01.24.2016

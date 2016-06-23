@@ -37,12 +37,15 @@ All contributions welcome. If you would like to submit a pull request, please ch
 
 == Changelog ==
 
-## 0.0.4 beta 01.24.2016
+## 0.0.5 beta 06.23.2016 
+* Minor field output fixes
+
+## 0.0.4 beta 06.22.2016
 * Simplify admin notices, this fixes fatal error
 
 
 ## 0.0.3 beta 01.24.2016
-* All thanks to jrfnl
+* All thanks to @jrfnl
 * Synced the GH repo with the WP repo to make sure it was up to date.
 * Removed some files from the repo which shouldn't have been there in the first place.
 * The readme wasn't properly parseable for the WP repo, fixed that.

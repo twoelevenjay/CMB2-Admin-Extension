@@ -127,7 +127,7 @@ class CMB2_Admin_Extension_Class {
 
 		?>
 			<div class="error">
-				<p><?php esc_html_e( 'CMB2 Admin Extension depends on the last version of <a href="https://wordpress.org/plugins/cmb2/">the CMB2 plugin</a> to work!', 'cmb2-admin-extension' ); ?></p>
+				<p><?php printf( esc_html__( 'CMB2 Admin Extension depends on the last version of %s the CMB2 plugin %s to work!', 'cmb2-admin-extension' ), '<a href="https://wordpress.org/plugins/cmb2/">', '</a>' ); ?></p>
 			</div>
 		<?php
 
@@ -136,39 +136,11 @@ class CMB2_Admin_Extension_Class {
 	private function cmb2_admin_extension_cmb2_not_activated() {
 
 		// TODO comment
-		$activate_url = $this->activate_cmb2_link( CMB2AE_CMB2_PLUGIN_FILE );
 		 ?>
 			<div class="error">
-				<p><?php printf( esc_html__( 'The CMB2 plugin is installed but has not been activated. Please %s it to use the CMB2 Admin Extension', 'cmb2-admin-extension' ), $activate_url ); ?></p>
+				<p><?php printf( esc_html__( 'The CMB2 plugin is installed but has not been activated. Please %s activate %s it to use the CMB2 Admin Extension', 'cmb2-admin-extension' ), '<a href="'.admin_url('plugins.php').'">', '</a>' ); ?></p>
 			</div>
 		<?php
-
-	}
-
-	private function activate_cmb2_link( $plugin_file ) {
-
-		// TODO comment
-		global $status, $page, $s, $totals;
-
-		$url = wp_nonce_url(
-			sprintf(
-				'plugins.php?action=activate&amp;plugin=%1$s&amp;plugin_status=%2$s&amp;paged=%3$s&amp;s=%4$s',
-				url_encode( $plugin_file ),
-				url_encode( $status ),
-				url_encode( $page ),
-				url_encode( $s )
-			)
-		);
-
-		// TODO comment
-		$activateUrl = sprintf(
-			'<a href="%1$s" title="%2$s" class="edit">%3$s</a>',
-			$url,
-			esc_attr__( 'Activate this plugin' ),
-			esc_html__( 'activate' )
-		);
-
-		return $activateUrl;
 
 	}
 

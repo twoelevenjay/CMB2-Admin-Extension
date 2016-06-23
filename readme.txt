@@ -37,7 +37,10 @@ All contributions welcome. If you would like to submit a pull request, please ch
 
 == Changelog ==
 
-## 0.0.5 beta 06.23.2016 
+## 0.0.6 beta 06.23.2016
+* Add option to select which taxonomy should be used for taxonomy based fields
+
+## 0.0.5 beta 06.23.2016
 * Minor field output fixes
 
 ## 0.0.4 beta 06.22.2016

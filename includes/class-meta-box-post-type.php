@@ -243,6 +243,25 @@ class CMB2_Meta_Box_Post_Type {
 	}
 
 	/**
+	 * Get users for the soptions on the ettings page
+	 * @since  0.0.6
+	 */
+	public function user_options() {
+
+		$users = get_users();
+		$user_options = array();
+		foreach ( $users as $user ) {
+
+			if ( user_can( $user, 'update_plugins' ) || user_can( $user, 'install_plugins' ) || user_can( $user, 'delete_plugins' ) || user_can( $user, 'edit_theme_options' ) ) {
+				$user_options[ $user->ID ] = $user->display_name;
+			}
+
+		}
+		return $user_options;
+
+	}
+
+	/**
 	 * Add show/hide options callback
 	 * @since  0.0.1
 	 */
@@ -252,23 +271,26 @@ class CMB2_Meta_Box_Post_Type {
 
 	}
 
-	public function init_cmb2_settings_page() {
+	/**
+	 * Get users for the soptions on the ettings page
+	 * @since  0.0.6
+	 */
+	public function tax_options() {
 
-		$prefix = $this->prefix ;
+		$taxonomies = get_taxonomies( array( 'public' => true ), 'objects' );
+		$tax_options = array();
+		foreach ( $taxonomies as $taxonomy ) {
 
-		$users = get_users();
-
-		$user_options = array();
-
-		foreach ( $users as $user ) {
-
-			if ( user_can( $user, 'update_plugins' ) || user_can( $user, 'install_plugins' ) || user_can( $user, 'delete_plugins' ) || user_can( $user, 'edit_theme_options' ) ) {
-
-				$user_options[ $user->ID ] = $user->display_name;
-
-			}
+			$tax_options[ $taxonomy->name ] = $taxonomy->labels->name;
 
 		}
+		return $tax_options;
+
+	}
+
+	public function init_cmb2_settings_page() {
+
+		$prefix = $this->prefix;
 
 		$cmb_settings = new_cmb2_box( array(
 			'id'      => $this->settings_metabox_id,
@@ -285,7 +307,7 @@ class CMB2_Meta_Box_Post_Type {
 			'desc'    => __( 'Check the users to grant access to this plugin and the CMB2 plugin. Leave unchecked to grant access to all users.', 'cmb2-admin-extension' ),
 			'id'      => $prefix . 'user_multicheckbox',
 			'type'    => 'multicheck',
-			'options' => $user_options,
+			'options' => $this->user_options(),
 			'inline'  => true,
 		) );
 
@@ -492,6 +514,17 @@ class CMB2_Meta_Box_Post_Type {
 			'after'=> $this->show_hide_options(),
 		) );
 
+		$tax_options = $this->tax_options();
+		reset($tax_options);
+		$default_tax_options = key($tax_options);
+		$cmb_group->add_group_field( $group_field_id, array(
+			'name'    => 'Taxonomy Options',
+			'id'      => $prefix . 'tax_options_radio_inline',
+			'type'    => 'radio_inline',
+			'options' => $this->tax_options(),
+			'default' => $default_tax_options,
+		) );
+
 		$cmb_group->add_group_field( $group_field_id, array(
 			'name' => __( 'Default Value', 'cmb2-admin-extension' ),
 			'desc' => __( 'Enter a value to use as a default for this field. If you want a checkbox to be checked enter "on". Leave blank for no default value.', 'cmb2-admin-extension' ),
@@ -556,7 +589,6 @@ class CMB2_Meta_Box_Post_Type {
 			foreach ( $fields as $field ) {
 
 				$field_id = '_' . strtolower( str_replace( ' ', '_', $field['_cmb2_name_text'] ) );
-				$options = $field['_cmb2_options_textarea'];
 				if ( isset( $field['_cmb2_repeatable_checkbox'] ) && $field['_cmb2_repeatable_checkbox'] == 'on' ) {
 					$repeatable = true;
 				}else{
@@ -571,6 +603,7 @@ class CMB2_Meta_Box_Post_Type {
 					'repeatable' => $repeatable,
 				);
 
+				$options = isset( $field['_cmb2_options_textarea'] ) ? $field['_cmb2_options_textarea'] : false;
 				if ( $options ) {
 
 					$options = explode( PHP_EOL, $options );
@@ -584,6 +617,12 @@ class CMB2_Meta_Box_Post_Type {
 
 					}
 					$field_args['options'] = $field_options;
+
+				}
+
+				if ( strpos($field['_cmb2_field_type_select'], 'tax') !== false  && $field['_cmb2_tax_options_radio_inline'] != '' ) {
+
+					$field_args['taxonomy'] = $field['_cmb2_tax_options_radio_inline'];
 
 				}
 

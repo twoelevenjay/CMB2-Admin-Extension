@@ -629,7 +629,7 @@ class CMB2_Meta_Box_Post_Type {
 		reset($tax_options);
 		$default_tax_options = key($tax_options);
 		$cmb_group->add_group_field( $group_field_id, array(
-			'name'    => 'Taxonomy Options',
+			'name'    => __( 'Taxonomy Options', 'cmb2-admin-extension' ),
 			'id'      => $prefix . 'tax_options_radio_inline',
 			'type'    => 'radio_inline',
 			'options' => $this->tax_options(),

@@ -374,7 +374,7 @@ class CMB2_Meta_Box_Post_Type {
 
 		$cmb->add_field( array(
 			'name'    => __( 'Context', 'cmb2-admin-extension' ),
-			'desc'    => __( 'This addiotional conrtols for positioning of the meta box. Advanced displays after Normal. Side places the meta box in the right sidebar.', 'cmb2-admin-extension' ),
+			'desc'    => __( 'This additional controls for positioning of the meta box. Advanced displays after Normal. Side places the meta box in the right sidebar.', 'cmb2-admin-extension' ),
 			'id'      => $prefix . 'context_radio',
 			'type'    => 'radio',
 			'default' => 'advanced',

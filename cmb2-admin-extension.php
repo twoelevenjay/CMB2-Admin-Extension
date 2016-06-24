@@ -156,3 +156,12 @@ if ( ! function_exists( 'cmbf' ) ) {
 
 	}
 }
+
+
+add_action( 'plugins_loaded', 'cmb2_admin_extension_load_textdomain' );
+/**
+ * Load plugin textdomain.
+ */
+function cmb2_admin_extension_load_textdomain() {
+  load_plugin_textdomain( 'cmb2-admin-extension', false, plugin_basename( dirname( __FILE__ ) ) . '/languages' ); 
+}

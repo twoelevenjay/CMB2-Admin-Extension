@@ -182,7 +182,7 @@ class CMB2_Meta_Box_Post_Type {
 		?>
 		<div class="wrap cmb2-options-page <?php echo $this->settings_key; ?>">
 			<h2><?php echo $this->settings_title; ?></h2>
-			<?php cmb2_metabox_form( $this->settings_metabox_id, $this->settings_key, array( 'cmb_styles' => false ) ); ?>
+			<?php cmb2_metabox_form( $this->settings_metabox_id, $this->settings_key, array( 'disable_styles' => false ) ); ?>
 		</div>
 		<?php
 
@@ -397,7 +397,7 @@ class CMB2_Meta_Box_Post_Type {
 		$cmb->add_field( array(
 			'name' => __( 'Disable CMB2 Styles', 'cmb2-admin-extension' ),
 			'desc' => __( 'Check to disable the CMB stylesheet', 'cmb2-admin-extension' ),
-			'id'   => $prefix . 'cmb_styles',
+			'id'   => $prefix . 'disable_styles',
 			'type' => 'checkbox',
 		) );
 
@@ -489,7 +489,7 @@ class CMB2_Meta_Box_Post_Type {
 				'multicheck'                       => 'multicheck: Multiple Checkboxes',
 				'multicheck_inline'                => 'multicheck_inline: Multiple Checkboxes Inline',
 				'taxonomy_multicheck'              => 'taxonomy_multicheck: Taxonomy Multiple Checkboxes*',
-				'taxonomy_multicheck_inline'       => 'taxonomy_multicheck_inline: Taxonomy Multiple Checkboxes Inline',
+				'taxonomy_multicheck_inline'       => 'taxonomy_multicheck_inline: Taxonomy Multiple Checkboxes Inline*',
 				'wysiwyg'                          => 'wysiwyg: (TinyMCE) *',
 				'file'                             => 'file: Image/File upload *†',
 				'file_list'                        => 'file_list: Image/File list upload',
@@ -503,6 +503,26 @@ class CMB2_Meta_Box_Post_Type {
 			'desc' => __( 'Check this box to make the field repeatable. Field types marked with a "*" are not repeatable.', 'cmb2-admin-extension' ),
 			'id'   => $prefix . 'repeatable_checkbox',
 			'type' => 'checkbox',
+		) );
+
+		$cmb_group->add_group_field( $group_field_id, array(
+			'name'    => __( 'Protocols', 'cmb2-admin-extension' ),
+			'desc'    => __( 'Check the boxes for each allowed protocol. If you are unsure then do nothing and all protocols will be allowed.', 'cmb2-admin-extension' ),
+			'id'      => $prefix . 'protocols_checkbox',
+			'type'    => 'multicheck_inline',
+			'options' => array(
+				'http'   => 'http',
+				'https'  => 'https',
+				'ftp'    => 'ftp',
+				'ftps'   => 'ftps',
+				'mailto' => 'mailto',
+				'news'   => 'news',
+				'irc'    => 'irc',
+				'gopher' => 'gopher',
+				'nntp'   => 'nntp',
+				'feed'   => 'feed',
+				'telnet' => 'telnet',
+			),
 		) );
 
 		$cmb_group->add_group_field( $group_field_id, array(
@@ -546,6 +566,39 @@ class CMB2_Meta_Box_Post_Type {
 	}
 
 	/**
+	 * is_repeatable() shortens the get_post_meta() function.
+	 * @since  0.0.6
+	 */
+	static function is_repeatable( $field_type ) {
+
+		$repeatable_fields = array(
+			'text',
+			'text_small',
+			'text_medium',
+			'text_email',
+			'text_url',
+			'text_money',
+			'textarea',
+			'textarea_small',
+			'textarea_code',
+			'text_date',
+			'text_time',
+			'select_timezone',
+			'text_date_timestamp',
+			'text_datetime_timestamp',
+			'text_datetime_timestamp_timezone',
+			'colorpicker',
+			'select',
+			'multicheck',
+			'multicheck_inline',
+			'file',
+			'file_list',
+		);
+		return in_array( $field_type, $repeatable_fields );
+
+	}
+
+	/**
 	 * Loop through user defined meta_box and creates the custom meta boxes and fields.
 	 * @since  0.0.1
 	 */
@@ -565,15 +618,15 @@ class CMB2_Meta_Box_Post_Type {
 
 			$ID = $user_meta_box->ID;
 
-			$title      = get_the_title( $ID );
-			$id         = str_replace( '-', '_', $user_meta_box->post_name );
-			$post_type  = $this->cmbf( $ID, $prefix . 'post_type_multicheckbox' );
-			$context    = $this->cmbf( $ID, $prefix . 'context_radio' );
-			$priority   = $this->cmbf( $ID, $prefix . 'priority_radio' );
-			$show_names = $this->cmbf( $ID, $prefix . 'show_names' );
-			$cmb_styles = $this->cmbf( $ID, $prefix . 'cmb_styles' );
-			$closed     = $this->cmbf( $ID, $prefix . 'cmb_styles' );
-			$fields     = $this->cmbf( $ID, $prefix . 'custom_field' );
+			$title          = get_the_title( $ID );
+			$id             = str_replace( '-', '_', $user_meta_box->post_name );
+			$post_type      = $this->cmbf( $ID, $prefix . 'post_type_multicheckbox' );
+			$context        = $this->cmbf( $ID, $prefix . 'context_radio' );
+			$priority       = $this->cmbf( $ID, $prefix . 'priority_radio' );
+			$show_names     = $this->cmbf( $ID, $prefix . 'show_names' );
+			$disable_styles = $this->cmbf( $ID, $prefix . 'disable_styles' );
+			$closed         = $this->cmbf( $ID, $prefix . 'closed' );
+			$fields         = $this->cmbf( $ID, $prefix . 'custom_field' );
 
 			/**
 			 * Initiate the metabox
@@ -589,41 +642,34 @@ class CMB2_Meta_Box_Post_Type {
 			foreach ( $fields as $field ) {
 
 				$field_id = '_' . strtolower( str_replace( ' ', '_', $field['_cmb2_name_text'] ) );
-				if ( isset( $field['_cmb2_repeatable_checkbox'] ) && $field['_cmb2_repeatable_checkbox'] == 'on' ) {
-					$repeatable = true;
-				}else{
-					$repeatable = false;
-				}
 
 				$field_args = array(
 					'name'       => $field['_cmb2_name_text'],
 					'desc'       => $field['_cmb2_decription_textarea'],
 					'id'         => $field_id ,
 					'type'       => $field['_cmb2_field_type_select'],
-					'repeatable' => $repeatable,
 				);
 
 				$options = isset( $field['_cmb2_options_textarea'] ) ? $field['_cmb2_options_textarea'] : false;
 				if ( $options ) {
-
 					$options = explode( PHP_EOL, $options );
 					foreach ( $options as $option ) {
-
 						$opt_arr = explode( ',', $option );
 						if ( ! isset( $opt_arr[1] ) ) {
 							continue;
 						}
 						$field_options[ $opt_arr[0] ] = $opt_arr[1];
-
 					}
 					$field_args['options'] = $field_options;
-
 				}
-
 				if ( strpos($field['_cmb2_field_type_select'], 'tax') !== false  && $field['_cmb2_tax_options_radio_inline'] != '' ) {
-
 					$field_args['taxonomy'] = $field['_cmb2_tax_options_radio_inline'];
-
+				}
+				if ( isset( $field['_cmb2_repeatable_checkbox'] ) && $field['_cmb2_repeatable_checkbox'] == 'on' && $this->is_repeatable( $field['_cmb2_field_type_select'] ) ) {
+					$field_args['repeatable'] = true;
+				}
+				if ( $field['_cmb2_field_type_select'] == 'url' && isset( $field['_cmb2_protocols_checkbox'] ) && !empty( $field['_cmb2_protocols_checkbox'] ) ) {
+					$field_args['protocols'] = $field['_cmb2_protocols_checkbox'];
 				}
 
 				${ 'cmb_'.$id }->add_field( $field_args );

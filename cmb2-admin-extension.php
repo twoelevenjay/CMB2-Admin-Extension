@@ -78,6 +78,8 @@ class CMB2_Admin_Extension_Class {
 
 		// TODO comment
 		$this->check_for_cmb2();
+		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
+
 
 	}
 
@@ -144,6 +146,17 @@ class CMB2_Admin_Extension_Class {
 
 	}
 
+	/**
+	 * Load plugin textdomain.
+	 *
+	 * @return void
+	 */
+	public function load_textdomain() {
+
+		load_plugin_textdomain( 'cmb2-admin-extension', false, plugin_basename( dirname( __FILE__ ) ) . '/languages' );
+
+	}
+
 }
 
 add_action( 'plugins_loaded', array( 'CMB2_Admin_Extension_Class', 'get_instance' ), 20 );
@@ -155,13 +168,4 @@ if ( ! function_exists( 'cmbf' ) ) {
 		return CMB2_Meta_Box_Post_Type::cmbf( $ID, $field );
 
 	}
-}
-
-
-add_action( 'plugins_loaded', 'cmb2_admin_extension_load_textdomain' );
-/**
- * Load plugin textdomain.
- */
-function cmb2_admin_extension_load_textdomain() {
-  load_plugin_textdomain( 'cmb2-admin-extension', false, plugin_basename( dirname( __FILE__ ) ) . '/languages' ); 
 }

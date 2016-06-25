@@ -576,6 +576,13 @@ class CMB2_Meta_Box_Post_Type {
 		) );
 
 		$cmb_group->add_group_field( $group_field_id, array(
+			'name'    => __( 'No Terms Text', 'cmb2-admin-extension' ),
+			'desc'    => __( 'Enter text to change the text that is shown when no terms are found. Default: "No terms".', 'cmb2-admin-extension' ),
+			'id'      => $prefix . 'no_terms_text',
+			'type'    => 'text_small',
+		) );
+
+		$cmb_group->add_group_field( $group_field_id, array(
 			'name' => __( 'Include a "none" option', 'cmb2-admin-extension' ),
 			'desc' => __( 'Check this box to include a "none" option with this field.', 'cmb2-admin-extension' ),
 			'id'   => $prefix . 'none_checkbox',
@@ -587,6 +594,13 @@ class CMB2_Meta_Box_Post_Type {
 			'desc' => __( 'Check this box to disable the select all button for this field.', 'cmb2-admin-extension' ),
 			'id'   => $prefix . 'select_all_checkbox',
 			'type' => 'checkbox',
+		) );
+
+		$cmb_group->add_group_field( $group_field_id, array(
+			'name'    => __( 'Button Text', 'cmb2-admin-extension' ),
+			'desc'    => __( 'Enter text to change the upload button text. Default: "Add or Upload File".', 'cmb2-admin-extension' ),
+			'id'      => $prefix . 'add_upload_file_text',
+			'type'    => 'text_small',
 		) );
 
 		$cmb_group->add_group_field( $group_field_id, array(
@@ -731,6 +745,9 @@ class CMB2_Meta_Box_Post_Type {
 				if ( strpos($field['_cmb2_field_type_select'], 'tax') !== false  && $field['_cmb2_tax_options_radio_inline'] != '' ) {
 					$field_args['taxonomy'] = $field['_cmb2_tax_options_radio_inline'];
 				}
+				if ( strpos($field['_cmb2_field_type_select'], 'tax') !== false && isset( $field['_cmb2_no_terms_text'] ) && $field['_cmb2_no_terms_text'] != '' ) {
+					$field_args['options']['no_terms_text'] = $field['_cmb2_no_terms_text'];
+				}
 				if ( isset( $field['_cmb2_repeatable_checkbox'] ) && $field['_cmb2_repeatable_checkbox'] == 'on' && $this->is_repeatable( $field['_cmb2_field_type_select'] ) ) {
 					$field_args['repeatable'] = true;
 				}
@@ -754,6 +771,9 @@ class CMB2_Meta_Box_Post_Type {
 				}
 				if ( strpos($field['_cmb2_field_type_select'], 'multicheck') !== false  && isset( $field['_cmb2_select_all_checkbox'] ) && $field['_cmb2_select_all_checkbox'] == 'on' ) {
 					$field_args['select_all_button'] = false;
+				}
+				if ( ( $field['_cmb2_field_type_select'] == 'file' /* TODO text arg array not working for file_list || $field['_cmb2_field_type_select'] == 'file_list' */ ) && isset( $field['_cmb2_add_upload_file_text'] ) && $field['_cmb2_add_upload_file_text'] != '' ) {
+					$field_args['options']['add_upload_file_text'] = $field['_cmb2_add_upload_file_text'];
 				}
 
 				${ 'cmb_'.$id }->add_field( $field_args );

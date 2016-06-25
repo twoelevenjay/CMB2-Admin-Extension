@@ -35,9 +35,18 @@ CMB2 Admin Extension requires the most current version of the CMB2 plugin. You c
 ### Contribution
 All contributions welcome. If you would like to submit a pull request, please check out the [trunk branch](https://github.com/twoelevenjay/CMB2-Admin-Extension/tree/trunk) and pull request against it. Please read the [CONTRIBUTING](https://github.com/twoelevenjay/CMB2-Admin-Extension/CONTRIBUTING.md) doc for more details.
 
+== Installation ==
+
+1. Extract the .zip file for this plugin and upload its contents to the `/wp-content/plugins/` directory. Alternatively, you can install directly from the Plugin directory within your WordPress Install.
+1. Activate the plugin through the "Plugins" menu in WordPress.
+
+== Frequently Asked Questions ==
+
+FAQ's usually end up in the [github wiki](https://github.com/twoelevenjay/CMB2-Admin-Extension/wiki).
+
 == Changelog ==
 
-## 0.0.7 beta 06.25.2016
+= 0.0.7 beta 06.25.2016 =
 * Added support for the rest of the Custom, Field Attributes
 
 = 0.0.6 beta 06.23.2016 =
@@ -48,7 +57,6 @@ All contributions welcome. If you would like to submit a pull request, please ch
 
 = 0.0.4 beta 06.22.2016 =
 * Simplify admin notices, this fixes fatal error
-
 
 = 0.0.3 beta 01.24.2016 =
 * All thanks to @jrfnl
@@ -71,8 +79,3 @@ All contributions welcome. If you would like to submit a pull request, please ch
 
 = 0.0.1 beta 06.10.2015 =
 * Initial release, is working but could use a lot more features.
-
-== Installation ==
-
-1. Extract the .zip file for this plugin and upload its contents to the `/wp-content/plugins/` directory. Alternatively, you can install directly from the Plugin directory within your WordPress Install.
-1. Activate the plugin through the "Plugins" menu in WordPress.

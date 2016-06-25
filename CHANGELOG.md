@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 
 *
 
+## 0.0.7 beta 06.25.2016
+* Added support for the rest of the Custom, Field Attributes
+
 ## 0.0.6 beta 06.23.2016
 * Add option to select which taxonomy should be used for taxonomy based fields
 

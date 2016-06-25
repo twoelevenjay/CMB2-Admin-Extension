@@ -4,7 +4,7 @@ Donate link:       http://211j.com
 Tags:              metaboxes, forms, fields, options, settings
 Requires at least: 4.0
 Tested up to:      4.5
-Stable tag:        0.0.6
+Stable tag:        0.0.7
 License:           GPLv2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -36,6 +36,9 @@ CMB2 Admin Extension requires the most current version of the CMB2 plugin. You c
 All contributions welcome. If you would like to submit a pull request, please check out the [trunk branch](https://github.com/twoelevenjay/CMB2-Admin-Extension/tree/trunk) and pull request against it. Please read the [CONTRIBUTING](https://github.com/twoelevenjay/CMB2-Admin-Extension/CONTRIBUTING.md) doc for more details.
 
 == Changelog ==
+
+## 0.0.7 beta 06.25.2016
+* Added support for the rest of the Custom, Field Attributes
 
 ## 0.0.6 beta 06.23.2016
 * Add option to select which taxonomy should be used for taxonomy based fields

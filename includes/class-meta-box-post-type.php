@@ -526,6 +526,36 @@ class CMB2_Meta_Box_Post_Type {
 		) );
 
 		$cmb_group->add_group_field( $group_field_id, array(
+			'name'    => __( 'Currency Symbol', 'cmb2-admin-extension' ),
+			'desc'    => __( 'Replaces the default "$".', 'cmb2-admin-extension' ),
+			'id'      => $prefix . 'currency_text',
+			'type'    => 'text_small',
+		) );
+
+		$cmb_group->add_group_field( $group_field_id, array(
+			'name'    => __( 'Date Format', 'cmb2-admin-extension' ),
+			'desc'    => __( 'Defaults to "m/d/Y". See <a target="_blank" href="http://php.net/manual/en/function.date.php">php.net/manual/en/function.date.php</a>.', 'cmb2-admin-extension' ),
+			'id'      => $prefix . 'date_format',
+			'type'    => 'text_small',
+		) );
+
+		$cmb_group->add_group_field( $group_field_id, array(
+			'name'    => __( 'Time Format', 'cmb2-admin-extension' ),
+			'desc'    => __( 'Defaults to "h:i A". See <a target="_blank" href="http://php.net/manual/en/function.date.php">php.net/manual/en/function.date.php</a>.', 'cmb2-admin-extension' ),
+			'id'      => $prefix . 'time_format',
+			'type'    => 'text_small',
+		) );
+
+		// TODO make this field generate optins from predefined time zone fields. Maybe both from previously saved fields and ones just created via javascript.
+		//$cmb_group->add_group_field( $group_field_id, array(
+		//	'name'             =>  __( 'Time Zone', 'cmb2-admin-extension' ),
+		//	'desc'             =>  __( 'Select a time zone field to make this field honor.', 'cmb2-admin-extension' ),
+		//	'id'               => $prefix . 'time_zone_key_select',
+		//	'type'             => 'select',
+		//	'options'          => array(),
+		//) );
+
+		$cmb_group->add_group_field( $group_field_id, array(
 			'name' => __( 'Options', 'cmb2-admin-extension' ),
 			//'desc' => __( 'Your field type requires manual options. Please add one option per line. Type value then name seprated by a comma.<br>Example:<br>sml,Small<br>med,Medium<br>lrg,Large', 'cmb2-admin-extension' ),
 			'desc' => __( 'If your field type requires manual options, please add one option per line. Type value then name seprated by a comma.<br>Example:<br>sml,Small<br>med,Medium<br>lrg,Large', 'cmb2-admin-extension' ),
@@ -543,6 +573,20 @@ class CMB2_Meta_Box_Post_Type {
 			'type'    => 'radio_inline',
 			'options' => $this->tax_options(),
 			'default' => $default_tax_options,
+		) );
+
+		$cmb_group->add_group_field( $group_field_id, array(
+			'name' => __( 'Include a "none" option', 'cmb2-admin-extension' ),
+			'desc' => __( 'Check this box to include a "none" option with this field.', 'cmb2-admin-extension' ),
+			'id'   => $prefix . 'none_checkbox',
+			'type' => 'checkbox',
+		) );
+
+		$cmb_group->add_group_field( $group_field_id, array(
+			'name' => __( 'Disable select all', 'cmb2-admin-extension' ),
+			'desc' => __( 'Check this box to disable the select all button for this field.', 'cmb2-admin-extension' ),
+			'id'   => $prefix . 'select_all_checkbox',
+			'type' => 'checkbox',
 		) );
 
 		$cmb_group->add_group_field( $group_field_id, array(
@@ -595,6 +639,28 @@ class CMB2_Meta_Box_Post_Type {
 			'file_list',
 		);
 		return in_array( $field_type, $repeatable_fields );
+
+	}
+
+	/**
+	 * is_repeatable() shortens the get_post_meta() function.
+	 * @since  0.0.6
+	 */
+	static function has_options( $field_type ) {
+
+		$options_fields = array(
+			'radio',
+			'radio_inline',
+			'taxonomy_radio',
+			'taxonomy_radio_inline',
+			'select',
+			'taxonomy_select',
+			'multicheck',
+			'multicheck_inline',
+			'taxonomy_multicheck',
+			'taxonomy_multicheck_inline',
+		);
+		return in_array( $field_type, $options_fields );
 
 	}
 
@@ -670,6 +736,24 @@ class CMB2_Meta_Box_Post_Type {
 				}
 				if ( $field['_cmb2_field_type_select'] == 'url' && isset( $field['_cmb2_protocols_checkbox'] ) && !empty( $field['_cmb2_protocols_checkbox'] ) ) {
 					$field_args['protocols'] = $field['_cmb2_protocols_checkbox'];
+				}
+				if ( $field['_cmb2_field_type_select'] == 'text_money' && isset( $field['_cmb2_currency_text'] ) && $field['_cmb2_currency_text'] != '' ) {
+					$field_args['before_field'] = $field['_cmb2_currency_text'];
+				}
+				if ( $field['_cmb2_field_type_select'] == 'text_time' && isset( $field['_cmb2_time_format'] ) && $field['_cmb2_time_format'] != '' ) {
+					$field_args['time_format'] = $field['_cmb2_time_format'];
+				}
+				if ( ( $field['_cmb2_field_type_select'] == 'text_date' || $field['_cmb2_field_type_select'] == 'text_date_timestamp' ) && isset( $field['_cmb2_date_format'] ) && $field['_cmb2_date_format'] != '' ) {
+					$field_args['date_format'] = $field['_cmb2_date_format'];
+				}
+				if ( $field['_cmb2_field_type_select'] == 'text_date_timestamp' && isset( $field['_cmb2_time_zone_key_select'] ) && $field['_cmb2_time_zone_key_select'] != '' ) {
+					$field_args['timezone_meta_key'] = $field['_cmb2_time_zone_key_select'];
+				}
+				if ( isset( $field['_cmb2_none_checkbox'] ) && $field['_cmb2_none_checkbox'] == 'on' && $this->has_options( $field['_cmb2_field_type_select'] ) ) {
+					$field_args['show_option_none'] = true;
+				}
+				if ( strpos($field['_cmb2_field_type_select'], 'multicheck') !== false  && isset( $field['_cmb2_select_all_checkbox'] ) && $field['_cmb2_select_all_checkbox'] == 'on' ) {
+					$field_args['select_all_button'] = false;
 				}
 
 				${ 'cmb_'.$id }->add_field( $field_args );

@@ -56,6 +56,9 @@ class CMB2_Meta_Box_Post_Type {
 		add_action( 'add_meta_boxes', array( $this, 'remove_meta_box_slugdiv' ) );
 		add_action( 'admin_head', array( $this, 'hide_edit_slug_bar' ) );
 		add_action( 'pre_current_active_plugins', array( $this, 'hide_cmb2_plugins' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+
+		add_filter( 'cmb2_row_classes', array( $this, 'show_hide_classes' ), 10, 2 );
 
 		add_action( 'cmb2_init', array( $this, 'init_meta_box_settings' ) );
 		add_action( 'cmb2_init', array( $this, 'init_custom_field_settings' ) );
@@ -131,11 +134,8 @@ class CMB2_Meta_Box_Post_Type {
 	public function add_settings_page() {
 
 		if ( $this->is_cmb2_allowed() ) {
-
 			$this->settings_page = add_submenu_page( 'edit.php?post_type=meta_box', __( 'CMB2 Settings', 'cmb2-admin-extension' ), __( 'CMB2 Settings', 'cmb2-admin-extension' ), 'edit_posts', $this->settings_key, array( $this, 'settings_page' ) );
-
 			add_action( "admin_print_styles-{$this->settings_page}", array( 'CMB2_hookup', 'enqueue_cmb_css' ) );
-
 		}
 
 	}
@@ -219,24 +219,33 @@ class CMB2_Meta_Box_Post_Type {
 	 * Only show CMB2 plugins to users defined in settings
 	 * @since  0.0.1
 	 */
-	function hide_cmb2_plugins() {
+	public function hide_cmb2_plugins() {
 
 		global $wp_list_table;
-
 		if ( ! $this->is_cmb2_allowed() ) {
-
 			$to_hide = array( CMB2AE_CMB2_PLUGIN_FILE, 'cmb2-admin-extension/cmb2-admin-extension.php' );
 			$plugins = $wp_list_table->items;
-
 			foreach ( $plugins as $key => $val ) {
-
 				if ( in_array( $key, $to_hide ) ) {
-
 					unset( $wp_list_table->items[ $key ] );
-
 				}
-
 			}
+		}
+
+	}
+
+	/**
+	 * Enqueue CMB2 Admin Extension scripts and styles
+	 * @since  0.0.8
+	 */
+	public function enqueue_scripts() {
+
+		$screen = get_current_screen();
+		if ( $screen->post_type === 'meta_box' ) {
+
+			wp_register_style( 'cmb2_admin_styles', CMB2AE_URI . '/css/meta-box-fields.css', false, '0.0.8' );
+        	wp_enqueue_style( 'cmb2_admin_styles' );
+    		wp_enqueue_script( 'cmb2_admin_scripts', CMB2AE_URI . '/js/meta-box-fields.js', true, array( 'jquery' ), '0.0.8' );
 
 		}
 
@@ -262,12 +271,67 @@ class CMB2_Meta_Box_Post_Type {
 	}
 
 	/**
-	 * Add show/hide options callback
-	 * @since  0.0.1
+	 * Pass each item in an array through strpos()
+	 * @since  0.0.8
 	 */
-	public function show_hide_options() {
+	public function strpos_array( $string, $ids, $add ) {
+		if ( is_array( $ids ) ) {
+	        foreach( $ids as $item ) {
+	            if ( strpos( $string, $item ) !== false ) {
+					return !$add;
+				}
+	        }
+		}elseif ( strpos( $string, $ids ) !== false ) {
+			return !$add;
+		}
+        return $add;
 
-		// TODO make options field only show if a relavant field type is slected.
+	}
+
+	/**
+	 * Pass each item in an array through strpos()
+	 * @since  0.0.8
+	 */
+	public function conditionally_add_class( $field_id, $ids, $classes, $class, $add ) {
+
+		$screen = get_current_screen();
+		if ( !$this->strpos_array( $field_id, $ids, $add ) && $screen->post_type === 'meta_box' ) {
+			$classes = $classes . ' ' . $class;
+		}
+		return $classes;
+
+	}
+
+	/**
+	 * Add show/hide options callback
+	 * @since  0.0.8
+	 */
+	public function show_hide_classes( $classes, $field ) {
+
+		$ids_not_to_hide = array(
+			'name_text',
+			'decription_textarea',
+			'field_type_select',
+			'default_value',
+		);
+		$classes = $this->conditionally_add_class( $field->args['id'], $ids_not_to_hide, $classes, 'cmb_hide_field', false );
+		$classes = $this->conditionally_add_class( $field->args['id'], $ids_not_to_hide, $classes, 'no_hide', true );
+		$classes = $this->conditionally_add_class( $field->args['id'], 'repeatable', $classes, 'repeatable text text_small text_medium text_email text_url text_money textarea textarea_small textarea_code text_date text_timeselect_timezone text_date_timestamp text_datetime_timestamp text_datetime_timestamp_timezone colorpicker select multicheck multicheck_inline', true );
+		$classes = $this->conditionally_add_class( $field->args['id'], 'protocols', $classes, 'protocols text_url', true );
+		$classes = $this->conditionally_add_class( $field->args['id'], 'currency_text', $classes, 'currency_text text_money', true );
+		$classes = $this->conditionally_add_class( $field->args['id'], 'date_format', $classes, 'date_format text_date text_date_timestamp', true );
+		$classes = $this->conditionally_add_class( $field->args['id'], 'time_format', $classes, 'time_format text_time text_datetime_timestamp text_datetime_timestamp_timezone', true );
+		$classes = $this->conditionally_add_class( $field->args['id'], 'options', $classes, 'options radio radio_inline select multicheck multicheck_inline', true );
+		$ids_to_show_tax = array(
+			'no_terms_text',
+			'tax_options_radio_inline',
+		);
+		$classes = $this->conditionally_add_class( $field->args['id'], $ids_to_show_tax, $classes, 'taxonomy_option taxonomy_radio taxonomy_radio_inline taxonomy_select taxonomy_multicheck taxonomy_multicheck_inline', true );
+		$classes = $this->conditionally_add_class( $field->args['id'], 'none_checkbox', $classes, 'none_checkbox  radio radio_inline select', true );
+		$classes = $this->conditionally_add_class( $field->args['id'], 'select_all_checkbox', $classes, 'select_all_checkbox multicheck multicheck_inline taxonomy_multicheck taxonomy_multicheck_inline', true );
+		$classes = $this->conditionally_add_class( $field->args['id'], 'add_upload_file_text', $classes, 'add_upload_file_text file', true );
+		$classes = $this->conditionally_add_class( $field->args['id'], 'default_value', $classes, 'default_value no_hide', true );
+		return $classes;
 
 	}
 
@@ -321,17 +385,12 @@ class CMB2_Meta_Box_Post_Type {
 
 		// Start with an underscore to hide fields from custom fields list
 		$prefix = $this->prefix;
-
 		$post_type_objects = get_post_types( '', 'object' );
-
 		$post_types = array();
 
 		foreach ( $post_type_objects as $post_type_object ) {
-
 			if ( $post_type_object->show_ui && $post_type_object->name !== 'meta_box' ) {
-
 				$post_types[ $post_type_object->name ] = $post_type_object->label;
-
 			}
 
 		}
@@ -459,6 +518,9 @@ class CMB2_Meta_Box_Post_Type {
 			'name'             =>  __( 'Field Type', 'cmb2-admin-extension' ),
 			'desc'             =>  __( 'Pick what type of field to display. For a full list of fields visit <a href="https://github.com/WebDevStudios/CMB2/wiki/Field-Types">the documentation</a>. * Not available as a repeatable field † Use file_list for repeatable', 'cmb2-admin-extension' ),
 			'id'               => $prefix . 'field_type_select',
+			'attributes'       => array(
+				'class' => 'cmb2_select field_type_select'
+			),
 			'type'             => 'select',
 			'show_option_none' => false,
 			'options'          => array(
@@ -561,7 +623,6 @@ class CMB2_Meta_Box_Post_Type {
 			'desc' => __( 'If your field type requires manual options, please add one option per line. Type value then name seprated by a comma.<br>Example:<br>sml,Small<br>med,Medium<br>lrg,Large', 'cmb2-admin-extension' ),
 			'id'   => $prefix . 'options_textarea',
 			'type' => 'textarea_small',
-			'after'=> $this->show_hide_options(),
 		) );
 
 		$tax_options = $this->tax_options();

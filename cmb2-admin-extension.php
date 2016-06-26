@@ -51,6 +51,14 @@ if ( ! defined( 'CMB2AE_CMB2_PLUGIN_FILE' ) ) {
 	define( 'CMB2AE_CMB2_PLUGIN_FILE', 'cmb2/init.php' );
 }
 
+if ( ! defined( 'CMB2AE_URI' ) ) {
+	define( 'CMB2AE_URI', plugins_url( '', __FILE__ ) );
+}
+
+if ( ! defined( 'CMB2AE_PATH' ) ) {
+	define( 'CMB2AE_PATH', plugin_dir_path( __FILE__ ) );
+}
+
 /**
  * CMB2 Admin Extension main class.
  */

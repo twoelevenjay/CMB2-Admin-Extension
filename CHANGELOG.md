@@ -3,19 +3,19 @@
 ## Changelog
 
 ### 0.0.8 beta 06.26.2016
-* Show hide option fields based on field type selected under the meta_box post type w
+* Show hide option fields based on field type selected under the meta_box post type.
 
 ### 0.0.7 beta 06.25.2016
-* Added support for the rest of the Custom, Field Attributes
+* Added support for the rest of the Custom, Field Attributes.
 
 ### 0.0.6 beta 06.23.2016
-* Add option to select which taxonomy should be used for taxonomy based fields
+* Add option to select which taxonomy should be used for taxonomy based fields.
 
 ### 0.0.5 beta 06.23.2016
-* Minor field output fixes
+* Minor field output fixes.
 
 ### 0.0.4 beta 06.22.2016
-* Simplify admin notices, this fixes fatal error
+* Simplify admin notices, this fixes fatal error.
 
 ### 0.0.3 beta 01.24.2016
 * All thanks to [jrfnl](https://github.com/jrfnl)
@@ -37,4 +37,4 @@
 * Hide UI for disallowed users. Previously only hid plugin table rows.
 
 ### 0.0.1 beta 06.10.2015
-* Initial release, is working but could use a lot more features. w
+* Initial release, is working but could use a lot more features.

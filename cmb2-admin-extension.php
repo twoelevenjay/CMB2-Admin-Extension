@@ -84,10 +84,8 @@ class CMB2_Admin_Extension_Class {
 	 */
 	public function __construct() {
 
-		// TODO comment
 		$this->check_for_cmb2();
-		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
-
+		add_action( 'init', array( $this, 'load_textdomain' ) );
 
 	}
 
@@ -162,6 +160,21 @@ class CMB2_Admin_Extension_Class {
 	public function load_textdomain() {
 
 		load_plugin_textdomain( 'cmb2-admin-extension', false, plugin_basename( dirname( __FILE__ ) ) . '/languages' );
+		$loaded = load_plugin_textdomain( 'cmb2-admin-extension', false, '/languages/' );
+
+		if ( ! $loaded ) {
+			$loaded = load_muplugin_textdomain( 'cmb2-admin-extension', '/languages/' );
+		}
+
+		if ( ! $loaded ) {
+			$loaded = load_theme_textdomain( 'cmb2-admin-extension', get_stylesheet_directory() . '/languages/' );
+		}
+
+		if ( ! $loaded ) {
+			$locale = apply_filters( 'plugin_locale', get_locale(), 'cmb2-admin-extension' );
+			$mofile = dirname( __FILE__ ) . '/languages/cmb2-admin-extension' . $locale . '.mo';
+			load_textdomain( 'cmb2-admin-extension', $mofile );
+		}
 
 	}
 

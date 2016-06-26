@@ -2,6 +2,9 @@
 
 ## Changelog
 
+### 0.0.9 beta 06.26.2016
+* Fix load_textdomain.
+
 ### 0.0.8 beta 06.26.2016
 * Show hide option fields based on field type selected under the meta_box post type.
 

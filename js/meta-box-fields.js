@@ -1,4 +1,4 @@
-jQuery( function( $ ) {
+jQuery(function($) {
 
 	/**
 	 * Variations actions
@@ -14,10 +14,10 @@ jQuery( function( $ ) {
 		},
 
 		/**
-		 * reload UI
+		 * show_hide
 		 *
-		 * @param {Object} event
-		 * @param {Int} qty
+		 *
+		 *
 		 */
 		show_hide: function(field_type_select) {
             var field_type_val = field_type_select.val();
@@ -27,10 +27,10 @@ jQuery( function( $ ) {
 		},
 
 		/**
-		 * reload UI
+		 * show_hide_on_load
 		 *
-		 * @param {Object} event
-		 * @param {Int} qty
+		 *
+		 *
 		 */
 		show_hide_on_load: function() {
             var field_type_selects = $('.field_type_select');
@@ -42,10 +42,10 @@ jQuery( function( $ ) {
 		},
 
 		/**
-		 * reload UI
+		 * field_type_change
 		 *
-		 * @param {Object} event
-		 * @param {Int} qty
+		 *
+		 *
 		 */
 		field_type_change: function() {
             $('.cmb2-metabox').on('change', '.field_type_select', function(e){

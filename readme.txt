@@ -4,7 +4,7 @@ Donate link:       http://211j.com
 Tags:              metaboxes, forms, fields, options, settings
 Requires at least: 4.0
 Tested up to:      4.5
-Stable tag:        0.0.7
+Stable tag:        0.0.8
 License:           GPLv2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -45,6 +45,9 @@ All contributions welcome. If you would like to submit a pull request, please ch
 FAQ's usually end up in the [github wiki](https://github.com/twoelevenjay/CMB2-Admin-Extension/wiki).
 
 == Changelog ==
+
+= 0.0.8 beta 06.26.2016 =
+* Show hide option fields based on field type selected under the meta_box post type
 
 = 0.0.7 beta 06.25.2016 =
 * Added support for the rest of the Custom, Field Attributes

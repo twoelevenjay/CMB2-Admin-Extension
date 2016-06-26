@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 
 *
 
+## 0.0.8 beta 06.26.2016
+* Show hide option fields based on field type selected under the meta_box post type
+
 ## 0.0.7 beta 06.25.2016
 * Added support for the rest of the Custom, Field Attributes
 

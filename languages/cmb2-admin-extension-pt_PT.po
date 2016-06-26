@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CMB2 Admin Extension\n"
 "POT-Creation-Date: 2016-06-25 11:51+0100\n"
-"PO-Revision-Date: 2016-06-25 12:02+0100\n"
+"PO-Revision-Date: 2016-06-25 12:06+0100\n"
 "Last-Translator: Pedro Mendonça <ped.gaspar@gmail.com>\n"
 "Language-Team: Pedro Mendonça <ped.gaspar@gmail.com>\n"
 "Language: pt_PT\n"
@@ -300,20 +300,26 @@ msgid "Date Format"
 msgstr "Formato da data"
 
 #: includes/class-meta-box-post-type.php:537
+#, fuzzy
 msgid ""
 "Defaults to \"m/d/Y\". See <a target=\"_blank\" href=\"http://php.net/manual/"
 "en/function.date.php\">php.net/manual/en/function.date.php</a>."
 msgstr ""
+"Por omissão é \"m/d/Y\". Ver <a target=\"_blank\" href=\"http://php.net/"
+"manual/en/function.date.php\">php.net/manual/en/function.date.php</a>."
 
 #: includes/class-meta-box-post-type.php:543
 msgid "Time Format"
 msgstr "Formato da hora"
 
 #: includes/class-meta-box-post-type.php:544
+#, fuzzy
 msgid ""
 "Defaults to \"h:i A\". See <a target=\"_blank\" href=\"http://php.net/manual/"
 "en/function.date.php\">php.net/manual/en/function.date.php</a>."
 msgstr ""
+"Por omissão é \"h:i A\". Ver <a target=\"_blank\" href=\"http://php.net/"
+"manual/en/function.date.php\">php.net/manual/en/function.date.php</a>."
 
 #: includes/class-meta-box-post-type.php:559
 msgid "Options"

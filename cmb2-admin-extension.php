@@ -12,7 +12,7 @@
  * Author:       twoelevenjay
  * Author URI:   http://211j.com
  * Contributors:
- * Version:      0.0.8
+ * Version:      0.0.9
  * Text Domain:  cmb2-admin-extension
  * Domain Path:  /languages
  *
@@ -69,7 +69,7 @@ class CMB2_Admin_Extension_Class {
 	 *
 	 * @var string
 	 */
-	const VERSION = '0.0.8';
+	const VERSION = '0.0.9';
 
 	/**
 	 * Instance of this class.
@@ -159,7 +159,6 @@ class CMB2_Admin_Extension_Class {
 	 */
 	public function load_textdomain() {
 
-		load_plugin_textdomain( 'cmb2-admin-extension', false, plugin_basename( dirname( __FILE__ ) ) . '/languages' );
 		$loaded = load_plugin_textdomain( 'cmb2-admin-extension', false, '/languages/' );
 
 		if ( ! $loaded ) {

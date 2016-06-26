@@ -35,16 +35,16 @@ CMB2 Admin Extension requires the most current version of the CMB2 plugin. You c
 ### Contribution
 All contributions welcome. If you would like to submit a pull request, please check out the [trunk branch](https://github.com/twoelevenjay/CMB2-Admin-Extension/tree/trunk) and pull request against it. Please read the [CONTRIBUTING](https://github.com/twoelevenjay/CMB2-Admin-Extension/CONTRIBUTING.md) doc for more details.
 
-## Installation ##
+## Installation
 
 1. Extract the .zip file for this plugin and upload its contents to the `/wp-content/plugins/` directory. Alternatively, you can install directly from the Plugin directory within your WordPress Install.
 1. Activate the plugin through the "Plugins" menu in WordPress.
 
-## Frequently Asked Questions ##
+## Frequently Asked Questions
 
 FAQ's usually end up in the [github wiki](https://github.com/twoelevenjay/CMB2-Admin-Extension/wiki).
 
-## Changelog ##
+## Changelog
 
 ### 0.0.8 beta 06.26.2016
 * Show hide option fields based on field type selected under the meta_box post type

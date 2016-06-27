@@ -84,8 +84,8 @@ class CMB2_Admin_Extension_Class {
 	 */
 	public function __construct() {
 
-		$this->check_for_cmb2();
 		add_action( 'init', array( $this, 'load_textdomain' ) );
+		$this->check_for_cmb2();
 
 	}
 
@@ -172,7 +172,7 @@ class CMB2_Admin_Extension_Class {
 
 		if ( ! $loaded ) {
 			$locale = apply_filters( 'plugin_locale', get_locale(), 'cmb2-admin-extension' );
-			$mofile = dirname( __FILE__ ) . '/languages/cmb2-admin-extension' . $locale . '.mo';
+			$mofile = dirname( __FILE__ ) . '/languages/cmb2-admin-extension-' . $locale . '.mo';
 			load_textdomain( 'cmb2-admin-extension', $mofile );
 		}
 

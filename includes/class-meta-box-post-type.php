@@ -455,7 +455,7 @@ class CMB2_Meta_Box_Post_Type {
 				'file'                             => 'file: Image/File upload *†',
 				'file_list'                        => 'file_list: Image/File list upload',
 				'oembed'                           => 'oembed: Converts oembed urls (instagram, twitter, youtube, etc. oEmbed in the Codex)',
-				'group'                            => 'group: Hybrid field that supports adding other fields as a repeatable group. *',
+				//'group'                            => 'group: Hybrid field that supports adding other fields as a repeatable group. *',
 			),
 		) );
 
@@ -563,12 +563,12 @@ class CMB2_Meta_Box_Post_Type {
 			'type'    => 'text_small',
 		) );
 
-		$cmb_group->add_group_field( $group_field_id, array(
-			'name' => __( 'Default Value', 'cmb2-admin-extension' ),
-			'desc' => __( 'Enter a value to use as a default for this field. If you want a checkbox to be checked enter "on". Leave blank for no default value.', 'cmb2-admin-extension' ),
-			'id'   => $prefix . 'default_value_text',
-			'type' => 'text',
-		) );
+		//$cmb_group->add_group_field( $group_field_id, array(
+		//	'name' => __( 'Default Value', 'cmb2-admin-extension' ),
+		//	'desc' => __( 'Enter a value to use as a default for this field. If you want a checkbox to be checked enter "on". Leave blank for no default value.', 'cmb2-admin-extension' ),
+		//	'id'   => $prefix . 'default_value_text',
+		//	'type' => 'text',
+		//) );
 
 	}
 

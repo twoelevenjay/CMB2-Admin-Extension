@@ -415,7 +415,7 @@ class CMB2_Meta_Box_Post_Type {
 
 		$cmb_group->add_group_field( $group_field_id, array(
 			'name'             =>  __( 'Field Type', 'cmb2-admin-extension' ),
-			'desc'             =>  __( 'Pick what type of field to display. For a full list of fields visit <a href="https://github.com/WebDevStudios/CMB2/wiki/Field-Types">the documentation</a>. * Not available as a repeatable field † Use file_list for repeatable', 'cmb2-admin-extension' ),
+			'desc'             =>  __( 'Pick what type of field to display.', 'cmb2-admin-extension' ) . '</br>' . __( 'For a full list of fields visit <a href="https://github.com/WebDevStudios/CMB2/wiki/Field-Types">the documentation</a>.', 'cmb2-admin-extension' ) . '</br>* ' . __( 'Not available as a repeatable field.', 'cmb2-admin-extension' ) . '</br>† ' . __( 'Use file_list for repeatable.', 'cmb2-admin-extension' ),
 			'id'               => $prefix . 'field_type_select',
 			'attributes'       => array(
 				'class' => 'cmb2_select field_type_select'
@@ -423,39 +423,39 @@ class CMB2_Meta_Box_Post_Type {
 			'type'             => 'select',
 			'show_option_none' => false,
 			'options'          => array(
-				'title'                            => 'title: An arbitrary title field *',
-				'text'                             => 'text: Text',
-				'text_small'                       => 'text_small: Text Small',
-				'text_medium'                      => 'text_medium: Text Medium',
-				'text_email'                       => 'text_email: Email',
-				'text_url'                         => 'text_url: URL',
-				'text_money'                       => 'text_money: Money',
-				'textarea'                         => 'textarea: Text Area',
-				'textarea_small'                   => 'textarea_small: Text Area Small',
-				'textarea_code'                    => 'textarea_code: Text Area Code',
-				'text_date'                        => 'text_date: Date Picker',
-				'text_time'                        => 'text_time: Time picker',
-				'select_timezone'                  => 'select_timezone: Time zone dropdown',
-				'text_date_timestamp'              => 'text_date_timestamp: Date Picker (UNIX timestamp)',
-				'text_datetime_timestamp'          => 'text_datetime_timestamp: Text Date/Time Picker Combo (UNIX timestamp)',
-				'text_datetime_timestamp_timezone' => 'text_datetime_timestamp_timezone: Text Date/Time Picker/Time zone Combo (serialized DateTime object)',
-				'colorpicker'                      => 'colorpicker: Color picker',
-				'radio'                            => 'radio: Radio Buttons*',
-				'radio_inline'                     => 'radio_inline: Radio Buttons Inline*',
-				'taxonomy_radio'                   => 'taxonomy_radio: Taxonomy Radio Buttons*',
-				'taxonomy_radio_inline'            => 'taxonomy_radio_inline: Taxonomy Radio Buttons Inline*',
-				'select'                           => 'select: Select',
-				'taxonomy_select'                  => 'taxonomy_select: Taxonomy Select*',
-				'checkbox'                         => 'checkbox: Checkbox*',
-				'multicheck'                       => 'multicheck: Multiple Checkboxes',
-				'multicheck_inline'                => 'multicheck_inline: Multiple Checkboxes Inline',
-				'taxonomy_multicheck'              => 'taxonomy_multicheck: Taxonomy Multiple Checkboxes*',
-				'taxonomy_multicheck_inline'       => 'taxonomy_multicheck_inline: Taxonomy Multiple Checkboxes Inline*',
-				'wysiwyg'                          => 'wysiwyg: (TinyMCE) *',
-				'file'                             => 'file: Image/File upload *†',
-				'file_list'                        => 'file_list: Image/File list upload',
-				'oembed'                           => 'oembed: Converts oembed urls (instagram, twitter, youtube, etc. oEmbed in the Codex)',
-				//'group'                            => 'group: Hybrid field that supports adding other fields as a repeatable group. *',
+				'title'                            => 'title: ' . __( 'An arbitrary title field', 'cmb2-admin-extension' ) . ' *',
+				'text'                             => 'text: ' . __( 'Text', 'cmb2-admin-extension' ),
+				'text_small'                       => 'text_small: ' . __( 'Text Small', 'cmb2-admin-extension' ),
+				'text_medium'                      => 'text_medium: ' . __( 'Text Medium', 'cmb2-admin-extension' ),
+				'text_email'                       => 'text_email: ' . __( 'Email', 'cmb2-admin-extension' ),
+				'text_url'                         => 'text_url: ' . __( 'URL', 'cmb2-admin-extension' ),
+				'text_money'                       => 'text_money: ' . __( 'Money', 'cmb2-admin-extension' ),
+				'textarea'                         => 'textarea: ' . __( 'Text Area', 'cmb2-admin-extension' ),
+				'textarea_small'                   => 'textarea_small: ' . __( 'Text Area Small', 'cmb2-admin-extension' ),
+				'textarea_code'                    => 'textarea_code: ' . __( 'Text Area Code', 'cmb2-admin-extension' ),
+				'text_date'                        => 'text_date: ' . __( 'Date Picker', 'cmb2-admin-extension' ),
+				'text_time'                        => 'text_time: ' . __( 'Time picker', 'cmb2-admin-extension' ),
+				'select_timezone'                  => 'select_timezone: ' . __( 'Time zone dropdown', 'cmb2-admin-extension' ),
+				'text_date_timestamp'              => 'text_date_timestamp: ' . __( 'Date Picker (UNIX timestamp)', 'cmb2-admin-extension' ),
+				'text_datetime_timestamp'          => 'text_datetime_timestamp: ' . __( 'Text Date/Time Picker Combo (UNIX timestamp)', 'cmb2-admin-extension' ),
+				'text_datetime_timestamp_timezone' => 'text_datetime_timestamp_timezone: ' . __( 'Text Date/Time Picker/Time zone Combo (serialized DateTime object)', 'cmb2-admin-extension' ),
+				'colorpicker'                      => 'colorpicker: ' . __( 'Color picker', 'cmb2-admin-extension' ),
+				'radio'                            => 'radio: ' . __( 'Radio Buttons', 'cmb2-admin-extension' ) . ' *',
+				'radio_inline'                     => 'radio_inline: ' . __( 'Radio Buttons Inline', 'cmb2-admin-extension' ) . ' *',
+				'taxonomy_radio'                   => 'taxonomy_radio: ' . __( 'Taxonomy Radio Buttons', 'cmb2-admin-extension' ) . ' *',
+				'taxonomy_radio_inline'            => 'taxonomy_radio_inline: ' . __( 'Taxonomy Radio Buttons Inline', 'cmb2-admin-extension' ) . ' *',
+				'select'                           => 'select: ' . __( 'Select', 'cmb2-admin-extension' ),
+				'taxonomy_select'                  => 'taxonomy_select: ' . __( 'Taxonomy Select', 'cmb2-admin-extension' ) . ' *',
+				'checkbox'                         => 'checkbox: ' . __( 'Checkbox', 'cmb2-admin-extension' ) . ' *',
+				'multicheck'                       => 'multicheck: ' . __( 'Multiple Checkboxes', 'cmb2-admin-extension' ),
+				'multicheck_inline'                => 'multicheck_inline: ' . __( 'Multiple Checkboxes Inline', 'cmb2-admin-extension' ),
+				'taxonomy_multicheck'              => 'taxonomy_multicheck: ' . __( 'Taxonomy Multiple Checkboxes', 'cmb2-admin-extension' ) . ' *',
+				'taxonomy_multicheck_inline'       => 'taxonomy_multicheck_inline: ' . __( 'Taxonomy Multiple Checkboxes Inline', 'cmb2-admin-extension' ) . ' *',
+				'wysiwyg'                          => 'wysiwyg: ' . __( '(TinyMCE)', 'cmb2-admin-extension' ) . ' *',
+				'file'                             => 'file: ' . __( 'Image/File upload', 'cmb2-admin-extension' ) . ' *†',
+				'file_list'                        => 'file_list: ' . __( 'Image/File list upload', 'cmb2-admin-extension' ),
+				'oembed'                           => 'oembed: ' . __( 'Converts oembed urls (instagram, twitter, youtube, etc. oEmbed in the Codex)', 'cmb2-admin-extension' ),
+				//'group'                            => 'group: ' . __( 'Hybrid field that supports adding other fields as a repeatable group.', 'cmb2-admin-extension' ) . ' *',
 			),
 		) );
 
@@ -495,14 +495,14 @@ class CMB2_Meta_Box_Post_Type {
 
 		$cmb_group->add_group_field( $group_field_id, array(
 			'name'    => __( 'Date Format', 'cmb2-admin-extension' ),
-			'desc'    => __( 'Defaults to "m/d/Y". See <a target="_blank" href="http://php.net/manual/en/function.date.php">php.net/manual/en/function.date.php</a>.', 'cmb2-admin-extension' ),
+			'desc'    => __( 'Default:', 'cmb2-admin-extension' ) . '"m/d/Y" ' . __( 'See <a target="_blank" href="http://php.net/manual/en/function.date.php">php.net/manual/en/function.date.php</a>.', 'cmb2-admin-extension' ),
 			'id'      => $prefix . 'date_format',
 			'type'    => 'text_small',
 		) );
 
 		$cmb_group->add_group_field( $group_field_id, array(
 			'name'    => __( 'Time Format', 'cmb2-admin-extension' ),
-			'desc'    => __( 'Defaults to "h:i A". See <a target="_blank" href="http://php.net/manual/en/function.date.php">php.net/manual/en/function.date.php</a>.', 'cmb2-admin-extension' ),
+			'desc'    => __( 'Default:', 'cmb2-admin-extension' ) . '"h:i A". ' . __( 'See <a target="_blank" href="http://php.net/manual/en/function.date.php">php.net/manual/en/function.date.php</a>.', 'cmb2-admin-extension' ),
 			'id'      => $prefix . 'time_format',
 			'type'    => 'text_small',
 		) );
@@ -537,7 +537,7 @@ class CMB2_Meta_Box_Post_Type {
 
 		$cmb_group->add_group_field( $group_field_id, array(
 			'name'    => __( 'No Terms Text', 'cmb2-admin-extension' ),
-			'desc'    => __( 'Enter text to change the text that is shown when no terms are found. Default: "No terms".', 'cmb2-admin-extension' ),
+			'desc'    => __( 'Enter text to change the text that is shown when no terms are found.', 'cmb2-admin-extension' ) . '</br>' . __( 'Default:', 'cmb2-admin-extension' ) . ' "' . __( 'No terms', 'cmb2-admin-extension' ) . '".',
 			'id'      => $prefix . 'no_terms_text',
 			'type'    => 'text_small',
 		) );
@@ -558,7 +558,7 @@ class CMB2_Meta_Box_Post_Type {
 
 		$cmb_group->add_group_field( $group_field_id, array(
 			'name'    => __( 'Button Text', 'cmb2-admin-extension' ),
-			'desc'    => __( 'Enter text to change the upload button text. Default: "Add or Upload File".', 'cmb2-admin-extension' ),
+			'desc'    => __( 'Enter text to change the upload button text.', 'cmb2-admin-extension' ) . '</br>' . __( 'Default:', 'cmb2-admin-extension' ) . ' "' . __( 'Add or Upload File', 'cmb2-admin-extension' ) . '".',
 			'id'      => $prefix . 'add_upload_file_text',
 			'type'    => 'text_small',
 		) );

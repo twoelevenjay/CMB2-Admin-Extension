@@ -495,14 +495,14 @@ class CMB2_Meta_Box_Post_Type {
 
 		$cmb_group->add_group_field( $group_field_id, array(
 			'name'    => __( 'Date Format', 'cmb2-admin-extension' ),
-			'desc'    => __( 'Default:', 'cmb2-admin-extension' ) . '"m/d/Y" ' . __( 'See <a target="_blank" href="http://php.net/manual/en/function.date.php">php.net/manual/en/function.date.php</a>.', 'cmb2-admin-extension' ),
+			'desc'    => __( 'Default:', 'cmb2-admin-extension' ) . ' "m/d/Y". ' . __( 'See <a target="_blank" href="http://php.net/manual/en/function.date.php">php.net/manual/en/function.date.php</a>.', 'cmb2-admin-extension' ),
 			'id'      => $prefix . 'date_format',
 			'type'    => 'text_small',
 		) );
 
 		$cmb_group->add_group_field( $group_field_id, array(
 			'name'    => __( 'Time Format', 'cmb2-admin-extension' ),
-			'desc'    => __( 'Default:', 'cmb2-admin-extension' ) . '"h:i A". ' . __( 'See <a target="_blank" href="http://php.net/manual/en/function.date.php">php.net/manual/en/function.date.php</a>.', 'cmb2-admin-extension' ),
+			'desc'    => __( 'Default:', 'cmb2-admin-extension' ) . ' "h:i A". ' . __( 'See <a target="_blank" href="http://php.net/manual/en/function.date.php">php.net/manual/en/function.date.php</a>.', 'cmb2-admin-extension' ),
 			'id'      => $prefix . 'time_format',
 			'type'    => 'text_small',
 		) );

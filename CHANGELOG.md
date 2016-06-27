@@ -2,6 +2,9 @@
 
 ## Changelog
 
+### 0.1.0 beta 06.26.2016
+* Some much needed refactoring.
+
 ### 0.0.9 beta 06.26.2016
 * Fix load_textdomain.
 

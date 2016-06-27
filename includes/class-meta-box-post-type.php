@@ -51,8 +51,6 @@ class CMB2_Meta_Box_Post_Type {
 		$this->settings_title = __( 'CMB2 Settings', 'cmb2-admin-extension' );
 
 		add_action( 'init', array( $this, 'init_post_type' ) );
-		add_action( 'admin_init', array( $this, 'register_settings' ) );
-		add_action( 'admin_menu', array( $this, 'add_settings_page' ) );
 		add_action( 'add_meta_boxes', array( $this, 'remove_meta_box_slugdiv' ) );
 		add_action( 'admin_head', array( $this, 'hide_edit_slug_bar' ) );
 		add_action( 'pre_current_active_plugins', array( $this, 'hide_cmb2_plugins' ) );
@@ -62,7 +60,6 @@ class CMB2_Meta_Box_Post_Type {
 
 		add_action( 'cmb2_init', array( $this, 'init_meta_box_settings' ) );
 		add_action( 'cmb2_init', array( $this, 'init_custom_field_settings' ) );
-		add_action( 'cmb2_init', array( $this, 'init_cmb2_settings_page' ) );
 		add_action( 'cmb2_init', array( $this, 'init_user_defined_meta_boxes_and_fields' ) );
 
 	}
@@ -131,19 +128,6 @@ class CMB2_Meta_Box_Post_Type {
 	 * Set up the plugin settings page
 	 * @since  0.0.1
 	 */
-	public function add_settings_page() {
-
-		if ( $this->is_cmb2_allowed() ) {
-			$this->settings_page = add_submenu_page( 'edit.php?post_type=meta_box', __( 'CMB2 Settings', 'cmb2-admin-extension' ), __( 'CMB2 Settings', 'cmb2-admin-extension' ), 'edit_posts', $this->settings_key, array( $this, 'settings_page' ) );
-			add_action( "admin_print_styles-{$this->settings_page}", array( 'CMB2_hookup', 'enqueue_cmb_css' ) );
-		}
-
-	}
-
-	/**
-	 * Set up the plugin settings page
-	 * @since  0.0.1
-	 */
 	public function remove_meta_box_slugdiv() {
 
 		remove_meta_box( 'slugdiv', 'page', 'normal' );
@@ -167,26 +151,6 @@ class CMB2_Meta_Box_Post_Type {
 
 	}
 
-	public function register_settings() {
-
-		register_setting( $this->settings_key, $this->settings_key );
-
-	}
-
-	/**
-	 * Plugin settings page call back
-	 * @since  0.0.1
-	 */
-	public function settings_page() {
-
-		?>
-		<div class="wrap cmb2-options-page <?php echo $this->settings_key; ?>">
-			<h2><?php echo $this->settings_title; ?></h2>
-			<?php cmb2_metabox_form( $this->settings_metabox_id, $this->settings_key, array( 'disable_styles' => false ) ); ?>
-		</div>
-		<?php
-
-	}
 
 	/**
 	 * Determine if current user has permission to CMB2 view plugins
@@ -252,51 +216,15 @@ class CMB2_Meta_Box_Post_Type {
 	}
 
 	/**
-	 * Get users for the soptions on the ettings page
-	 * @since  0.0.6
+	 * Pass each item in an array through strpos()
+	 * @since  0.0.8
 	 */
-	public function user_options() {
+	public function conditionally_add_class( $field_id, $field_classes, $classes ) {
 
-		$users = get_users();
-		$user_options = array();
-		foreach ( $users as $user ) {
-
-			if ( user_can( $user, 'update_plugins' ) || user_can( $user, 'install_plugins' ) || user_can( $user, 'delete_plugins' ) || user_can( $user, 'edit_theme_options' ) ) {
-				$user_options[ $user->ID ] = $user->display_name;
+		foreach ( $field_classes as $field => $class ) {
+			if ( strpos( $field_id, $field ) !== false ) {
+				return $classes . ' ' . $class;
 			}
-
-		}
-		return $user_options;
-
-	}
-
-	/**
-	 * Pass each item in an array through strpos()
-	 * @since  0.0.8
-	 */
-	public function strpos_array( $string, $ids, $add ) {
-		if ( is_array( $ids ) ) {
-	        foreach( $ids as $item ) {
-	            if ( strpos( $string, $item ) !== false ) {
-					return !$add;
-				}
-	        }
-		}elseif ( strpos( $string, $ids ) !== false ) {
-			return !$add;
-		}
-        return $add;
-
-	}
-
-	/**
-	 * Pass each item in an array through strpos()
-	 * @since  0.0.8
-	 */
-	public function conditionally_add_class( $field_id, $ids, $classes, $class, $add ) {
-
-		$screen = get_current_screen();
-		if ( !$this->strpos_array( $field_id, $ids, $add ) && $screen->post_type === 'meta_box' ) {
-			$classes = $classes . ' ' . $class;
 		}
 		return $classes;
 
@@ -308,29 +236,25 @@ class CMB2_Meta_Box_Post_Type {
 	 */
 	public function show_hide_classes( $classes, $field ) {
 
-		$ids_not_to_hide = array(
-			'name_text',
-			'decription_textarea',
-			'field_type_select',
-			'default_value',
-		);
-		$classes = $this->conditionally_add_class( $field->args['id'], $ids_not_to_hide, $classes, 'cmb_hide_field', false );
-		$classes = $this->conditionally_add_class( $field->args['id'], $ids_not_to_hide, $classes, 'no_hide', true );
-		$classes = $this->conditionally_add_class( $field->args['id'], 'repeatable', $classes, 'repeatable text text_small text_medium text_email text_url text_money textarea textarea_small textarea_code text_date text_timeselect_timezone text_date_timestamp text_datetime_timestamp text_datetime_timestamp_timezone colorpicker select multicheck multicheck_inline', true );
-		$classes = $this->conditionally_add_class( $field->args['id'], 'protocols', $classes, 'protocols text_url', true );
-		$classes = $this->conditionally_add_class( $field->args['id'], 'currency_text', $classes, 'currency_text text_money', true );
-		$classes = $this->conditionally_add_class( $field->args['id'], 'date_format', $classes, 'date_format text_date text_date_timestamp', true );
-		$classes = $this->conditionally_add_class( $field->args['id'], 'time_format', $classes, 'time_format text_time text_datetime_timestamp text_datetime_timestamp_timezone', true );
-		$classes = $this->conditionally_add_class( $field->args['id'], 'options', $classes, 'options radio radio_inline select multicheck multicheck_inline', true );
-		$ids_to_show_tax = array(
-			'no_terms_text',
-			'tax_options_radio_inline',
-		);
-		$classes = $this->conditionally_add_class( $field->args['id'], $ids_to_show_tax, $classes, 'taxonomy_option taxonomy_radio taxonomy_radio_inline taxonomy_select taxonomy_multicheck taxonomy_multicheck_inline', true );
-		$classes = $this->conditionally_add_class( $field->args['id'], 'none_checkbox', $classes, 'none_checkbox  radio radio_inline select', true );
-		$classes = $this->conditionally_add_class( $field->args['id'], 'select_all_checkbox', $classes, 'select_all_checkbox multicheck multicheck_inline taxonomy_multicheck taxonomy_multicheck_inline', true );
-		$classes = $this->conditionally_add_class( $field->args['id'], 'add_upload_file_text', $classes, 'add_upload_file_text file', true );
-		$classes = $this->conditionally_add_class( $field->args['id'], 'default_value', $classes, 'default_value no_hide', true );
+		$screen = get_current_screen();
+		if ( $screen->post_type === 'meta_box' ) {
+			$field_classes = array(
+				'repeatable_checkbox'      => 'cmb_hide_field  text text_small text_medium text_email text_url text_money textarea textarea_small textarea_code text_date text_timeselect_timezone text_date_timestamp text_datetime_timestamp text_datetime_timestamp_timezone colorpicker select multicheck multicheck_inline',
+				'protocols_checkbox'       => 'cmb_hide_field text_url',
+				'currency_text'            => 'cmb_hide_field text_money',
+				'date_format'              => 'cmb_hide_field text_date text_date_timestamp',
+				'time_format'              => 'cmb_hide_field text_time text_datetime_timestamp text_datetime_timestamp_timezone',
+				'time_zone_key_select'     => 'cmb_hide_field ',
+				'options_textarea'         => 'cmb_hide_field radio radio_inline select multicheck multicheck_inline',
+				'tax_options_radio_inline' => 'cmb_hide_field taxonomy_radio taxonomy_radio_inline taxonomy_select taxonomy_multicheck taxonomy_multicheck_inline',
+				'no_terms_text'            => 'cmb_hide_field taxonomy_radio taxonomy_radio_inline taxonomy_select taxonomy_multicheck taxonomy_multicheck_inline',
+				'none_checkbox'            => 'cmb_hide_field radio radio_inline select',
+				'select_all_checkbox'      => 'cmb_hide_field multicheck multicheck_inline taxonomy_multicheck taxonomy_multicheck_inline',
+				'add_upload_file_text'     => 'cmb_hide_field file',
+				'default_value_text'       => 'default_value',
+			);
+			$classes = $this->conditionally_add_class( $field->args['id'], $field_classes, $classes );
+		}
 		return $classes;
 
 	}
@@ -349,31 +273,6 @@ class CMB2_Meta_Box_Post_Type {
 
 		}
 		return $tax_options;
-
-	}
-
-	public function init_cmb2_settings_page() {
-
-		$prefix = $this->prefix;
-
-		$cmb_settings = new_cmb2_box( array(
-			'id'      => $this->settings_metabox_id,
-			'hookup'  => false,
-			'show_on' => array(
-				// These are important, don't remove
-				'key'   => 'options-page',
-				'value' => array( $this->settings_key, )
-			),
-		) );
-
-		$cmb_settings->add_field( array(
-			'name'    => __( 'Users', 'cmb2-admin-extension' ),
-			'desc'    => __( 'Check the users to grant access to this plugin and the CMB2 plugin. Leave unchecked to grant access to all users.', 'cmb2-admin-extension' ),
-			'id'      => $prefix . 'user_multicheckbox',
-			'type'    => 'multicheck',
-			'options' => $this->user_options(),
-			'inline'  => true,
-		) );
 
 	}
 
@@ -740,6 +639,16 @@ class CMB2_Meta_Box_Post_Type {
 	}
 
 	/**
+	 * is_repeatable() shortens the get_post_meta() function.
+	 * @since  0.0.6
+	 */
+	static function afo( $field, $field_type, $option_value ) {
+
+		return in_array( $field['_cmb2_field_type_select'], $field_type ) && isset( $field['_cmb2_add_upload_file_text'] ) && $field['_cmb2_add_upload_file_text'] != '';
+
+	}
+
+	/**
 	 * Loop through user defined meta_box and creates the custom meta boxes and fields.
 	 * @since  0.0.1
 	 */
@@ -815,16 +724,16 @@ class CMB2_Meta_Box_Post_Type {
 				if ( $field['_cmb2_field_type_select'] == 'url' && isset( $field['_cmb2_protocols_checkbox'] ) && !empty( $field['_cmb2_protocols_checkbox'] ) ) {
 					$field_args['protocols'] = $field['_cmb2_protocols_checkbox'];
 				}
-				if ( $field['_cmb2_field_type_select'] == 'text_money' && isset( $field['_cmb2_currency_text'] ) && $field['_cmb2_currency_text'] != '' ) {
+				if ( $this->afo( $field, array( 'text_money' ), '_cmb2_currency_text' ) ) {
 					$field_args['before_field'] = $field['_cmb2_currency_text'];
 				}
-				if ( $field['_cmb2_field_type_select'] == 'text_time' && isset( $field['_cmb2_time_format'] ) && $field['_cmb2_time_format'] != '' ) {
+				if ( $this->afo( $field, array( 'text_time' ), '_cmb2_time_format' ) ) {
 					$field_args['time_format'] = $field['_cmb2_time_format'];
 				}
-				if ( ( $field['_cmb2_field_type_select'] == 'text_date' || $field['_cmb2_field_type_select'] == 'text_date_timestamp' ) && isset( $field['_cmb2_date_format'] ) && $field['_cmb2_date_format'] != '' ) {
+				if ( $this->afo( $field, array( 'text_date', 'text_date_timestamp' ), '_cmb2_date_format' ) ) {
 					$field_args['date_format'] = $field['_cmb2_date_format'];
 				}
-				if ( $field['_cmb2_field_type_select'] == 'text_date_timestamp' && isset( $field['_cmb2_time_zone_key_select'] ) && $field['_cmb2_time_zone_key_select'] != '' ) {
+				if ( $this->afo( $field, array( 'text_date_timestamp' ), '_cmb2_time_zone_key_select' ) ) {
 					$field_args['timezone_meta_key'] = $field['_cmb2_time_zone_key_select'];
 				}
 				if ( isset( $field['_cmb2_none_checkbox'] ) && $field['_cmb2_none_checkbox'] == 'on' && $this->has_options( $field['_cmb2_field_type_select'] ) ) {
@@ -833,10 +742,9 @@ class CMB2_Meta_Box_Post_Type {
 				if ( strpos($field['_cmb2_field_type_select'], 'multicheck') !== false  && isset( $field['_cmb2_select_all_checkbox'] ) && $field['_cmb2_select_all_checkbox'] == 'on' ) {
 					$field_args['select_all_button'] = false;
 				}
-				if ( ( $field['_cmb2_field_type_select'] == 'file' /* TODO text arg array not working for file_list || $field['_cmb2_field_type_select'] == 'file_list' */ ) && isset( $field['_cmb2_add_upload_file_text'] ) && $field['_cmb2_add_upload_file_text'] != '' ) {
+				if ( $this->afo( $field, array( 'file' ), '_cmb2_add_upload_file_text' ) ) {
 					$field_args['options']['add_upload_file_text'] = $field['_cmb2_add_upload_file_text'];
 				}
-
 				${ 'cmb_'.$id }->add_field( $field_args );
 
 			}
@@ -844,3 +752,5 @@ class CMB2_Meta_Box_Post_Type {
 		}
 	}
 }
+
+$CMB2_Meta_Box_Post_Type = new CMB2_Meta_Box_Post_Type();

@@ -12,7 +12,7 @@
  * Author:       twoelevenjay
  * Author URI:   http://211j.com
  * Contributors:
- * Version:      0.0.9
+ * Version:      0.1.0
  * Text Domain:  cmb2-admin-extension
  * Domain Path:  /languages
  *
@@ -69,7 +69,7 @@ class CMB2_Admin_Extension_Class {
 	 *
 	 * @var string
 	 */
-	const VERSION = '0.0.9';
+	const VERSION = '0.1.0';
 
 	/**
 	 * Instance of this class.
@@ -112,8 +112,9 @@ class CMB2_Admin_Extension_Class {
 
 		if ( defined( 'CMB2_LOADED' ) && CMB2_LOADED === true ) {
 
+			require_once dirname( __FILE__ ) . '/includes/class-meta-box.php';
 			require_once dirname( __FILE__ ) . '/includes/class-meta-box-post-type.php';
-			$cbm2 = new CMB2_Meta_Box_Post_Type();
+			require_once dirname( __FILE__ ) . '/includes/class-meta-box-settings.php';
 
 		} elseif ( file_exists( WP_PLUGIN_DIR . '/' . CMB2AE_CMB2_PLUGIN_FILE ) ) {
 

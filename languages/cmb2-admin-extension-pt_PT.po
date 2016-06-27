@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CMB2 Admin Extension\n"
-"POT-Creation-Date: 2016-06-27 12:30+0100\n"
-"PO-Revision-Date: 2016-06-27 12:30+0100\n"
+"POT-Creation-Date: 2016-06-27 16:56+0100\n"
+"PO-Revision-Date: 2016-06-27 16:57+0100\n"
 "Last-Translator: Pedro Mendonça <ped.gaspar@gmail.com>\n"
 "Language-Team: Pedro Mendonça <ped.gaspar@gmail.com>\n"
 "Language: pt_PT\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: cmb2-admin-extension.php:139
+#: cmb2-admin-extension.php:165
 #, php-format
 msgid ""
 "CMB2 Admin Extension depends on the last version of %s the CMB2 plugin %s to "
@@ -30,7 +30,7 @@ msgstr ""
 "O CMB2 Admin Extension depende da última versão do %splugin CMB2%s para "
 "funcionar!"
 
-#: cmb2-admin-extension.php:150
+#: cmb2-admin-extension.php:176
 #, php-format
 msgid ""
 "The CMB2 plugin is installed but has not been activated. Please %s activate "
@@ -138,7 +138,6 @@ msgid "High"
 msgstr "Alta"
 
 #: includes/class-meta-box-post-type.php:326
-#, fuzzy
 msgid "Core"
 msgstr "Core"
 
@@ -192,7 +191,7 @@ msgstr "Seleccione para desactivar a folha de estilos do CMB"
 
 #: includes/class-meta-box-post-type.php:363
 msgid "Closed by Default"
-msgstr "Fechado por omissão"
+msgstr "Fechada por omissão"
 
 #: includes/class-meta-box-post-type.php:364
 msgid "Check to keep the metabox closed by default"
@@ -239,17 +238,154 @@ msgid "Field Type"
 msgstr "Tipo de campo"
 
 #: includes/class-meta-box-post-type.php:418
-#, fuzzy
+msgid "Pick what type of field to display."
+msgstr "Escolha o tipo de campo a mostrar."
+
+#: includes/class-meta-box-post-type.php:418
 msgid ""
-"Pick what type of field to display. For a full list of fields visit <a href="
-"\"https://github.com/WebDevStudios/CMB2/wiki/Field-Types\">the "
-"documentation</a>. * Not available as a repeatable field † Use file_list for "
-"repeatable"
+"For a full list of fields visit <a href=\"https://github.com/WebDevStudios/"
+"CMB2/wiki/Field-Types\">the documentation</a>."
 msgstr ""
-"Escolha o tipo de campo a mostrar. Para uma lista completa dos campos veja a "
-"<a href=\"https://github.com/WebDevStudios/CMB2/wiki/Field-Types"
-"\">documentação</a>. * Campo não disponível para repetir † Use file_list "
-"para reperir"
+"Para uma lista completa dos campos veja a <a href=\"https://github.com/"
+"WebDevStudios/CMB2/wiki/Field-Types\">documentação</a>."
+
+#: includes/class-meta-box-post-type.php:418
+msgid "Not available as a repeatable field."
+msgstr "Não disponível para repetir."
+
+#: includes/class-meta-box-post-type.php:418
+msgid "Use file_list for repeatable."
+msgstr "Para repetir, use o campo tipo file_list."
+
+#: includes/class-meta-box-post-type.php:426
+#, fuzzy
+msgid "An arbitrary title field"
+msgstr "Um campo de título arbitrário"
+
+#: includes/class-meta-box-post-type.php:427
+msgid "Text"
+msgstr "Texto"
+
+#: includes/class-meta-box-post-type.php:428
+msgid "Text Small"
+msgstr "Texto pequeno"
+
+#: includes/class-meta-box-post-type.php:429
+msgid "Text Medium"
+msgstr "Texto médio"
+
+#: includes/class-meta-box-post-type.php:430
+msgid "Email"
+msgstr "Email"
+
+#: includes/class-meta-box-post-type.php:431
+msgid "URL"
+msgstr "URL"
+
+#: includes/class-meta-box-post-type.php:432
+msgid "Money"
+msgstr "Dinheiro"
+
+#: includes/class-meta-box-post-type.php:433
+msgid "Text Area"
+msgstr "Área de texto"
+
+#: includes/class-meta-box-post-type.php:434
+msgid "Text Area Small"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:435
+msgid "Text Area Code"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:436
+msgid "Date Picker"
+msgstr "Selecção de data"
+
+#: includes/class-meta-box-post-type.php:437
+msgid "Time picker"
+msgstr "Selecção de hora"
+
+#: includes/class-meta-box-post-type.php:438
+msgid "Time zone dropdown"
+msgstr "Selecção de fuso horário"
+
+#: includes/class-meta-box-post-type.php:439
+msgid "Date Picker (UNIX timestamp)"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:440
+msgid "Text Date/Time Picker Combo (UNIX timestamp)"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:441
+msgid "Text Date/Time Picker/Time zone Combo (serialized DateTime object)"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:442
+msgid "Color picker"
+msgstr "Selecção de cor"
+
+#: includes/class-meta-box-post-type.php:443
+msgid "Radio Buttons"
+msgstr "Botões de opções"
+
+#: includes/class-meta-box-post-type.php:444
+msgid "Radio Buttons Inline"
+msgstr "Botões de opções em linha"
+
+#: includes/class-meta-box-post-type.php:445
+msgid "Taxonomy Radio Buttons"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:446
+msgid "Taxonomy Radio Buttons Inline"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:447
+msgid "Select"
+msgstr "Selecção"
+
+#: includes/class-meta-box-post-type.php:448
+msgid "Taxonomy Select"
+msgstr "Selecção de taxonomia"
+
+#: includes/class-meta-box-post-type.php:449
+msgid "Checkbox"
+msgstr "Caixa de selecção"
+
+#: includes/class-meta-box-post-type.php:450
+msgid "Multiple Checkboxes"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:451
+msgid "Multiple Checkboxes Inline"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:452
+msgid "Taxonomy Multiple Checkboxes"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:453
+msgid "Taxonomy Multiple Checkboxes Inline"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:454
+msgid "(TinyMCE)"
+msgstr "(TinyMCE)"
+
+#: includes/class-meta-box-post-type.php:455
+msgid "Image/File upload"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:456
+msgid "Image/File list upload"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:457
+msgid ""
+"Converts oembed urls (instagram, twitter, youtube, etc. oEmbed in the Codex)"
+msgstr ""
 
 #: includes/class-meta-box-post-type.php:463
 msgid "Repeatable"
@@ -268,13 +404,12 @@ msgid "Protocols"
 msgstr "Protocolos"
 
 #: includes/class-meta-box-post-type.php:471
-#, fuzzy
 msgid ""
 "Check the boxes for each allowed protocol. If you are unsure then do nothing "
 "and all protocols will be allowed."
 msgstr ""
-"Seleccione as opções para cada protocolo permitido. Se não tiver a certeza "
-"não seleccione nenhum, nesse caso todos os protocolos serão permitidos."
+"Seleccione as opções para cada protocolo permitido. Em caso de dúvida não "
+"seleccione nenhum, para todos os protocolos serem permitidos."
 
 #: includes/class-meta-box-post-type.php:490
 msgid "Currency Symbol"
@@ -289,26 +424,24 @@ msgid "Date Format"
 msgstr "Formato da data"
 
 #: includes/class-meta-box-post-type.php:498
-#, fuzzy
+#: includes/class-meta-box-post-type.php:505
+#: includes/class-meta-box-post-type.php:540
+#: includes/class-meta-box-post-type.php:561
+msgid "Default:"
+msgstr "Por omissão:"
+
+#: includes/class-meta-box-post-type.php:498
+#: includes/class-meta-box-post-type.php:505
 msgid ""
-"Defaults to \"m/d/Y\". See <a target=\"_blank\" href=\"http://php.net/manual/"
-"en/function.date.php\">php.net/manual/en/function.date.php</a>."
+"See <a target=\"_blank\" href=\"http://php.net/manual/en/function.date.php"
+"\">php.net/manual/en/function.date.php</a>."
 msgstr ""
-"Por omissão é \"m/d/Y\". Ver <a target=\"_blank\" href=\"http://php.net/"
-"manual/en/function.date.php\">php.net/manual/en/function.date.php</a>."
+"Ver <a target=\"_blank\" href=\"http://php.net/manual/en/function.date.php"
+"\">php.net/manual/en/function.date.php</a>."
 
 #: includes/class-meta-box-post-type.php:504
 msgid "Time Format"
 msgstr "Formato da hora"
-
-#: includes/class-meta-box-post-type.php:505
-#, fuzzy
-msgid ""
-"Defaults to \"h:i A\". See <a target=\"_blank\" href=\"http://php.net/manual/"
-"en/function.date.php\">php.net/manual/en/function.date.php</a>."
-msgstr ""
-"Por omissão é \"h:i A\". Ver <a target=\"_blank\" href=\"http://php.net/"
-"manual/en/function.date.php\">php.net/manual/en/function.date.php</a>."
 
 #: includes/class-meta-box-post-type.php:520
 msgid "Options"
@@ -329,17 +462,16 @@ msgid "Taxonomy Options"
 msgstr "Opções de taxonomia"
 
 #: includes/class-meta-box-post-type.php:539
-#, fuzzy
 msgid "No Terms Text"
-msgstr "Texto para indicar a falta de termos"
+msgstr "Texto para falta de termos"
 
 #: includes/class-meta-box-post-type.php:540
-msgid ""
-"Enter text to change the text that is shown when no terms are found. "
-"Default: \"No terms\"."
-msgstr ""
-"Insira o texto para indicar que não foram encontrados termos. Por omissão: "
-"\"Sem termos\"."
+msgid "Enter text to change the text that is shown when no terms are found."
+msgstr "Insira o texto para indicar que não foram encontrados termos."
+
+#: includes/class-meta-box-post-type.php:540
+msgid "No terms"
+msgstr "Sem termos"
 
 #: includes/class-meta-box-post-type.php:546
 msgid "Include a \"none\" option"
@@ -362,17 +494,16 @@ msgstr ""
 "Seleccione esta opção para desactivar a selecção de tudo para este campo."
 
 #: includes/class-meta-box-post-type.php:560
-#, fuzzy
 msgid "Button Text"
 msgstr "Texto do botão"
 
 #: includes/class-meta-box-post-type.php:561
-#, fuzzy
-msgid ""
-"Enter text to change the upload button text. Default: \"Add or Upload File\"."
-msgstr ""
-"Insira o texto para personalizar o texto do botão de Carregar. Por omissão: "
-"\"Adicionar ou carregar ficheiro\"."
+msgid "Enter text to change the upload button text."
+msgstr "Insira o texto do botão Carregar."
+
+#: includes/class-meta-box-post-type.php:561
+msgid "Add or Upload File"
+msgstr "Adicionar ou carregar ficheiro"
 
 #: includes/class-meta-box-settings.php:128
 msgid "Users"
@@ -384,8 +515,7 @@ msgid ""
 "unchecked to grant access to all users."
 msgstr ""
 "Seleccione os utilizadores a que pretende dar acesso a este plugin e ao "
-"CMB2. Não seleccione nada, se quiser garantir o acesso a todos os "
-"utilizadores."
+"CMB2. Não seleccione nenhum, para garantir o acesso a todos os utilizadores."
 
 #. Plugin Name of the plugin/theme
 msgid "CMB2 Admin Extension"
@@ -410,6 +540,61 @@ msgstr "twoelevenjay"
 #. Author URI of the plugin/theme
 msgid "http://211j.com"
 msgstr "http://211j.com"
+
+#, fuzzy
+#~ msgid ""
+#~ "Defaults to \"m/d/Y\". See <a target=\"_blank\" href=\"http://php.net/"
+#~ "manual/en/function.date.php\">php.net/manual/en/function.date.php</a>."
+#~ msgstr ""
+#~ "Por omissão é \"m/d/Y\". Ver <a target=\"_blank\" href=\"http://php.net/"
+#~ "manual/en/function.date.php\">php.net/manual/en/function.date.php</a>."
+
+#, fuzzy
+#~ msgid ""
+#~ "Defaults to \"h:i A\". See <a target=\"_blank\" href=\"http://php.net/"
+#~ "manual/en/function.date.php\">php.net/manual/en/function.date.php</a>."
+#~ msgstr ""
+#~ "Por omissão é \"h:i A\". Ver <a target=\"_blank\" href=\"http://php.net/"
+#~ "manual/en/function.date.php\">php.net/manual/en/function.date.php</a>."
+
+#~ msgid "Enter text to change the upload button text"
+#~ msgstr "Insira o texto do botão Carregar."
+
+#, fuzzy
+#~ msgid ""
+#~ "Enter text to change the upload button text. Default: \"Add or Upload File"
+#~ "\"."
+#~ msgstr ""
+#~ "Insira o texto do botão Carregar. Por omissão: \"Adicionar ou carregar "
+#~ "ficheiro\"."
+
+#, fuzzy
+#~ msgid ""
+#~ "Enter text to change the text that is shown when no terms are found. "
+#~ "Default: \"No terms\"."
+#~ msgstr ""
+#~ "Insira o texto para indicar que não foram encontrados termos. Por "
+#~ "omissão: \"Sem termos\"."
+
+#~ msgid ""
+#~ "Pick what type of field to display. For a full list of fields visit <a "
+#~ "href=\"https://github.com/WebDevStudios/CMB2/wiki/Field-Types\">the "
+#~ "documentation</a>."
+#~ msgstr ""
+#~ "Escolha o tipo de campo a mostrar. Para uma lista completa dos campos "
+#~ "veja a <a href=\"https://github.com/WebDevStudios/CMB2/wiki/Field-Types"
+#~ "\">documentação</a>."
+
+#~ msgid ""
+#~ "Pick what type of field to display. For a full list of fields visit <a "
+#~ "href=\"https://github.com/WebDevStudios/CMB2/wiki/Field-Types\">the "
+#~ "documentation</a>. * Not available as a repeatable field † Use file_list "
+#~ "for repeatable"
+#~ msgstr ""
+#~ "Escolha o tipo de campo a mostrar. Para uma lista completa dos campos "
+#~ "veja a <a href=\"https://github.com/WebDevStudios/CMB2/wiki/Field-Types"
+#~ "\">documentação</a>.</br>* Campo não disponível para repetir.</br>† Para "
+#~ "repetir, use o campo tipo file_list."
 
 #~ msgid "Default Value"
 #~ msgstr "Valor por omissão"

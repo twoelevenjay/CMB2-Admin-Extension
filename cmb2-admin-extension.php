@@ -111,7 +111,6 @@ class CMB2_Admin_Extension_Class {
 	 */
 	public function __construct() {
 
-		add_action( 'init', array( $this, 'load_textdomain' ) );
 		$this->check_for_cmb2();
 
 	}

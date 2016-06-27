@@ -2,6 +2,9 @@
 
 ## Changelog
 
+### 0.1.1 beta 06.26.2016
+* Disable the group field type and the default option until support is added.
+
 ### 0.1.0 beta 06.26.2016
 * Some much needed refactoring.
 

@@ -1,0 +1,10 @@
+{
+    "preset": "wordpress",
+    "disallowKeywordsOnNewLine": null,
+    "requirePaddingNewLinesBeforeLineComments": null,
+    "disallowMultipleLineBreaks": null,
+    "fileExtensions": [ ".js" ],
+    "excludeFiles": [
+    	"js/**.min.js"
+    ]
+}

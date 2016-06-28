@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CMB2 Admin Extension\n"
 "POT-Creation-Date: 2016-06-27 16:56+0100\n"
-"PO-Revision-Date: 2016-06-27 16:57+0100\n"
+"PO-Revision-Date: 2016-06-27 22:36+0100\n"
 "Last-Translator: Pedro Mendonça <ped.gaspar@gmail.com>\n"
 "Language-Team: Pedro Mendonça <ped.gaspar@gmail.com>\n"
 "Language: pt_PT\n"
@@ -105,7 +105,6 @@ msgid "Not found in Trash"
 msgstr "Não encontrado no lixo"
 
 #: includes/class-meta-box-post-type.php:91
-#, fuzzy
 msgid "meta_box"
 msgstr "meta_box"
 
@@ -292,11 +291,11 @@ msgstr "Área de texto"
 
 #: includes/class-meta-box-post-type.php:434
 msgid "Text Area Small"
-msgstr ""
+msgstr "Área de texto pequena"
 
 #: includes/class-meta-box-post-type.php:435
 msgid "Text Area Code"
-msgstr ""
+msgstr "Área de texto de código"
 
 #: includes/class-meta-box-post-type.php:436
 msgid "Date Picker"
@@ -312,15 +311,15 @@ msgstr "Selecção de fuso horário"
 
 #: includes/class-meta-box-post-type.php:439
 msgid "Date Picker (UNIX timestamp)"
-msgstr ""
+msgstr "Selecção de data (UNIX timestamp)"
 
 #: includes/class-meta-box-post-type.php:440
 msgid "Text Date/Time Picker Combo (UNIX timestamp)"
-msgstr ""
+msgstr "Selecção de data e hora combinados (UNIX timestamp)"
 
 #: includes/class-meta-box-post-type.php:441
 msgid "Text Date/Time Picker/Time zone Combo (serialized DateTime object)"
-msgstr ""
+msgstr "Selecção de data, hora e fuso horário combinados (UNIX timestamp)"
 
 #: includes/class-meta-box-post-type.php:442
 msgid "Color picker"
@@ -336,11 +335,11 @@ msgstr "Botões de opções em linha"
 
 #: includes/class-meta-box-post-type.php:445
 msgid "Taxonomy Radio Buttons"
-msgstr ""
+msgstr "Botões de opção de taxonomia"
 
 #: includes/class-meta-box-post-type.php:446
 msgid "Taxonomy Radio Buttons Inline"
-msgstr ""
+msgstr "Botões de opção de taxonomia em linha"
 
 #: includes/class-meta-box-post-type.php:447
 msgid "Select"
@@ -376,16 +375,16 @@ msgstr "(TinyMCE)"
 
 #: includes/class-meta-box-post-type.php:455
 msgid "Image/File upload"
-msgstr ""
+msgstr "Carregar imagem/ficheiro"
 
 #: includes/class-meta-box-post-type.php:456
 msgid "Image/File list upload"
-msgstr ""
+msgstr "Carregar lista de imagens/ficheiros"
 
 #: includes/class-meta-box-post-type.php:457
 msgid ""
 "Converts oembed urls (instagram, twitter, youtube, etc. oEmbed in the Codex)"
-msgstr ""
+msgstr "URL oEmbed (Instagram, Twitter, YouTube, etc. oEmbed no Codex)"
 
 #: includes/class-meta-box-post-type.php:463
 msgid "Repeatable"
@@ -483,15 +482,14 @@ msgstr ""
 "Seleccione esta opção para incluir uma opção \"nenhum\" dentro deste campo."
 
 #: includes/class-meta-box-post-type.php:553
-#, fuzzy
 msgid "Disable select all"
 msgstr "Desactivar seleccionar todos"
 
 #: includes/class-meta-box-post-type.php:554
-#, fuzzy
 msgid "Check this box to disable the select all button for this field."
 msgstr ""
-"Seleccione esta opção para desactivar a selecção de tudo para este campo."
+"Seleccione esta opção para desactivar a caixa para seleccionar tudo para "
+"este campo."
 
 #: includes/class-meta-box-post-type.php:560
 msgid "Button Text"

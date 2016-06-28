@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CMB2 Admin Extension\n"
-"POT-Creation-Date: 2016-06-27 16:56+0100\n"
-"PO-Revision-Date: 2016-06-27 22:36+0100\n"
+"POT-Creation-Date: 2016-06-28 14:36+0100\n"
+"PO-Revision-Date: 2016-06-28 14:36+0100\n"
 "Last-Translator: Pedro Mendonça <ped.gaspar@gmail.com>\n"
 "Language-Team: Pedro Mendonça <ped.gaspar@gmail.com>\n"
 "Language: pt_PT\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: cmb2-admin-extension.php:165
+#: cmb2-admin-extension.php:166
 #, php-format
 msgid ""
 "CMB2 Admin Extension depends on the last version of %s the CMB2 plugin %s to "
@@ -30,7 +30,7 @@ msgstr ""
 "O CMB2 Admin Extension depende da última versão do %splugin CMB2%s para "
 "funcionar!"
 
-#: cmb2-admin-extension.php:176
+#: cmb2-admin-extension.php:177
 #, php-format
 msgid ""
 "The CMB2 plugin is installed but has not been activated. Please %s activate "
@@ -257,7 +257,6 @@ msgid "Use file_list for repeatable."
 msgstr "Para repetir, use o campo tipo file_list."
 
 #: includes/class-meta-box-post-type.php:426
-#, fuzzy
 msgid "An arbitrary title field"
 msgstr "Um campo de título arbitrário"
 
@@ -355,19 +354,19 @@ msgstr "Caixa de selecção"
 
 #: includes/class-meta-box-post-type.php:450
 msgid "Multiple Checkboxes"
-msgstr ""
+msgstr "Caixas de selecção múltiplas"
 
 #: includes/class-meta-box-post-type.php:451
 msgid "Multiple Checkboxes Inline"
-msgstr ""
+msgstr "Caixas de selecção múltiplas em linha"
 
 #: includes/class-meta-box-post-type.php:452
 msgid "Taxonomy Multiple Checkboxes"
-msgstr ""
+msgstr "Caixas de selecção múltiplas de taxonomia"
 
 #: includes/class-meta-box-post-type.php:453
 msgid "Taxonomy Multiple Checkboxes Inline"
-msgstr ""
+msgstr "Caixas de selecção múltiplas de taxonomia em linha"
 
 #: includes/class-meta-box-post-type.php:454
 msgid "(TinyMCE)"
@@ -538,69 +537,3 @@ msgstr "twoelevenjay"
 #. Author URI of the plugin/theme
 msgid "http://211j.com"
 msgstr "http://211j.com"
-
-#, fuzzy
-#~ msgid ""
-#~ "Defaults to \"m/d/Y\". See <a target=\"_blank\" href=\"http://php.net/"
-#~ "manual/en/function.date.php\">php.net/manual/en/function.date.php</a>."
-#~ msgstr ""
-#~ "Por omissão é \"m/d/Y\". Ver <a target=\"_blank\" href=\"http://php.net/"
-#~ "manual/en/function.date.php\">php.net/manual/en/function.date.php</a>."
-
-#, fuzzy
-#~ msgid ""
-#~ "Defaults to \"h:i A\". See <a target=\"_blank\" href=\"http://php.net/"
-#~ "manual/en/function.date.php\">php.net/manual/en/function.date.php</a>."
-#~ msgstr ""
-#~ "Por omissão é \"h:i A\". Ver <a target=\"_blank\" href=\"http://php.net/"
-#~ "manual/en/function.date.php\">php.net/manual/en/function.date.php</a>."
-
-#~ msgid "Enter text to change the upload button text"
-#~ msgstr "Insira o texto do botão Carregar."
-
-#, fuzzy
-#~ msgid ""
-#~ "Enter text to change the upload button text. Default: \"Add or Upload File"
-#~ "\"."
-#~ msgstr ""
-#~ "Insira o texto do botão Carregar. Por omissão: \"Adicionar ou carregar "
-#~ "ficheiro\"."
-
-#, fuzzy
-#~ msgid ""
-#~ "Enter text to change the text that is shown when no terms are found. "
-#~ "Default: \"No terms\"."
-#~ msgstr ""
-#~ "Insira o texto para indicar que não foram encontrados termos. Por "
-#~ "omissão: \"Sem termos\"."
-
-#~ msgid ""
-#~ "Pick what type of field to display. For a full list of fields visit <a "
-#~ "href=\"https://github.com/WebDevStudios/CMB2/wiki/Field-Types\">the "
-#~ "documentation</a>."
-#~ msgstr ""
-#~ "Escolha o tipo de campo a mostrar. Para uma lista completa dos campos "
-#~ "veja a <a href=\"https://github.com/WebDevStudios/CMB2/wiki/Field-Types"
-#~ "\">documentação</a>."
-
-#~ msgid ""
-#~ "Pick what type of field to display. For a full list of fields visit <a "
-#~ "href=\"https://github.com/WebDevStudios/CMB2/wiki/Field-Types\">the "
-#~ "documentation</a>. * Not available as a repeatable field † Use file_list "
-#~ "for repeatable"
-#~ msgstr ""
-#~ "Escolha o tipo de campo a mostrar. Para uma lista completa dos campos "
-#~ "veja a <a href=\"https://github.com/WebDevStudios/CMB2/wiki/Field-Types"
-#~ "\">documentação</a>.</br>* Campo não disponível para repetir.</br>† Para "
-#~ "repetir, use o campo tipo file_list."
-
-#~ msgid "Default Value"
-#~ msgstr "Valor por omissão"
-
-#~ msgid ""
-#~ "Enter a value to use as a default for this field. If you want a checkbox "
-#~ "to be checked enter \"on\". Leave blank for no default value."
-#~ msgstr ""
-#~ "Insira um valor para usar por omissão para este campo. Se quiser que uma "
-#~ "caixa de selecção esteja seleccionada, insira \"on\". Deixe em branco se "
-#~ "não pretender valor por omissão."

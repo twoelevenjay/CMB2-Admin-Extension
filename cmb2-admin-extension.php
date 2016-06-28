@@ -117,12 +117,11 @@ class CMB2_Admin_Extension_Class {
 
 		} elseif ( file_exists( WP_PLUGIN_DIR . '/' . CMB2AE_CMB2_PLUGIN_FILE ) ) {
 
-			$this->cmb2_admin_extension_cmb2_not_activated();
+			add_action( 'admin_notices', array( $this, 'cmb2_not_activated' ) );
 
 		} else{
 
-			$this->cmb2_admin_extension_missing_cmb2();
-
+			add_action( 'admin_notices', array( $this, 'missing_cmb2' ) );
 		}
 	}
 
@@ -158,7 +157,7 @@ class CMB2_Admin_Extension_Class {
 	 *
 	 * @return void
 	 */
-	private function cmb2_admin_extension_missing_cmb2() {
+	public function missing_cmb2() {
 
 		?>
 			<div class="error">
@@ -168,7 +167,7 @@ class CMB2_Admin_Extension_Class {
 
 	}
 
-	private function cmb2_admin_extension_cmb2_not_activated() {
+	public function cmb2_not_activated() {
 
 		// TODO comment
 		 ?>

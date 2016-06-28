@@ -134,9 +134,7 @@ class CMB2_Admin_Extension_Class {
 	 */
 	private function check_for_cmb2() {
 
-		global $plugins;
-
-		if ( defined( 'CMB2_LOADED' ) && CMB2_LOADED === true ) {
+		if ( defined( 'CMB2_LOADED' ) && CMB2_LOADED !== false ) {
 
 			require_once dirname( __FILE__ ) . '/includes/class-meta-box.php';
 			require_once dirname( __FILE__ ) . '/includes/class-meta-box-post-type.php';

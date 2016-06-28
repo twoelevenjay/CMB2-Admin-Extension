@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CMB2 Admin Extension\n"
 "POT-Creation-Date: 2016-06-28 14:36+0100\n"
-"PO-Revision-Date: 2016-06-28 14:36+0100\n"
+"PO-Revision-Date: 2016-06-28 16:02+0100\n"
 "Last-Translator: Pedro Mendonça <ped.gaspar@gmail.com>\n"
 "Language-Team: Pedro Mendonça <ped.gaspar@gmail.com>\n"
 "Language: pt_PT\n"
@@ -294,7 +294,7 @@ msgstr "Área de texto pequena"
 
 #: includes/class-meta-box-post-type.php:435
 msgid "Text Area Code"
-msgstr "Área de texto de código"
+msgstr "Área de texto para código"
 
 #: includes/class-meta-box-post-type.php:436
 msgid "Date Picker"

@@ -60,32 +60,6 @@ if ( ! defined( 'CMB2AE_PATH' ) ) {
 }
 
 
-add_action( 'plugins_loaded', 'cmb2_admin_extension_load_textdomain' );
-/**
-* Load plugin textdomain.
-*
-* @return void
-*/
-
-function cmb2_admin_extension_load_textdomain() {
-
-	$loaded = load_plugin_textdomain( 'cmb2-admin-extension', false, '/languages/' );
-
-	if ( ! $loaded ) {
-		$loaded = load_muplugin_textdomain( 'cmb2-admin-extension', '/languages/' );
-	}
-
-	if ( ! $loaded ) {
-		$loaded = load_theme_textdomain( 'cmb2-admin-extension', get_stylesheet_directory() . '/languages/' );
-	}
-
-	if ( ! $loaded ) {
-		$locale = apply_filters( 'plugin_locale', get_locale(), 'cmb2-admin-extension' );
-		$mofile = dirname( __FILE__ ) . '/languages/cmb2-admin-extension-' . $locale . '.mo';
-		load_textdomain( 'cmb2-admin-extension', $mofile );
-	}
-}
-
 /**
  * CMB2 Admin Extension main class.
  */
@@ -113,6 +87,7 @@ class CMB2_Admin_Extension_Class {
 
 		$this->check_for_cmb2();
 
+		add_action( 'init', array( $this, 'load_textdomain' ), 9 );
 	}
 
 	/**
@@ -148,6 +123,33 @@ class CMB2_Admin_Extension_Class {
 
 			$this->cmb2_admin_extension_missing_cmb2();
 
+		}
+	}
+
+	/**
+	 * Load plugin textdomain.
+	 *
+	 * @return void
+	 */
+
+	public function load_textdomain() {
+		$lang_path = plugin_basename( dirname( __FILE__ ) ) . '/languages';
+
+		if ( false === strpos( __FILE__, basename( WPMU_PLUGIN_DIR ) ) ) {
+			$loaded = load_plugin_textdomain( 'cmb2-admin-extension', false, $lang_path );
+		}
+		else {
+			$loaded = load_muplugin_textdomain( 'cmb2-admin-extension', $lang_path );
+		}
+
+		if ( ! $loaded ) {
+			$loaded = load_theme_textdomain( 'cmb2-admin-extension', get_stylesheet_directory() . '/languages' );
+		}
+
+		if ( ! $loaded ) {
+			$locale = apply_filters( 'plugin_locale', get_locale(), 'cmb2-admin-extension' );
+			$mofile = dirname( __FILE__ ) . '/languages/cmb2-admin-extension-' . $locale . '.mo';
+			load_textdomain( 'cmb2-admin-extension', $mofile );
 		}
 	}
 

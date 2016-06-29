@@ -38,8 +38,8 @@ jQuery( function( $ ) {
 		 */
 		show_hide_on_load: function() {
             var fieldTypeSelects = $( '.field_type_select' );
-            fieldTypeSelects.each( function( fieldTypeSelect ) {
-                cmb2MetaBoxField.show_hide( fieldTypeSelect );
+            fieldTypeSelects.each( function( index ) {
+                cmb2MetaBoxField.show_hide( this );
             } );
 
 		},
@@ -54,7 +54,7 @@ jQuery( function( $ ) {
 		 */
 		field_type_change: function() {
             $( '.cmb2-metabox' ).on( 'change', '.field_type_select', function( e ) {
-                var fieldTypeSelect = $( e.target );
+                var fieldTypeSelect = e.target;
                 cmb2MetaBoxField.show_hide( fieldTypeSelect );
             } );
 		}

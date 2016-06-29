@@ -10,7 +10,6 @@ _Support is not offered for this library, and the likelihood that the maintainer
 Before reporting a bug
 ---
 1. Search [issues](https://github.com/WebDevStudios/CMB2 Admin Extension/issues) to see if the issue has been previously reported.
-2. Install the trunk version of CMB2 Admin Extension and test there.
 
 
 How to report a bug
@@ -27,8 +26,6 @@ All contributions welcome. If you would like to submit a pull request, please fo
 
 1. Make sure you have a GitHub account.
 2. Fork the repository on GitHub.
-3. **Check out the trunk version of CMB2 Admin Extension.** If you submit to the master branch, the PR will be closed with a link back to this document.
-4. **Verify your issue still exists in the trunk branch.**
 5. Make changes to your clone of the repository.
 	1. Please follow the [WordPress code standards](https://make.wordpress.org/core/handbook/coding-standards).
 	2. If possible, and if applicable, please also add/update unit tests for your changes.
@@ -36,4 +33,4 @@ All contributions welcome. If you would like to submit a pull request, please fo
 	4. When committing, reference your issue (if present) and include a note about the fix.
 6. [Submit a pull request](https://help.github.com/articles/creating-a-pull-request/).
 
-**Note:** You may gain more ground and avoid unecessary effort if you first open an issue with the proposed changes, but this step is not necessary.
+**Note:** You may gain more ground and avoid unnecessary effort if you first open an issue with the proposed changes, but this step is not necessary.

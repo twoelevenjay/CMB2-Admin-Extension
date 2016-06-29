@@ -22,8 +22,8 @@ jQuery( function( $ ) {
 		 *
 		 */
 		show_hide: function( fieldTypeSelect ) {
-            var fieldTypeVal = fieldTypeSelect.val();
-            var fieldSet     = fieldTypeSelect.closest( '.cmb-field-list' );
+            var fieldTypeVal = $( fieldTypeSelect ).val();
+            var fieldSet     = $( fieldTypeSelect ).closest( '.cmb-field-list' );
             $( '.cmb-row.cmb_hide_field', fieldSet ).hide();
             $( '.cmb-row.' + fieldTypeVal, fieldSet ).show();
 		},

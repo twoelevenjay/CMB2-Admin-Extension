@@ -1,12 +1,12 @@
-jQuery(function($) {
+jQuery( function( $ ) {
 
 	/**
-	 * Variations actions
+	 * Variations actions.
 	 */
-	var cmb2_meta_box_field = {
+	var cmb2MetaBoxField = {
 
 		/**
-		 * Initialize meta box fields behavior
+		 * Initialize meta box fields behavior.
 		 */
 		init: function() {
             this.show_hide_on_load();
@@ -14,46 +14,52 @@ jQuery(function($) {
 		},
 
 		/**
+		 * This function needs documentation.
+		 *
 		 * show_hide
 		 *
 		 *
 		 *
 		 */
-		show_hide: function(field_type_select) {
-            var field_type_val = field_type_select.val();
-            var field_set = field_type_select.closest('.cmb-field-list');
-            $('.cmb-row.cmb_hide_field',field_set).hide();
-            $('.cmb-row.'+field_type_val,field_set).show();
+		show_hide: function( fieldTypeSelect ) {
+            var fieldTypeVal = $( fieldTypeSelect ).val();
+            var fieldSet     = $( fieldTypeSelect ).closest( '.cmb-field-list' );
+            $( '.cmb-row.cmb_hide_field', fieldSet ).hide();
+            $( '.cmb-row.' + fieldTypeVal, fieldSet ).show();
 		},
 
 		/**
+		 * This function needs documentation.
+		 *
 		 * show_hide_on_load
 		 *
 		 *
 		 *
 		 */
 		show_hide_on_load: function() {
-            var field_type_selects = $('.field_type_select');
-            field_type_selects.each(function(field_type_select){
-                cmb2_meta_box_field.show_hide($(this));
-            });
+            var fieldTypeSelects = $( '.field_type_select' );
+            fieldTypeSelects.each( function( fieldTypeSelect ) {
+                cmb2MetaBoxField.show_hide( fieldTypeSelect );
+            } );
 
 		},
 
 		/**
+		 * This function needs documentation.
+		 *
 		 * field_type_change
 		 *
 		 *
 		 *
 		 */
 		field_type_change: function() {
-            $('.cmb2-metabox').on('change', '.field_type_select', function(e){
-                var field_type_select = $(e.target);
-                cmb2_meta_box_field.show_hide(field_type_select);
-            });
-		},
+            $( '.cmb2-metabox' ).on( 'change', '.field_type_select', function( e ) {
+                var fieldTypeSelect = $( e.target );
+                cmb2MetaBoxField.show_hide( fieldTypeSelect );
+            } );
+		}
 	};
 
-	cmb2_meta_box_field.init();
+	cmb2MetaBoxField.init();
 
-});
+} );

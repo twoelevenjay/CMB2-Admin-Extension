@@ -1,7 +1,7 @@
 jQuery( function( $ ) {
 
 	/**
-	 * Variations actions.
+	 * meta_box field actions.
 	 */
 	var cmb2MetaBoxField = {
 
@@ -14,7 +14,7 @@ jQuery( function( $ ) {
 		},
 
 		/**
-		 * This function needs documentation.
+		 * Show / hide field rows based on field_type_select selected value.
 		 *
 		 * show_hide
 		 *
@@ -29,7 +29,7 @@ jQuery( function( $ ) {
 		},
 
 		/**
-		 * This function needs documentation.
+		 * show_hide() each field groups' field rows on page load.
 		 *
 		 * show_hide_on_load
 		 *
@@ -45,7 +45,7 @@ jQuery( function( $ ) {
 		},
 
 		/**
-		 * This function needs documentation.
+		 * show_hide() this field group's field rows on field_type_select change.
 		 *
 		 * field_type_change
 		 *

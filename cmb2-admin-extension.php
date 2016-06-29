@@ -1,11 +1,14 @@
 <?php
 /**
+ * CMB2 Admin Extension - a WordPress plugin.
+ *
  * @category     WordPress_Plugin
  * @package      CMB2-Admin-Extension
  * @author       twoelevenjay
  * @license      GPL-2.0+
  * @link         http://211j.com
  *
+ * @wordpress-plugin
  * Plugin Name:  CMB2 Admin Extension
  * Plugin URI:   https://github.com/twoelevenjay/CMB2-Admin-Extension
  * Description:  CMB2 Admin Extension add a user interface for admins to create CMB2 meta boxes from the WordPress admin.
@@ -37,7 +40,7 @@
  */
 
 /**
- * Silence is golden; exit if accessed directly
+ * Silence is golden; exit if accessed directly.
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -45,7 +48,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 /**
- * Define plugin constant
+ * Define plugin constant.
  */
 if ( ! defined( 'CMB2AE_CMB2_PLUGIN_FILE' ) ) {
 	define( 'CMB2AE_CMB2_PLUGIN_FILE', 'cmb2/init.php' );
@@ -80,7 +83,8 @@ class CMB2_Admin_Extension_Class {
 	protected static $instance;
 
 	/**
-	 * Initiate CMB2 Admin Extension
+	 * Initiate CMB2 Admin Extension.
+	 *
 	 * @since 0.0.1
 	 */
 	public function __construct() {
@@ -92,6 +96,7 @@ class CMB2_Admin_Extension_Class {
 
 	/**
 	 * Return an instance of this class.
+	 *
 	 * @return object A single instance of this class.
 	 */
 	public static function get_instance() {
@@ -104,7 +109,8 @@ class CMB2_Admin_Extension_Class {
 	}
 
 	/**
-	 * Check for the CMB2 plugin
+	 * Check for the CMB2 plugin.
+	 *
 	 * @since 0.0.1
 	 */
 	private function check_for_cmb2() {
@@ -119,7 +125,7 @@ class CMB2_Admin_Extension_Class {
 
 			add_action( 'admin_notices', array( $this, 'cmb2_not_activated' ) );
 
-		} else{
+		} else {
 
 			add_action( 'admin_notices', array( $this, 'missing_cmb2' ) );
 		}
@@ -130,14 +136,12 @@ class CMB2_Admin_Extension_Class {
 	 *
 	 * @return void
 	 */
-
 	public function load_textdomain() {
 		$lang_path = plugin_basename( dirname( __FILE__ ) ) . '/languages';
 
 		if ( false === strpos( __FILE__, basename( WPMU_PLUGIN_DIR ) ) ) {
 			$loaded = load_plugin_textdomain( 'cmb2-admin-extension', false, $lang_path );
-		}
-		else {
+		} else {
 			$loaded = load_muplugin_textdomain( 'cmb2-admin-extension', $lang_path );
 		}
 
@@ -153,7 +157,7 @@ class CMB2_Admin_Extension_Class {
 	}
 
 	/**
-	 * Add an error notices to the dashboard for if the CMB2 plugin is missing or not activated
+	 * Add an error notice if the CMB2 plugin is missing.
 	 *
 	 * @return void
 	 */
@@ -167,26 +171,37 @@ class CMB2_Admin_Extension_Class {
 
 	}
 
+	/**
+	 * Add an error notice if the CMB2 plugin isn't activated.
+	 *
+	 * @return void
+	 */
 	public function cmb2_not_activated() {
 
-		// TODO comment
-		 ?>
+		?>
 			<div class="error">
-				<p><?php printf( esc_html__( 'The CMB2 plugin is installed but has not been activated. Please %s activate %s it to use the CMB2 Admin Extension', 'cmb2-admin-extension' ), '<a href="'.admin_url('plugins.php').'">', '</a>' ); ?></p>
+				<p><?php printf( esc_html__( 'The CMB2 plugin is installed but has not been activated. Please %s activate %s it to use the CMB2 Admin Extension', 'cmb2-admin-extension' ), '<a href="' . esc_url( admin_url( 'plugins.php' ) ) . '">', '</a>' ); ?></p>
 			</div>
 		<?php
 
 	}
-
 }
 
 add_action( 'plugins_loaded', array( 'CMB2_Admin_Extension_Class', 'get_instance' ), 20 );
 
 if ( ! function_exists( 'cmbf' ) ) {
 
-	function cmbf( $ID, $field ) {
+	/**
+	 * This function needs documentation.
+	 *
+	 * @todo
+	 *
+	 * @param int    $id    Post ID.
+	 * @param string $field The meta key to retrieve.
+	 */
+	function cmbf( $id, $field ) {
 
-		return CMB2_Meta_Box_Post_Type::cmbf( $ID, $field );
+		return CMB2_Meta_Box_Post_Type::cmbf( $id, $field );
 
 	}
 }

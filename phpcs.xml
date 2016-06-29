@@ -3,6 +3,8 @@
 	<description>The code standard for CMB2 Admin Extension is WordPress.</description>
 
 	<rule ref="WordPress">
+		<exclude name="WordPress.VIP.PostsPerPage.posts_per_page" />
+		<exclude name="WordPress.PHP.YodaConditions.NotYoda" />
 	</rule>
 
 	<!-- exclude the 'empty' index files from some documentation checks -->

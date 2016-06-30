@@ -2,6 +2,11 @@
 
 ## Changelog
 
+### 0.1.2 beta 06.29.2016
+* PHP bug fixes. Props [@jrfnl](https://github.com/jrfnl)
+* Fix language loading. Props [@jrfnl](https://github.com/jrfnl)
+* Portuguese translation. Props [@pedro-mendonca](https://github.com/pedro-mendonca)
+
 ### 0.1.1 beta 06.26.2016
 * Disable the group field type and the default option until support is added.
 

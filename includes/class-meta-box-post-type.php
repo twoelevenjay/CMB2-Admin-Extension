@@ -39,13 +39,6 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 		private $settings_metabox_id = '_cmb2_settings_metabox';
 
 		/**
-		 * Settings Page title.
-		 *
-		 * @var string
-		 */
-		protected $settings_title = '';
-
-		/**
 		 * Settings Page hook.
 		 *
 		 * @var string
@@ -61,8 +54,6 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 		 * @since 0.0.1
 		 */
 		public function __construct() {
-
-			$this->settings_title = __( 'CMB2 Settings', 'cmb2-admin-extension' );
 
 			add_action( 'init', array( $this, 'init_post_type' ) );
 			add_action( 'add_meta_boxes', array( $this, 'remove_meta_box_slugdiv' ) );

@@ -39,13 +39,6 @@ if ( ! class_exists( 'CMB2_Meta_Box_Settings' ) ) {
 		private $settings_metabox_id = '_cmb2_settings_metabox';
 
 		/**
-		 * Settings Page title.
-		 *
-		 * @var string
-		 */
-		protected $settings_title = '';
-
-		/**
 		 * Settings Page hook.
 		 *
 		 * @var string
@@ -61,8 +54,6 @@ if ( ! class_exists( 'CMB2_Meta_Box_Settings' ) ) {
 		 * @since 0.0.1
 		 */
 		public function __construct() {
-
-			$this->settings_title = __( 'CMB2 Settings', 'cmb2-admin-extension' );
 
 			add_action( 'admin_init', array( $this, 'register_settings' ) );
 			add_action( 'admin_menu', array( $this, 'add_settings_page' ) );
@@ -103,7 +94,7 @@ if ( ! class_exists( 'CMB2_Meta_Box_Settings' ) ) {
 
 			?>
 			<div class="wrap cmb2-options-page <?php echo esc_attr( $this->settings_key ); ?>">
-				<h2><?php echo esc_html( $this->settings_title ); ?></h2>
+				<h2><?php echo esc_html__( 'CMB2 Settings', 'cmb2-admin-extension' ); ?></h2>
 				<?php cmb2_metabox_form( $this->settings_metabox_id, $this->settings_key, array( 'disable_styles' => false ) ); ?>
 			</div>
 			<?php

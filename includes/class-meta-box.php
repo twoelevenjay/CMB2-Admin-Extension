@@ -34,8 +34,6 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 		 */
 		public function __construct() {
 
-			$this->settings_title = __( 'CMB2 Settings', 'cmb2-admin-extension' );
-
 			add_action( 'pre_current_active_plugins', array( $this, 'hide_cmb2_plugins' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 			add_action( 'cmb2_init', array( $this, 'init_user_defined_meta_boxes_and_fields' ) );

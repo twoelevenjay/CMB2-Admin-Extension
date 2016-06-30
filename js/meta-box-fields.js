@@ -29,7 +29,7 @@ jQuery( function( $ ) {
 		},
 
 		/**
-		 * show_hide() each field groups' field rows on page load.
+		 * Use the show_hide() function on each field group's field rows on page load.
 		 *
 		 * show_hide_on_load
 		 *
@@ -45,7 +45,7 @@ jQuery( function( $ ) {
 		},
 
 		/**
-		 * show_hide() this field group's field rows on field_type_select change.
+		 * Use the show_hide() function on this field group's field rows on field_type_select change.
 		 *
 		 * field_type_change
 		 *

@@ -9,7 +9,7 @@ _Support is not offered for this library, and the likelihood that the maintainer
 
 Before reporting a bug
 ---
-1. Search [issues](https://github.com/WebDevStudios/CMB2 Admin Extension/issues) to see if the issue has been previously reported.
+1. Search [issues](https://github.com/twoelevenjay/CMB2-Admin-Extension/issues) to see if the issue has been previously reported.
 
 
 How to report a bug

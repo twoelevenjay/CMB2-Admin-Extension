@@ -38,7 +38,7 @@ jQuery( function( $ ) {
 		 */
 		show_hide_on_load: function() {
             var fieldTypeSelects = $( '.field_type_select' );
-            fieldTypeSelects.each( function( index ) {
+            fieldTypeSelects.each( function() {
                 cmb2MetaBoxField.show_hide( this );
             } );
 

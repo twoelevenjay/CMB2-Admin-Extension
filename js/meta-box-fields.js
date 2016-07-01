@@ -1,7 +1,7 @@
 jQuery( function( $ ) {
 
 	/**
-	 * meta_box field actions.
+	 * JS meta_box field actions.
 	 */
 	var cmb2MetaBoxField = {
 

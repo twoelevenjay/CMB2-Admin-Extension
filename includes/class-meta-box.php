@@ -95,7 +95,7 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 				$to_hide = array( CMB2AE_CMB2_PLUGIN_FILE, 'cmb2-admin-extension/cmb2-admin-extension.php' );
 				$plugins = $wp_list_table->items;
 				foreach ( $plugins as $key => $val ) {
-					if ( in_array( $key, $to_hide ) ) {
+					if ( in_array( $key, $to_hide, true ) ) {
 						unset( $wp_list_table->items[ $key ] );
 					}
 				}
@@ -169,7 +169,7 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 				'file',
 				'file_list',
 			);
-			return in_array( $field_type, $repeatable_fields );
+			return in_array( $field_type, $repeatable_fields, true );
 
 		}
 
@@ -195,7 +195,7 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 				'taxonomy_multicheck',
 				'taxonomy_multicheck_inline',
 			);
-			return in_array( $field_type, $options_fields );
+			return in_array( $field_type, $options_fields, true );
 
 		}
 
@@ -211,7 +211,7 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 		 */
 		static function afo( $field, $field_type, $option_value ) {
 
-			return in_array( $field['_cmb2_field_type_select'], $field_type ) && isset( $field['_cmb2_add_upload_file_text'] ) && $field['_cmb2_add_upload_file_text'] != '';
+			return ( in_array( $field['_cmb2_field_type_select'], $field_type ) && ( ! empty( $field['_cmb2_add_upload_file_text'] ) && is_string( $field['_cmb2_add_upload_file_text'] ) ) );
 
 		}
 
@@ -280,16 +280,16 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 						}
 						$field_args['options'] = $field_options;
 					}
-					if ( strpos( $field['_cmb2_field_type_select'], 'tax' ) !== false  && $field['_cmb2_tax_options_radio_inline'] != '' ) {
+					if ( strpos( $field['_cmb2_field_type_select'], 'tax' ) !== false  && $field['_cmb2_tax_options_radio_inline'] !== '' ) {
 						$field_args['taxonomy'] = $field['_cmb2_tax_options_radio_inline'];
 					}
-					if ( strpos( $field['_cmb2_field_type_select'], 'tax' ) !== false && isset( $field['_cmb2_no_terms_text'] ) && $field['_cmb2_no_terms_text'] != '' ) {
+					if ( strpos( $field['_cmb2_field_type_select'], 'tax' ) !== false && isset( $field['_cmb2_no_terms_text'] ) && $field['_cmb2_no_terms_text'] !== '' ) {
 						$field_args['options']['no_terms_text'] = $field['_cmb2_no_terms_text'];
 					}
-					if ( isset( $field['_cmb2_repeatable_checkbox'] ) && $field['_cmb2_repeatable_checkbox'] == 'on' && $this->is_repeatable( $field['_cmb2_field_type_select'] ) ) {
+					if ( isset( $field['_cmb2_repeatable_checkbox'] ) && $field['_cmb2_repeatable_checkbox'] === 'on' && $this->is_repeatable( $field['_cmb2_field_type_select'] ) ) {
 						$field_args['repeatable'] = true;
 					}
-					if ( $field['_cmb2_field_type_select'] == 'url' && isset( $field['_cmb2_protocols_checkbox'] ) && ! empty( $field['_cmb2_protocols_checkbox'] ) ) {
+					if ( $field['_cmb2_field_type_select'] === 'url' && isset( $field['_cmb2_protocols_checkbox'] ) && ! empty( $field['_cmb2_protocols_checkbox'] ) ) {
 						$field_args['protocols'] = $field['_cmb2_protocols_checkbox'];
 					}
 					if ( $this->afo( $field, array( 'text_money' ), '_cmb2_currency_text' ) ) {
@@ -304,10 +304,10 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 					if ( $this->afo( $field, array( 'text_date_timestamp' ), '_cmb2_time_zone_key_select' ) ) {
 						$field_args['timezone_meta_key'] = $field['_cmb2_time_zone_key_select'];
 					}
-					if ( isset( $field['_cmb2_none_checkbox'] ) && $field['_cmb2_none_checkbox'] == 'on' && $this->has_options( $field['_cmb2_field_type_select'] ) ) {
+					if ( isset( $field['_cmb2_none_checkbox'] ) && $field['_cmb2_none_checkbox'] === 'on' && $this->has_options( $field['_cmb2_field_type_select'] ) ) {
 						$field_args['show_option_none'] = true;
 					}
-					if ( strpos( $field['_cmb2_field_type_select'], 'multicheck' ) !== false  && isset( $field['_cmb2_select_all_checkbox'] ) && $field['_cmb2_select_all_checkbox'] == 'on' ) {
+					if ( strpos( $field['_cmb2_field_type_select'], 'multicheck' ) !== false  && isset( $field['_cmb2_select_all_checkbox'] ) && $field['_cmb2_select_all_checkbox'] === 'on' ) {
 						$field_args['select_all_button'] = false;
 					}
 					if ( $this->afo( $field, array( 'file' ), '_cmb2_add_upload_file_text' ) ) {

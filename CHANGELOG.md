@@ -2,6 +2,9 @@
 
 ## Changelog
 
+### 0.1.3 beta 07.12.2016
+* Tidying up and refactoring, thanks to phpcs and phpmd.
+
 ### 0.1.2 beta 06.29.2016
 * PHP bug fixes. Props [@jrfnl](https://github.com/jrfnl)
 * Fix language loading. Props [@jrfnl](https://github.com/jrfnl)

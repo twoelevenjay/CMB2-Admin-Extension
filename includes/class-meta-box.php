@@ -134,7 +134,7 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 		 *
 		 * @since  0.0.6
 		 * @param  string $field_type A CMB2 field type.
-		 * @return bollean.
+		 * @return boolean.
 		 */
 		public function is_repeatable( $field_type ) {
 
@@ -169,7 +169,7 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 		 *
 		 * @since  0.0.6
 		 * @param  string $field_type A CMB2 field type.
-		 * @return bollean.
+		 * @return boolean.
 		 */
 		public function has_options( $field_type ) {
 
@@ -192,12 +192,12 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 		 * Conditional to check if the field argument should be added..
 		 *
 		 * @since 1.1.4
-		 * @param string $options string of options for fields liek select.
+		 * @param string $field_options string of options for fields liek select.
 		 */
-		public function add_option_arg( $options ) {
+		public function add_option_arg( $field_options ) {
 
-			$options = explode( PHP_EOL, $options );
-			foreach ( $options as $option ) {
+			$field_options = explode( PHP_EOL, $field_options );
+			foreach ( $field_options as $option ) {
 				$opt_arr = explode( ',', $option );
 				if ( ! isset( $opt_arr[1] ) ) {
 					continue;
@@ -252,7 +252,7 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 		 * @param  array  $field      Field definition.
 		 * @param  string $field_type A CMB2 field type.
 		 * @param  string $field_key  $field key to check.
-		 * @return bollean.
+		 * @return boolean.
 		 */
 		static function should_add_arg( $field, $field_type, $field_key ) {
 
@@ -316,9 +316,9 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 						'type' => $field['_cmb2_field_type_select'],
 					);
 
-					$options = isset( $field['_cmb2_options_textarea'] ) ? $field['_cmb2_options_textarea'] : false;
-					if ( $options ) {
-						$this->add_option_arg( $options );
+					$field_options = isset( $field['_cmb2_options_textarea'] ) ? $field['_cmb2_options_textarea'] : false;
+					if ( $field_options ) {
+						$this->add_option_arg( $field_options );
 					}
 					$should_add_strpos = array(
 						array( 'tax', 'taxonomy', '_cmb2_tax_options_radio_inline' ),

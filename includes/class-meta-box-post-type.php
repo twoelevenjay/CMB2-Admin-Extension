@@ -225,7 +225,7 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 			$tax_options = array();
 			foreach ( $taxonomies as $taxonomy ) {
 
-				$tax_options[ $taxonomy->name ] = $taxonomy->labels->name;
+				$tax_options[$taxonomy->name] = $taxonomy->labels->name;
 
 			}
 			return $tax_options;
@@ -246,7 +246,7 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 
 			foreach ( $post_type_objects as $post_type_object ) {
 				if ( $post_type_object->show_ui && $post_type_object->name !== 'meta_box' ) {
-					$post_types[ $post_type_object->name ] = $post_type_object->label;
+					$post_types[$post_type_object->name] = $post_type_object->label;
 				}
 			}
 

@@ -94,7 +94,7 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 				$plugins = $wp_list_table->items;
 				foreach ( array_keys( $plugins ) as $key ) {
 					if ( in_array( $key, $to_hide, true ) ) {
-						unset( $wp_list_table->items[ $key ] );
+						unset( $wp_list_table->items[$key] );
 					}
 				}
 			}
@@ -189,7 +189,7 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 		 */
 		static function atfo( $field, $field_type, $field_key ) {
 
-			return ( in_array( $field['_cmb2_field_type_select'], $field_type, true ) && ( ! empty( $field[ $field_key ] ) && $field[ $field_key] !== '' ) );
+			return ( in_array( $field['_cmb2_field_type_select'], $field_type, true ) && ( ! empty( $field[$field_key] ) && $field[$field_key] !== '' ) );
 		}
 
 		/**
@@ -257,11 +257,11 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 							if ( ! isset( $opt_arr[1] ) ) {
 								continue;
 							}
-							$field_options[ $opt_arr[0] ] = $opt_arr[1];
+							$field_options[$opt_arr[0]] = $opt_arr[1];
 						}
 						$field_args['options'] = $field_options;
 					}
-					if ( strpos( $field['_cmb2_field_type_select'], 'tax' ) !== false  && $field['_cmb2_tax_options_radio_inline'] !== '' ) {
+					if ( strpos( $field['_cmb2_field_type_select'], 'tax' ) !== false && $field['_cmb2_tax_options_radio_inline'] !== '' ) {
 						$field_args['taxonomy'] = $field['_cmb2_tax_options_radio_inline'];
 					}
 					if ( strpos( $field['_cmb2_field_type_select'], 'tax' ) !== false && isset( $field['_cmb2_no_terms_text'] ) && $field['_cmb2_no_terms_text'] !== '' ) {
@@ -288,7 +288,7 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 					if ( isset( $field['_cmb2_none_checkbox'] ) && $field['_cmb2_none_checkbox'] === 'on' && $this->has_options( $field['_cmb2_field_type_select'] ) ) {
 						$field_args['show_option_none'] = true;
 					}
-					if ( strpos( $field['_cmb2_field_type_select'], 'multicheck' ) !== false  && isset( $field['_cmb2_select_all_checkbox'] ) && $field['_cmb2_select_all_checkbox'] === 'on' ) {
+					if ( strpos( $field['_cmb2_field_type_select'], 'multicheck' ) !== false && isset( $field['_cmb2_select_all_checkbox'] ) && $field['_cmb2_select_all_checkbox'] === 'on' ) {
 						$field_args['select_all_button'] = false;
 					}
 					if ( $this->atfo( $field, array( 'file' ), '_cmb2_add_upload_file_text' ) ) {

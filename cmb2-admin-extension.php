@@ -120,7 +120,7 @@ class CMB2_Admin_Extension_Class {
 			require_once dirname( __FILE__ ) . '/includes/class-meta-box.php';
 			require_once dirname( __FILE__ ) . '/includes/class-meta-box-post-type.php';
 			require_once dirname( __FILE__ ) . '/includes/class-meta-box-settings.php';
-
+			cmb2ae_metabox();
 			return;
 		} elseif ( file_exists( WP_PLUGIN_DIR . '/' . CMB2AE_CMB2_PLUGIN_FILE ) ) {
 
@@ -199,6 +199,6 @@ if ( ! function_exists( 'cmbf' ) ) {
 	 */
 	function cmbf( $id, $field ) {
 
-		return CMB2_Meta_Box_Post_Type::cmbf( $id, $field );
+		return get_post_meta( $id, $field, true );
 	}
 }

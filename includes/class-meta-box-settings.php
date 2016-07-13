@@ -57,9 +57,7 @@ if ( ! class_exists( 'CMB2_Meta_Box_Settings' ) ) {
 
 			add_action( 'admin_init', array( $this, 'register_settings' ) );
 			add_action( 'admin_menu', array( $this, 'add_settings_page' ) );
-
 			add_action( 'cmb2_init', array( $this, 'init_cmb2_settings_page' ) );
-
 		}
 
 		/**

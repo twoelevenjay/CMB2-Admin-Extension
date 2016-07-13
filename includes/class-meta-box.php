@@ -78,11 +78,7 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 			$current_user  = wp_get_current_user();
 			$allowed_users = isset( $cmb2_settings['_cmb2_user_multicheckbox'] ) ? $cmb2_settings['_cmb2_user_multicheckbox'] : array();
 
-			if ( empty( $allowed_users ) || in_array( $current_user->ID, $allowed_users, true ) ) {
-
-				return true;
-			}
-			return false;
+			return empty( $allowed_users ) || in_array( $current_user->ID, $allowed_users, true );
 		}
 
 		/**
@@ -182,17 +178,18 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 		}
 
 		/**
-		 * Function afo().
+		 * Function atfo().
 		 *
 		 * @todo Document properly.
 		 * @since  0.0.6
 		 *
 		 * @param array  $field      Field definition.
 		 * @param string $field_type A CMB2 field type.
+		 * @param string $field_key  $field key to check.
 		 */
-		static function afo( $field, $field_type ) {
+		static function atfo( $field, $field_type, $field_key ) {
 
-			return ( in_array( $field['_cmb2_field_type_select'], $field_type, true ) && ( ! empty( $field['_cmb2_add_upload_file_text'] ) && is_string( $field['_cmb2_add_upload_file_text'] ) ) );
+			return ( in_array( $field['_cmb2_field_type_select'], $field_type, true ) && ( ! empty( $field[ $field_key ] ) && $field[ $field_key] !== '' ) );
 		}
 
 		/**
@@ -276,16 +273,16 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 					if ( $field['_cmb2_field_type_select'] === 'url' && isset( $field['_cmb2_protocols_checkbox'] ) && ! empty( $field['_cmb2_protocols_checkbox'] ) ) {
 						$field_args['protocols'] = $field['_cmb2_protocols_checkbox'];
 					}
-					if ( $this->afo( $field, array( 'text_money' ), '_cmb2_currency_text' ) ) {
+					if ( $this->atfo( $field, array( 'text_money' ), '_cmb2_currency_text' ) ) {
 						$field_args['before_field'] = $field['_cmb2_currency_text'];
 					}
-					if ( $this->afo( $field, array( 'text_time' ), '_cmb2_time_format' ) ) {
+					if ( $this->atfo( $field, array( 'text_time' ), '_cmb2_time_format' ) ) {
 						$field_args['time_format'] = $field['_cmb2_time_format'];
 					}
-					if ( $this->afo( $field, array( 'text_date', 'text_date_timestamp' ), '_cmb2_date_format' ) ) {
+					if ( $this->atfo( $field, array( 'text_date', 'text_date_timestamp' ), '_cmb2_date_format' ) ) {
 						$field_args['date_format'] = $field['_cmb2_date_format'];
 					}
-					if ( $this->afo( $field, array( 'text_date_timestamp' ), '_cmb2_time_zone_key_select' ) ) {
+					if ( $this->atfo( $field, array( 'text_date_timestamp' ), '_cmb2_time_zone_key_select' ) ) {
 						$field_args['timezone_meta_key'] = $field['_cmb2_time_zone_key_select'];
 					}
 					if ( isset( $field['_cmb2_none_checkbox'] ) && $field['_cmb2_none_checkbox'] === 'on' && $this->has_options( $field['_cmb2_field_type_select'] ) ) {
@@ -294,7 +291,7 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 					if ( strpos( $field['_cmb2_field_type_select'], 'multicheck' ) !== false  && isset( $field['_cmb2_select_all_checkbox'] ) && $field['_cmb2_select_all_checkbox'] === 'on' ) {
 						$field_args['select_all_button'] = false;
 					}
-					if ( $this->afo( $field, array( 'file' ), '_cmb2_add_upload_file_text' ) ) {
+					if ( $this->atfo( $field, array( 'file' ), '_cmb2_add_upload_file_text' ) ) {
 						$field_args['options']['add_upload_file_text'] = $field['_cmb2_add_upload_file_text'];
 					}
 					${ 'cmb_' . $id }->add_field( $field_args );

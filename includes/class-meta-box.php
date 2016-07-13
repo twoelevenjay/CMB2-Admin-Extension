@@ -25,6 +25,22 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 		private $prefix = '_cmb2_';
 
 		/**
+		 * Current field array.
+		 * Store the current field while adding user defined fields
+		 *
+		 * @var array
+		 */
+		private $field = array();
+
+		/**
+		 * Current field arguments array.
+		 * Store the current field arguments while adding user defined fields
+		 *
+		 * @var array
+		 */
+		private $field_args = array();
+
+		/**
 		 * Instance of this class.
 		 *
 		 * @var object
@@ -33,9 +49,6 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 
 		/**
 		 * Initiate CMB2 Admin Extension object.
-		 *
-		 * @todo For now plugin will use one main object, will consider 3 seperate objects in the future.
-		 * @todo Comment.
 		 *
 		 * @since 0.0.1
 		 */
@@ -94,7 +107,7 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 				$plugins = $wp_list_table->items;
 				foreach ( array_keys( $plugins ) as $key ) {
 					if ( in_array( $key, $to_hide, true ) ) {
-						unset( $wp_list_table->items[$key] );
+						unset( $wp_list_table->items[ $key ] );
 					}
 				}
 			}
@@ -117,14 +130,13 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 		}
 
 		/**
-		 * Function is_repeatable().
+		 * Check if the field type is repeatable.
 		 *
-		 * @todo Document properly.
 		 * @since  0.0.6
-		 *
-		 * @param string $field_type A CMB2 field type.
+		 * @param  string $field_type A CMB2 field type.
+		 * @return bollean.
 		 */
-		static function is_repeatable( $field_type ) {
+		public function is_repeatable( $field_type ) {
 
 			$repeatable_fields = array(
 				'text',
@@ -153,14 +165,13 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 		}
 
 		/**
-		 * Function has_options().
+		 * Check if field types should have the options argument.
 		 *
-		 * @todo Document properly.
 		 * @since  0.0.6
-		 *
-		 * @param string $field_type A CMB2 field type.
+		 * @param  string $field_type A CMB2 field type.
+		 * @return bollean.
 		 */
-		static function has_options( $field_type ) {
+		public function has_options( $field_type ) {
 
 			$options_fields = array(
 				'radio',
@@ -178,24 +189,80 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 		}
 
 		/**
-		 * Function should_add_arg().
+		 * Conditional to check if the field argument should be added..
 		 *
-		 * @todo Conditional to check if the field argument should be added.
-		 * @since  0.0.6
+		 * @since 1.1.4
+		 * @param string $options string of options for fields liek select.
+		 */
+		public function add_option_arg( $options ) {
+
+			$options = explode( PHP_EOL, $options );
+			foreach ( $options as $option ) {
+				$opt_arr = explode( ',', $option );
+				if ( ! isset( $opt_arr[1] ) ) {
+					continue;
+				}
+				$field_options[ $opt_arr[0] ] = $opt_arr[1];
+			}
+			$this->field_args['options'] = $field_options;
+		}
+
+		/**
+		 * Conditional to check if the field argument should be added..
 		 *
-		 * @param array  $field      Field definition.
-		 * @param string $field_type A CMB2 field type.
-		 * @param string $field_key  $field key to check.
+		 * @since 1.1.4
+		 * @param array $arg_value A CMB2 field type.
+		 */
+		public function add_strpos_arg( $arg_value ) {
+
+			if ( strpos( $this->field['_cmb2_field_type_select'], $arg_value[0] ) !== false && isset( $this->field[ $arg_value[2] ] ) && $this->field[ $arg_value[2] ] !== '' ) {
+
+				if ( is_array( $arg_value[1] ) ) {
+					$this->field_args[ $arg_value[1][0] ][ $arg_value[1][1] ] = $this->field[ $arg_value[2] ];
+					return;
+				}
+				$this->field_args[ $arg_value[1] ] = $this->field[ $arg_value[2] ];
+			}
+		}
+
+		/**
+		 * Conditional to check if the field argument should be added..
+		 *
+		 * @since 1.1.4
+		 * @param string       $arg   Field definition.
+		 * @param string|array $value A CMB2 field type.
+		 */
+		public function add_arg( $arg, $value ) {
+
+			if ( $this->should_add_arg( $this->field, $arg, $value ) ) {
+
+				if ( is_array( $value ) ) {
+
+					$this->field_args[ $arg ][ $value[0] ] = $this->field[ $value[1] ];
+					return;
+				}
+				$this->field_args[ $arg ] = $this->field[ $value ];
+			}
+		}
+
+		/**
+		 * Conditional to check if the field argument should be added..
+		 *
+		 * @since  1.1.4
+		 * @param  array  $field      Field definition.
+		 * @param  string $field_type A CMB2 field type.
+		 * @param  string $field_key  $field key to check.
+		 * @return bollean.
 		 */
 		static function should_add_arg( $field, $field_type, $field_key ) {
 
-			return ( in_array( $field['_cmb2_field_type_select'], $field_type, true ) && ( ! empty( $field[$field_key] ) && $field[$field_key] !== '' ) );
+			return ( $field['_cmb2_field_type_select'] === $field_type && ( ! empty( $field[ $field_key ] ) && $field[ $field_key ] !== '' ) );
 		}
 
 		/**
 		 * Loop through user defined meta_box and creates the custom meta boxes and fields.
 		 *
-		 * @since  0.0.1
+		 * @since 0.0.1
 		 */
 		public function init_user_defined_meta_boxes_and_fields() {
 
@@ -240,9 +307,9 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 
 				foreach ( $fields as $field ) {
 
-					$field_id = '_' . strtolower( str_replace( ' ', '_', $field['_cmb2_name_text'] ) );
-
-					$field_args = array(
+					$this->field = $field;
+					$field_id    = '_' . strtolower( str_replace( ' ', '_', $field['_cmb2_name_text'] ) );
+					$this->field_args  = array(
 						'name' => $field['_cmb2_name_text'],
 						'desc' => $field['_cmb2_decription_textarea'],
 						'id'   => $field_id,
@@ -251,50 +318,34 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 
 					$options = isset( $field['_cmb2_options_textarea'] ) ? $field['_cmb2_options_textarea'] : false;
 					if ( $options ) {
-						$options = explode( PHP_EOL, $options );
-						foreach ( $options as $option ) {
-							$opt_arr = explode( ',', $option );
-							if ( ! isset( $opt_arr[1] ) ) {
-								continue;
-							}
-							$field_options[$opt_arr[0]] = $opt_arr[1];
-						}
-						$field_args['options'] = $field_options;
+						$this->add_option_arg( $options );
 					}
-					if ( strpos( $field['_cmb2_field_type_select'], 'tax' ) !== false && $field['_cmb2_tax_options_radio_inline'] !== '' ) {
-						$field_args['taxonomy'] = $field['_cmb2_tax_options_radio_inline'];
-					}
-					if ( strpos( $field['_cmb2_field_type_select'], 'tax' ) !== false && isset( $field['_cmb2_no_terms_text'] ) && $field['_cmb2_no_terms_text'] !== '' ) {
-						$field_args['options']['no_terms_text'] = $field['_cmb2_no_terms_text'];
+					$should_add_strpos = array(
+						array( 'tax', 'taxonomy', '_cmb2_tax_options_radio_inline' ),
+						array( 'tax', array( 'options', 'no_terms_text' ), '_cmb2_no_terms_text' ),
+						array( 'multicheck', 'select_all_button', '_cmb2_select_all_checkbox' ),
+					);
+					foreach ( $should_add_strpos as $arg_value ) {
+						$this->add_strpos_arg( $arg_value );
 					}
 					if ( isset( $field['_cmb2_repeatable_checkbox'] ) && $field['_cmb2_repeatable_checkbox'] === 'on' && $this->is_repeatable( $field['_cmb2_field_type_select'] ) ) {
 						$field_args['repeatable'] = true;
 					}
-					if ( $field['_cmb2_field_type_select'] === 'url' && isset( $field['_cmb2_protocols_checkbox'] ) && ! empty( $field['_cmb2_protocols_checkbox'] ) ) {
-						$field_args['protocols'] = $field['_cmb2_protocols_checkbox'];
-					}
-					if ( $this->should_add_arg( $field, array( 'text_money' ), '_cmb2_currency_text' ) ) {
-						$field_args['before_field'] = $field['_cmb2_currency_text'];
-					}
-					if ( $this->should_add_arg( $field, array( 'text_time' ), '_cmb2_time_format' ) ) {
-						$field_args['time_format'] = $field['_cmb2_time_format'];
-					}
-					if ( $this->should_add_arg( $field, array( 'text_date', 'text_date_timestamp' ), '_cmb2_date_format' ) ) {
-						$field_args['date_format'] = $field['_cmb2_date_format'];
-					}
-					if ( $this->should_add_arg( $field, array( 'text_date_timestamp' ), '_cmb2_time_zone_key_select' ) ) {
-						$field_args['timezone_meta_key'] = $field['_cmb2_time_zone_key_select'];
-					}
 					if ( isset( $field['_cmb2_none_checkbox'] ) && $field['_cmb2_none_checkbox'] === 'on' && $this->has_options( $field['_cmb2_field_type_select'] ) ) {
 						$field_args['show_option_none'] = true;
 					}
-					if ( strpos( $field['_cmb2_field_type_select'], 'multicheck' ) !== false && isset( $field['_cmb2_select_all_checkbox'] ) && $field['_cmb2_select_all_checkbox'] === 'on' ) {
-						$field_args['select_all_button'] = false;
+					$should_add = array(
+						'protocols' => '_cmb2_protocols_checkbox',
+						'before_field' => '_cmb2_currency_text',
+						'time_format' => '_cmb2_time_format',
+						'date_format' => '_cmb2_date_format',
+						'timezone_meta_key' => '_cmb2_time_zone_key_select',
+						'options' => array( 'add_upload_file_text', '_cmb2_add_upload_file_text' ),
+					);
+					foreach ( $should_add as $arg => $value ) {
+						$this->add_arg( $arg, $value );
 					}
-					if ( $this->should_add_arg( $field, array( 'file' ), '_cmb2_add_upload_file_text' ) ) {
-						$field_args['options']['add_upload_file_text'] = $field['_cmb2_add_upload_file_text'];
-					}
-					${ 'cmb_' . $id }->add_field( $field_args );
+					${ 'cmb_' . $id }->add_field( $this->field_args );
 
 				}
 			}
@@ -307,6 +358,7 @@ if ( ! function_exists( 'cmb2ae_metabox' ) ) {
 	 * Main instance of CMB2_Meta_Box.
 	 *
 	 * @since  0.1.0
+	 * @return object Main instance of the CMB2_Meta_Box class.
 	 */
 	function cmb2ae_metabox() {
 		return CMB2_Meta_Box::get_instance();

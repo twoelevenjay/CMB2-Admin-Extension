@@ -189,7 +189,7 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 		 */
 		static function atfo( $field, $field_type, $field_key ) {
 
-			return ( in_array( $field['_cmb2_field_type_select'], $field_type, true ) && ( ! empty( $field[ $field_key ] ) && $field[ $field_key] !== '' ) );
+			return ( in_array( $field['_cmb2_field_type_select'], $field_type, true ) && ( ! empty( $field[ $field_key ] ) && $field[ $field_key ] !== '' ) );
 		}
 
 		/**

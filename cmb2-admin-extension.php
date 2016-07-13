@@ -138,7 +138,7 @@ class CMB2_Admin_Extension_Class {
 	public function load_textdomain() {
 
 		$lang_path = plugin_basename( dirname( __FILE__ ) ) . '/languages';
-		$loaded = load_muplugin_textdomain( 'cmb2-admin-extension', $lang_path );
+		$loaded    = load_muplugin_textdomain( 'cmb2-admin-extension', $lang_path );
 		if ( strpos( __FILE__, basename( WPMU_PLUGIN_DIR ) ) === false ) {
 			$loaded = load_plugin_textdomain( 'cmb2-admin-extension', false, $lang_path );
 		}

@@ -121,14 +121,13 @@ class CMB2_Admin_Extension_Class {
 			require_once dirname( __FILE__ ) . '/includes/class-meta-box-post-type.php';
 			require_once dirname( __FILE__ ) . '/includes/class-meta-box-settings.php';
 
+			return;
 		} elseif ( file_exists( WP_PLUGIN_DIR . '/' . CMB2AE_CMB2_PLUGIN_FILE ) ) {
 
 			add_action( 'admin_notices', array( $this, 'cmb2_not_activated' ) );
-
-		} else {
-
-			add_action( 'admin_notices', array( $this, 'missing_cmb2' ) );
+			return;
 		}
+		add_action( 'admin_notices', array( $this, 'missing_cmb2' ) );
 	}
 
 	/**
@@ -137,12 +136,11 @@ class CMB2_Admin_Extension_Class {
 	 * @return void
 	 */
 	public function load_textdomain() {
-		$lang_path = plugin_basename( dirname( __FILE__ ) ) . '/languages';
 
-		if ( false === strpos( __FILE__, basename( WPMU_PLUGIN_DIR ) ) ) {
+		$lang_path = plugin_basename( dirname( __FILE__ ) ) . '/languages';
+		$loaded = load_muplugin_textdomain( 'cmb2-admin-extension', $lang_path );
+		if ( strpos( __FILE__, basename( WPMU_PLUGIN_DIR ) ) === false ) {
 			$loaded = load_plugin_textdomain( 'cmb2-admin-extension', false, $lang_path );
-		} else {
-			$loaded = load_muplugin_textdomain( 'cmb2-admin-extension', $lang_path );
 		}
 
 		if ( ! $loaded ) {
@@ -202,6 +200,5 @@ if ( ! function_exists( 'cmbf' ) ) {
 	function cmbf( $id, $field ) {
 
 		return CMB2_Meta_Box_Post_Type::cmbf( $id, $field );
-
 	}
 }

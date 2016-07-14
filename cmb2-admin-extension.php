@@ -88,7 +88,6 @@ class CMB2_Admin_Extension_Class {
 	 * @since 0.0.1
 	 */
 	public function __construct() {
-
 		$this->check_for_cmb2();
 
 		add_action( 'init', array( $this, 'load_textdomain' ), 9 );
@@ -114,7 +113,6 @@ class CMB2_Admin_Extension_Class {
 	 * @since 0.0.1
 	 */
 	private function check_for_cmb2() {
-
 		if ( defined( 'CMB2_LOADED' ) && CMB2_LOADED !== false ) {
 
 			require_once dirname( __FILE__ ) . '/includes/class-meta-box.php';
@@ -136,7 +134,6 @@ class CMB2_Admin_Extension_Class {
 	 * @return void
 	 */
 	public function load_textdomain() {
-
 		$lang_path = plugin_basename( dirname( __FILE__ ) ) . '/languages';
 		$loaded    = load_muplugin_textdomain( 'cmb2-admin-extension', $lang_path );
 		if ( strpos( __FILE__, basename( WPMU_PLUGIN_DIR ) ) === false ) {
@@ -160,13 +157,11 @@ class CMB2_Admin_Extension_Class {
 	 * @return void
 	 */
 	public function missing_cmb2() {
-
 		?>
 			<div class="error">
 				<p><?php printf( esc_html__( 'CMB2 Admin Extension depends on the last version of %s the CMB2 plugin %s to work!', 'cmb2-admin-extension' ), '<a href="https://wordpress.org/plugins/cmb2/">', '</a>' ); ?></p>
 			</div>
 		<?php
-
 	}
 
 	/**
@@ -175,14 +170,13 @@ class CMB2_Admin_Extension_Class {
 	 * @return void
 	 */
 	public function cmb2_not_activated() {
-
 		?>
 			<div class="error">
 				<p><?php printf( esc_html__( 'The CMB2 plugin is installed but has not been activated. Please %s activate %s it to use the CMB2 Admin Extension', 'cmb2-admin-extension' ), '<a href="' . esc_url( admin_url( 'plugins.php' ) ) . '">', '</a>' ); ?></p>
 			</div>
 		<?php
-
 	}
+
 }
 
 add_action( 'plugins_loaded', array( 'CMB2_Admin_Extension_Class', 'get_instance' ), 20 );
@@ -198,7 +192,7 @@ if ( ! function_exists( 'cmbf' ) ) {
 	 * @param string $field The meta key to retrieve.
 	 */
 	function cmbf( $id, $field ) {
-
 		return get_post_meta( $id, $field, true );
 	}
+
 }

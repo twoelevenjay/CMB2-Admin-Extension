@@ -132,7 +132,6 @@ if ( ! class_exists( 'CMB2_Meta_Box_Settings' ) ) {
 				'id'      => $this->settings_metabox_id,
 				'hookup'  => false,
 				'show_on' => array(
-					// These are important, don't remove.
 					'key'   => 'options-page',
 					'value' => array( $this->settings_key ),
 				),

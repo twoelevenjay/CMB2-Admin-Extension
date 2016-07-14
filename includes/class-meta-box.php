@@ -171,7 +171,7 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 		 * @param  string $field_type A CMB2 field type.
 		 * @return boolean.
 		 */
-		public function has_options( $field_type ) {
+		private function has_options( $field_type ) {
 
 			$options_fields = array(
 				'radio',
@@ -194,7 +194,7 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 		 * @since 1.1.4
 		 * @param string $field_options string of options for fields liek select.
 		 */
-		public function add_option_arg( $field_options ) {
+		private function add_option_arg( $field_options ) {
 
 			$field_options = explode( PHP_EOL, $field_options );
 			foreach ( $field_options as $option ) {

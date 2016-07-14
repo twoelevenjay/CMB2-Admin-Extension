@@ -225,7 +225,7 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 			$tax_options = array();
 			foreach ( $taxonomies as $taxonomy ) {
 
-				$tax_options[$taxonomy->name] = $taxonomy->labels->name;
+				$tax_options[ $taxonomy->name ] = $taxonomy->labels->name;
 
 			}
 			return $tax_options;
@@ -246,7 +246,7 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 
 			foreach ( $post_type_objects as $post_type_object ) {
 				if ( $post_type_object->show_ui && $post_type_object->name !== 'meta_box' ) {
-					$post_types[$post_type_object->name] = $post_type_object->label;
+					$post_types[ $post_type_object->name ] = $post_type_object->label;
 				}
 			}
 
@@ -343,7 +343,7 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 				'type'        => 'group',
 				'description' => __( 'Add the custom fields that you want to display with in this meta box.', 'cmb2-admin-extension' ),
 				'options'     => array(
-					'group_title'   => __( 'Field {#}', 'cmb2-admin-extension' ), // {#} gets replaced by row number.
+					'group_title'   => __( 'Field {#}', 'cmb2-admin-extension' ),
 					'add_button'    => __( 'Add Another Field', 'cmb2-admin-extension' ),
 					'remove_button' => __( 'Remove Field', 'cmb2-admin-extension' ),
 					'sortable'      => true, // Beta.
@@ -472,7 +472,6 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 
 			$cmb_group->add_group_field( $group_field_id, array(
 				'name' => __( 'Options', 'cmb2-admin-extension' ),
-				// 'desc' => __( 'Your field type requires manual options. Please add one option per line. Type value then name seprated by a comma.<br>Example:<br>sml,Small<br>med,Medium<br>lrg,Large', 'cmb2-admin-extension' ),
 				'desc' => __( 'If your field type requires manual options, please add one option per line. Type value then name seprated by a comma.<br>Example:<br>sml,Small<br>med,Medium<br>lrg,Large', 'cmb2-admin-extension' ),
 				'id'   => $prefix . 'options_textarea',
 				'type' => 'textarea_small',

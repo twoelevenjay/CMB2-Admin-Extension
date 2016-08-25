@@ -2,6 +2,12 @@
 <ruleset name="CMB2 Admin Extension">
 	<description>The code standard for CMB2 Admin Extension is WordPress.</description>
 
+	<!-- ##### Sniffs for PHP cross-version compatibility ##### -->
+	<config name="testVersion" value="5.2-99.0"/>
+	<rule ref="PHPCompatibility"/>
+
+
+	<!-- ##### Code style ##### -->
 	<rule ref="WordPress">
 		<exclude name="WordPress.VIP.PostsPerPage.posts_per_page" />
 		<exclude name="WordPress.PHP.YodaConditions.NotYoda" />

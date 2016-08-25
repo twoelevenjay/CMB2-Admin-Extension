@@ -163,7 +163,7 @@ class CMB2_Admin_Extension_Class {
 
 		?>
 			<div class="error">
-				<p><?php printf( esc_html__( 'CMB2 Admin Extension depends on the last version of %s the CMB2 plugin %s to work!', 'cmb2-admin-extension' ), '<a href="https://wordpress.org/plugins/cmb2/">', '</a>' ); ?></p>
+				<p><?php printf( esc_html__( 'CMB2 Admin Extension depends on the last version of %1$s the CMB2 plugin %2$s to work!', 'cmb2-admin-extension' ), '<a href="https://wordpress.org/plugins/cmb2/">', '</a>' ); ?></p>
 			</div>
 		<?php
 
@@ -178,7 +178,7 @@ class CMB2_Admin_Extension_Class {
 
 		?>
 			<div class="error">
-				<p><?php printf( esc_html__( 'The CMB2 plugin is installed but has not been activated. Please %s activate %s it to use the CMB2 Admin Extension', 'cmb2-admin-extension' ), '<a href="' . esc_url( admin_url( 'plugins.php' ) ) . '">', '</a>' ); ?></p>
+				<p><?php printf( esc_html__( 'The CMB2 plugin is installed but has not been activated. Please %1$s activate %2$s it to use the CMB2 Admin Extension', 'cmb2-admin-extension' ), '<a href="' . esc_url( admin_url( 'plugins.php' ) ) . '">', '</a>' ); ?></p>
 			</div>
 		<?php
 

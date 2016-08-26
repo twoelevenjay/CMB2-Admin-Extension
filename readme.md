@@ -24,7 +24,8 @@ CMB2 Admin Extension requires the most current version of the CMB2 plugin. You c
 * Work with basic usage
 
 ### Translation
-* None yet, but all are welcome
+* Portuguese
+* All are welcome
 
 ### Documentation
 * CMB2 documentation to come. It will be at [the CMB2 Admin Extension wiki](https://github.com/twoelevenjay/CMB2-Admin-Extension/wiki) on GitHub.

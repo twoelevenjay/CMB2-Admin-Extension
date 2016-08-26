@@ -40,7 +40,6 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 		 * @since 0.0.1
 		 */
 		public function __construct() {
-
 			add_action( 'init', array( $this, 'init_post_type' ) );
 			add_action( 'add_meta_boxes', array( $this, 'remove_meta_box_slugdiv' ) );
 			add_action( 'admin_head', array( $this, 'hide_edit_slug_bar' ) );
@@ -55,25 +54,24 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 		 * @since  0.0.1
 		 */
 		public function init_post_type() {
-
 			$labels = array(
-				'name'                => _x( 'Meta Boxes', 'Post Type General Name', 'cmb2-admin-extension' ),
-				'singular_name'       => _x( 'Meta Box', 'Post Type Singular Name', 'cmb2-admin-extension' ),
-				'menu_name'           => __( 'CMB2', 'cmb2-admin-extension' ),
-				'name_admin_bar'      => __( 'Meta Box', 'cmb2-admin-extension' ),
-				'parent_item_colon'   => __( 'Meta Box:', 'cmb2-admin-extension' ),
-				'all_items'           => __( 'All Meta Boxes', 'cmb2-admin-extension' ),
-				'add_new_item'        => __( 'Add New Meta Box', 'cmb2-admin-extension' ),
-				'add_new'             => __( 'Add New Meta Box', 'cmb2-admin-extension' ),
-				'new_item'            => __( 'New Meta Box', 'cmb2-admin-extension' ),
-				'edit_item'           => __( 'Edit Meta Box', 'cmb2-admin-extension' ),
-				'update_item'         => __( 'Update Meta Box', 'cmb2-admin-extension' ),
-				'view_item'           => __( 'View Meta Box', 'cmb2-admin-extension' ),
-				'search_items'        => __( 'Search Meta Box', 'cmb2-admin-extension' ),
-				'not_found'           => __( 'Not found', 'cmb2-admin-extension' ),
-				'not_found_in_trash'  => __( 'Not found in Trash', 'cmb2-admin-extension' ),
+				'name'               => _x( 'Meta Boxes', 'Post Type General Name', 'cmb2-admin-extension' ),
+				'singular_name'      => _x( 'Meta Box', 'Post Type Singular Name', 'cmb2-admin-extension' ),
+				'menu_name'          => __( 'CMB2', 'cmb2-admin-extension' ),
+				'name_admin_bar'     => __( 'Meta Box', 'cmb2-admin-extension' ),
+				'parent_item_colon'  => __( 'Meta Box:', 'cmb2-admin-extension' ),
+				'all_items'          => __( 'All Meta Boxes', 'cmb2-admin-extension' ),
+				'add_new_item'       => __( 'Add New Meta Box', 'cmb2-admin-extension' ),
+				'add_new'            => __( 'Add New Meta Box', 'cmb2-admin-extension' ),
+				'new_item'           => __( 'New Meta Box', 'cmb2-admin-extension' ),
+				'edit_item'          => __( 'Edit Meta Box', 'cmb2-admin-extension' ),
+				'update_item'        => __( 'Update Meta Box', 'cmb2-admin-extension' ),
+				'view_item'          => __( 'View Meta Box', 'cmb2-admin-extension' ),
+				'search_items'       => __( 'Search Meta Box', 'cmb2-admin-extension' ),
+				'not_found'          => __( 'Not found', 'cmb2-admin-extension' ),
+				'not_found_in_trash' => __( 'Not found in Trash', 'cmb2-admin-extension' ),
 			);
-			$args = array(
+			$args   = array(
 				'label'               => __( 'meta_box', 'cmb2-admin-extension' ),
 				'description'         => __( 'Create custom meta boxes and fields', 'cmb2-admin-extension' ),
 				'labels'              => $labels,
@@ -111,9 +109,7 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 		 * @since  0.0.1
 		 */
 		public function remove_meta_box_slugdiv() {
-
 			remove_meta_box( 'slugdiv', 'page', 'normal' );
-
 		}
 
 		/**
@@ -122,7 +118,6 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 		 * @since  0.0.1
 		 */
 		public function hide_edit_slug_bar() {
-
 			global $post;
 
 			if ( isset( $post->post_type ) && $post->post_type === 'meta_box' ) {
@@ -130,9 +125,7 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 				echo '<style type="text/css"> #edit-slug-box, #minor-publishing { display: none; }</style>';
 
 			}
-
 		}
-
 
 		/**
 		 * Determine if current user has permission to CMB2 view plugins.
@@ -140,7 +133,6 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 		 * @since  0.0.1
 		 */
 		private function is_cmb2_allowed() {
-
 			$cmb2_settings = get_option( '_cmb2_settings' );
 
 			if ( empty( $cmb2_settings ) ) {
@@ -170,14 +162,12 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 		 * @param string $classes       CSS Classes to add.
 		 */
 		public function conditionally_add_class( $field_id, $field_classes, $classes ) {
-
 			foreach ( $field_classes as $field => $class ) {
 				if ( strpos( $field_id, $field ) !== false ) {
 					return $classes . ' ' . $class;
 				}
 			}
 			return $classes;
-
 		}
 
 		/**
@@ -190,7 +180,6 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 		 * @param object $field   CMB2 Field object.
 		 */
 		public function show_hide_classes( $classes, $field ) {
-
 			$screen = get_current_screen();
 			if ( $screen->post_type === 'meta_box' ) {
 				$field_classes = array(
@@ -208,10 +197,9 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 					'add_upload_file_text'     => 'cmb_hide_field file',
 					'default_value_text'       => 'default_value',
 				);
-				$classes = $this->conditionally_add_class( $field->args['id'], $field_classes, $classes );
+				$classes       = $this->conditionally_add_class( $field->args['id'], $field_classes, $classes );
 			}
 			return $classes;
-
 		}
 
 		/**
@@ -220,7 +208,6 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 		 * @since  0.0.6
 		 */
 		public function tax_options() {
-
 			$taxonomies  = get_taxonomies( array( 'public' => true ), 'objects' );
 			$tax_options = array();
 			foreach ( $taxonomies as $taxonomy ) {
@@ -229,7 +216,6 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 
 			}
 			return $tax_options;
-
 		}
 
 		/**
@@ -238,7 +224,6 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 		 * @since  0.0.1
 		 */
 		public function init_meta_box_settings() {
-
 			// Start with an underscore to hide fields from custom fields list.
 			$prefix            = $this->prefix;
 			$post_type_objects = get_post_types( '', 'object' );
@@ -254,12 +239,12 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 			 * Initiate the metabox.
 			 */
 			$cmb = new_cmb2_box( array(
-				'id'            => 'metabox_settings',
-				'title'         => __( 'Metabox Settings', 'cmb2-admin-extension' ),
-				'object_types'  => array( 'meta_box' ), // Post type.
-				'context'       => 'side',
-				'priority'      => 'low',
-				'show_names'    => true,
+				'id'           => 'metabox_settings',
+				'title'        => __( 'Metabox Settings', 'cmb2-admin-extension' ),
+				'object_types' => array( 'meta_box' ), // Post type.
+				'context'      => 'side',
+				'priority'     => 'low',
+				'show_names'   => true,
 			) );
 
 			$cmb->add_field( array(
@@ -321,7 +306,6 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 				'id'   => $prefix . 'closed',
 				'type' => 'checkbox',
 			) );
-
 		}
 
 		/**
@@ -330,8 +314,7 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 		 * @since  0.0.1
 		 */
 		public function init_custom_field_settings() {
-
-			$prefix = $this->prefix;
+			$prefix    = $this->prefix;
 			$cmb_group = new_cmb2_box( array(
 				'id'           => $prefix . 'custom_fields',
 				'title'        => __( 'Custom Field Settings', 'cmb2-admin-extension' ),
@@ -351,10 +334,10 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 			) );
 
 			$cmb_group->add_group_field( $group_field_id, array(
-				'name'       => __( 'Name', 'cmb2-admin-extension' ),
-				'desc'       => __( 'Add a field name.', 'cmb2-admin-extension' ),
-				'id'         => $prefix . 'name_text',
-				'type'       => 'text',
+				'name' => __( 'Name', 'cmb2-admin-extension' ),
+				'desc' => __( 'Add a field name.', 'cmb2-admin-extension' ),
+				'id'   => $prefix . 'name_text',
+				'type' => 'text',
 			) );
 
 			$cmb_group->add_group_field( $group_field_id, array(
@@ -438,35 +421,35 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 			) );
 
 			$cmb_group->add_group_field( $group_field_id, array(
-				'name'    => __( 'Currency Symbol', 'cmb2-admin-extension' ),
-				'desc'    => __( 'Replaces the default "$".', 'cmb2-admin-extension' ),
-				'id'      => $prefix . 'currency_text',
-				'type'    => 'text_small',
+				'name' => __( 'Currency Symbol', 'cmb2-admin-extension' ),
+				'desc' => __( 'Replaces the default "$".', 'cmb2-admin-extension' ),
+				'id'   => $prefix . 'currency_text',
+				'type' => 'text_small',
 			) );
 
 			$cmb_group->add_group_field( $group_field_id, array(
-				'name'    => __( 'Date Format', 'cmb2-admin-extension' ),
-				'desc'    => __( 'Default:', 'cmb2-admin-extension' ) . ' "m/d/Y". ' . __( 'See <a target="_blank" href="http://php.net/manual/en/function.date.php">php.net/manual/en/function.date.php</a>.', 'cmb2-admin-extension' ),
-				'id'      => $prefix . 'date_format',
-				'type'    => 'text_small',
+				'name' => __( 'Date Format', 'cmb2-admin-extension' ),
+				'desc' => __( 'Default:', 'cmb2-admin-extension' ) . ' "m/d/Y". ' . __( 'See <a target="_blank" href="http://php.net/manual/en/function.date.php">php.net/manual/en/function.date.php</a>.', 'cmb2-admin-extension' ),
+				'id'   => $prefix . 'date_format',
+				'type' => 'text_small',
 			) );
 
 			$cmb_group->add_group_field( $group_field_id, array(
-				'name'    => __( 'Time Format', 'cmb2-admin-extension' ),
-				'desc'    => __( 'Default:', 'cmb2-admin-extension' ) . ' "h:i A". ' . __( 'See <a target="_blank" href="http://php.net/manual/en/function.date.php">php.net/manual/en/function.date.php</a>.', 'cmb2-admin-extension' ),
-				'id'      => $prefix . 'time_format',
-				'type'    => 'text_small',
+				'name' => __( 'Time Format', 'cmb2-admin-extension' ),
+				'desc' => __( 'Default:', 'cmb2-admin-extension' ) . ' "h:i A". ' . __( 'See <a target="_blank" href="http://php.net/manual/en/function.date.php">php.net/manual/en/function.date.php</a>.', 'cmb2-admin-extension' ),
+				'id'   => $prefix . 'time_format',
+				'type' => 'text_small',
 			) );
 
 			/*
 			@todo Make this field generate options from predefined time zone fields. Maybe both from previously saved fields and ones just created via javascript.
 
 			$cmb_group->add_group_field( $group_field_id, array(
-				'name'             =>  __( 'Time Zone', 'cmb2-admin-extension' ),
-				'desc'             =>  __( 'Select a time zone field to make this field honor.', 'cmb2-admin-extension' ),
-				'id'               => $prefix . 'time_zone_key_select',
-				'type'             => 'select',
-				'options'          => array(),
+				'name'    =>  __( 'Time Zone', 'cmb2-admin-extension' ),
+				'desc'    =>  __( 'Select a time zone field to make this field honor.', 'cmb2-admin-extension' ),
+				'id'      => $prefix . 'time_zone_key_select',
+				'type'    => 'select',
+				'options' => array(),
 			) );
 			*/
 
@@ -489,10 +472,10 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 			) );
 
 			$cmb_group->add_group_field( $group_field_id, array(
-				'name'    => __( 'No Terms Text', 'cmb2-admin-extension' ),
-				'desc'    => __( 'Enter text to change the text that is shown when no terms are found.', 'cmb2-admin-extension' ) . '</br>' . __( 'Default:', 'cmb2-admin-extension' ) . ' "' . __( 'No terms', 'cmb2-admin-extension' ) . '".',
-				'id'      => $prefix . 'no_terms_text',
-				'type'    => 'text_small',
+				'name' => __( 'No Terms Text', 'cmb2-admin-extension' ),
+				'desc' => __( 'Enter text to change the text that is shown when no terms are found.', 'cmb2-admin-extension' ) . '</br>' . __( 'Default:', 'cmb2-admin-extension' ) . ' "' . __( 'No terms', 'cmb2-admin-extension' ) . '".',
+				'id'   => $prefix . 'no_terms_text',
+				'type' => 'text_small',
 			) );
 
 			$cmb_group->add_group_field( $group_field_id, array(
@@ -510,10 +493,10 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 			) );
 
 			$cmb_group->add_group_field( $group_field_id, array(
-				'name'    => __( 'Button Text', 'cmb2-admin-extension' ),
-				'desc'    => __( 'Enter text to change the upload button text.', 'cmb2-admin-extension' ) . '</br>' . __( 'Default:', 'cmb2-admin-extension' ) . ' "' . __( 'Add or Upload File', 'cmb2-admin-extension' ) . '".',
-				'id'      => $prefix . 'add_upload_file_text',
-				'type'    => 'text_small',
+				'name' => __( 'Button Text', 'cmb2-admin-extension' ),
+				'desc' => __( 'Enter text to change the upload button text.', 'cmb2-admin-extension' ) . '</br>' . __( 'Default:', 'cmb2-admin-extension' ) . ' "' . __( 'Add or Upload File', 'cmb2-admin-extension' ) . '".',
+				'id'   => $prefix . 'add_upload_file_text',
+				'type' => 'text_small',
 			) );
 
 			/*
@@ -525,6 +508,7 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 			) );
 			*/
 		}
+
 	}
 
 	$cmb2_meta_box_post_type = new CMB2_Meta_Box_Post_Type();

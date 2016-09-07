@@ -2,6 +2,9 @@
 
 ## Changelog
 
+### 0.1.4 beta 09.06.2016
+* Fix currency symbol and a few other field specific args.
+
 ### 0.1.3 beta 07.12.2016
 * Tidying up and refactoring, thanks to phpcs and phpmd.
 

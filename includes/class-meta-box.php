@@ -226,7 +226,7 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 		}
 
 		/**
-		 * Conditional to check if the field argument should be added..
+		 * Add the field argument.
 		 *
 		 * @since 1.1.4
 		 * @param string       $arg   Field definition.
@@ -234,14 +234,14 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 		 */
 		public function add_arg( $arg, $value ) {
 
-			if ( $this->should_add_arg( $this->field, $arg, $value ) ) {
+			if ( $this->should_add_arg( $this->field, $arg, $value[1] ) ) {
 
-				if ( is_array( $value ) ) {
+				if ( is_array( $value[1] ) ) {
 
-					$this->field_args[ $arg ][ $value[0] ] = $this->field[ $value[1] ];
+					$this->field_args[ $value[0] ][ $value[1][0] ] = $this->field[ $value[1][1] ];
 					return;
 				}
-				$this->field_args[ $arg ] = $this->field[ $value ];
+				$this->field_args[ $value[0] ] = $this->field[ $value[1] ];
 			}
 		}
 
@@ -335,12 +335,16 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 						$field_args['show_option_none'] = true;
 					}
 					$should_add = array(
-						'protocols' => '_cmb2_protocols_checkbox',
-						'before_field' => '_cmb2_currency_text',
-						'time_format' => '_cmb2_time_format',
-						'date_format' => '_cmb2_date_format',
-						'timezone_meta_key' => '_cmb2_time_zone_key_select',
-						'options' => array( 'add_upload_file_text', '_cmb2_add_upload_file_text' ),
+						'text_url' => array( 'protocols', '_cmb2_protocols_checkbox' ),
+						'text_money' => array( 'before_field', '_cmb2_currency_text' ),
+						'text_time' => array( 'time_format', '_cmb2_time_format' ),
+						'text_datetime_timestamp_timezone' => array( 'time_format', '_cmb2_time_format' ),
+						'text_datetime_timestamp' => array( 'time_format', '_cmb2_time_format' ),
+						'text_date' => array( 'date_format', '_cmb2_date_format' ),
+						'text_date_timestamp' => array( 'date_format', '_cmb2_date_format' ),
+						'select_timezone' => array( 'timezone_meta_key', '_cmb2_time_zone_key_select' ),
+						'text_datetime_timestamp_timezone' => array( 'timezone_meta_key', '_cmb2_time_zone_key_select' ),
+						//'' => array( 'options', array( 'add_upload_file_text', '_cmb2_add_upload_file_text' ) ),
 					);
 					foreach ( $should_add as $arg => $value ) {
 						$this->add_arg( $arg, $value );

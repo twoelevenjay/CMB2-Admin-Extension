@@ -2,6 +2,9 @@
 
 ## Changelog
 
+### 0.1.5 beta 12.06.2016
+* Fix color picker background bug.
+
 ### 0.1.4 beta 09.06.2016
 * Fix currency symbol and a few other field specific args.
 

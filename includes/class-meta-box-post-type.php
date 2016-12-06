@@ -194,7 +194,7 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 			$screen = get_current_screen();
 			if ( $screen->post_type === 'meta_box' ) {
 				$field_classes = array(
-					'repeatable_checkbox'      => 'cmb_hide_field  text text_small text_medium text_email text_url text_money textarea textarea_small textarea_code text_date text_timeselect_timezone text_date_timestamp text_datetime_timestamp text_datetime_timestamp_timezone colorpicker select multicheck multicheck_inline',
+					'repeatable_checkbox'      => 'cmb_hide_field  text text_small text_medium text_email text_url text_money textarea textarea_small textarea_code text_date text_timeselect_timezone text_date_timestamp text_datetime_timestamp text_datetime_timestamp_timezone color_picker select multicheck multicheck_inline',
 					'protocols_checkbox'       => 'cmb_hide_field text_url',
 					'currency_text'            => 'cmb_hide_field text_money',
 					'date_format'              => 'cmb_hide_field text_date text_date_timestamp',
@@ -208,7 +208,7 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 					'add_upload_file_text'     => 'cmb_hide_field file',
 					'default_value_text'       => 'default_value',
 				);
-				$classes = $this->conditionally_add_class( $field->args['id'], $field_classes, $classes );
+				$classes = $this->conditionally_add_class( $field->args['_id'], $field_classes, $classes );
 			}
 			return $classes;
 
@@ -390,7 +390,7 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 					'text_date_timestamp'              => 'text_date_timestamp: ' . __( 'Date Picker (UNIX timestamp)', 'cmb2-admin-extension' ),
 					'text_datetime_timestamp'          => 'text_datetime_timestamp: ' . __( 'Text Date/Time Picker Combo (UNIX timestamp)', 'cmb2-admin-extension' ),
 					'text_datetime_timestamp_timezone' => 'text_datetime_timestamp_timezone: ' . __( 'Text Date/Time Picker/Time zone Combo (serialized DateTime object)', 'cmb2-admin-extension' ),
-					'colorpicker'                      => 'colorpicker: ' . __( 'Color picker', 'cmb2-admin-extension' ),
+					'color_picker'                      => 'colorpicker: ' . __( 'Color picker', 'cmb2-admin-extension' ),
 					'radio'                            => 'radio: ' . __( 'Radio Buttons', 'cmb2-admin-extension' ) . ' *',
 					'radio_inline'                     => 'radio_inline: ' . __( 'Radio Buttons Inline', 'cmb2-admin-extension' ) . ' *',
 					'taxonomy_radio'                   => 'taxonomy_radio: ' . __( 'Taxonomy Radio Buttons', 'cmb2-admin-extension' ) . ' *',

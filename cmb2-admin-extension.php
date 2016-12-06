@@ -15,7 +15,7 @@
  * Author:       twoelevenjay
  * Author URI:   http://211j.com
  * Contributors:
- * Version:      0.1.4
+ * Version:      0.1.5
  * Text Domain:  cmb2-admin-extension
  * Domain Path:  /languages
  *
@@ -73,7 +73,7 @@ class CMB2_Admin_Extension_Class {
 	 *
 	 * @var string
 	 */
-	const VERSION = '0.1.4';
+	const VERSION = '0.1.5';
 
 	/**
 	 * Instance of this class.

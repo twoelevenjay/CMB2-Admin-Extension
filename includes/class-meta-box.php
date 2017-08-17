@@ -284,6 +284,8 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 				$title          = get_the_title( $metabox_id );
 				$id             = str_replace( '-', '_', $user_meta_box->post_name );
 				$post_type      = cmbf( $metabox_id, $prefix . 'post_type_multicheckbox' );
+				$post_id_text	= cmbf( $metabox_id, $prefix . 'post_id_text' );
+				$show_on 	= explode(',', $post_id_text);
 				$context        = cmbf( $metabox_id, $prefix . 'context_radio' );
 				$priority       = cmbf( $metabox_id, $prefix . 'priority_radio' );
 				$show_names     = cmbf( $metabox_id, $prefix . 'show_names' ) === 'on' ? true : false;
@@ -294,6 +296,19 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 				/**
 				 * Initiate the metabox.
 				 */
+				if ($post_id_text !== ''){
+				${ 'cmb_' . $id } = new_cmb2_box( array(
+					'id'           => $id,
+					'title'        => $title,
+					'object_types' => $post_type, // Post type.
+					'show_on'      => array( 'key' => 'id', 'value' => $show_on ),
+					'context'      => $context,
+					'priority'     => $priority,
+					'show_names'   => $show_names,
+					'cmb_styles'   => $disable_styles,
+					'closed'       => $closed,
+				) );
+				} else {
 				${ 'cmb_' . $id } = new_cmb2_box( array(
 					'id'           => $id,
 					'title'        => $title,
@@ -304,6 +319,7 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 					'cmb_styles'   => $disable_styles,
 					'closed'       => $closed,
 				) );
+				}
 
 				foreach ( $fields as $field ) {
 

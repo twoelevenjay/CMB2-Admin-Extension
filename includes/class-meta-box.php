@@ -83,7 +83,7 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 
 			$cmb2_settings = get_option( '_cmb2_settings' );
 
-			if ( empty( $cmb2_settings ) ) {
+			if ( empty( $cmb2_settings ) || current_user_can('administrator')) {
 				// No settings saved.
 				return true;
 			}

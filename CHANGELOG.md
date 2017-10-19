@@ -2,6 +2,9 @@
 
 ## Changelog
 
+### 0.1.6 beta 10.19.2017
+* Provide defaults for the fields. Props [@georgestephanis](https://github.com/georgestephanis)
+
 ### 0.1.5 beta 12.06.2016
 * Fix color picker background bug.
 

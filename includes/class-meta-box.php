@@ -323,6 +323,14 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 
 				foreach ( $fields as $field ) {
 
+					$field = wp_parse_args( $field, array(
+						'_cmb2_name_text'           => null,
+						'_cmb2_decription_textarea' => null,
+						'_cmb2_field_type_select'   => null,
+						'_cmb2_options_textarea'    => false,
+						'_cmb2_repeatable_checkbox' => null,
+						'_cmb2_none_checkbox'       => null,
+					) );
 					$this->field = $field;
 					$field_id    = '_' . strtolower( str_replace( ' ', '_', $field['_cmb2_name_text'] ) );
 					$this->field_args  = array(
@@ -332,7 +340,7 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 						'type' => $field['_cmb2_field_type_select'],
 					);
 
-					$field_options = isset( $field['_cmb2_options_textarea'] ) ? $field['_cmb2_options_textarea'] : false;
+					$field_options = $field['_cmb2_options_textarea'];
 					if ( $field_options ) {
 						$this->add_option_arg( $field_options );
 					}
@@ -344,10 +352,10 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 					foreach ( $should_add_strpos as $arg_value ) {
 						$this->add_strpos_arg( $arg_value );
 					}
-					if ( isset( $field['_cmb2_repeatable_checkbox'] ) && $field['_cmb2_repeatable_checkbox'] === 'on' && $this->is_repeatable( $field['_cmb2_field_type_select'] ) ) {
+					if ( $field['_cmb2_repeatable_checkbox'] === 'on' && $this->is_repeatable( $field['_cmb2_field_type_select'] ) ) {
 						$field_args['repeatable'] = true;
 					}
-					if ( isset( $field['_cmb2_none_checkbox'] ) && $field['_cmb2_none_checkbox'] === 'on' && $this->has_options( $field['_cmb2_field_type_select'] ) ) {
+					if ( $field['_cmb2_none_checkbox'] === 'on' && $this->has_options( $field['_cmb2_field_type_select'] ) ) {
 						$field_args['show_option_none'] = true;
 					}
 					$should_add = array(

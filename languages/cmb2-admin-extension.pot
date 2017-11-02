@@ -3,14 +3,14 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: CMB2 Admin Extension\n"
-"POT-Creation-Date: 2016-06-26 19:22-0400\n"
+"POT-Creation-Date: 2017-11-02 03:30+0100\n"
 "PO-Revision-Date: 2016-06-26 19:21-0400\n"
 "Last-Translator: Leon <leon@211j.com>\n"
 "Language-Team: Leon <leon@211j.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.8\n"
+"X-Generator: Poedit 2.0.4\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: cmb2-admin-extension.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -20,334 +20,485 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: cmb2-admin-extension.php:138
+#: cmb2-admin-extension.php:166
 #, php-format
 msgid ""
-"CMB2 Admin Extension depends on the last version of %s the CMB2 plugin %s to "
-"work!"
+"CMB2 Admin Extension depends on the last version of %1$s the CMB2 plugin "
+"%2$s to work!"
 msgstr ""
 
-#: cmb2-admin-extension.php:149
+#: cmb2-admin-extension.php:181
 #, php-format
 msgid ""
-"The CMB2 plugin is installed but has not been activated. Please %s activate "
-"%s it to use the CMB2 Admin Extension"
+"The CMB2 plugin is installed but has not been activated. Please %1$s "
+"activate %2$s it to use the CMB2 Admin Extension"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:51
-#: includes/class-meta-box-post-type.php:137
-msgid "CMB2 Settings"
-msgstr ""
-
-#: includes/class-meta-box-post-type.php:77
+#: includes/class-meta-box-post-type.php:60
 msgctxt "Post Type General Name"
 msgid "Meta Boxes"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:78
+#: includes/class-meta-box-post-type.php:61
 msgctxt "Post Type Singular Name"
 msgid "Meta Box"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:79
+#: includes/class-meta-box-post-type.php:62
 msgid "CMB2"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:80
+#: includes/class-meta-box-post-type.php:63
 msgid "Meta Box"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:81
+#: includes/class-meta-box-post-type.php:64
 msgid "Meta Box:"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:82
+#: includes/class-meta-box-post-type.php:65
 msgid "All Meta Boxes"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:83
-#: includes/class-meta-box-post-type.php:84
+#: includes/class-meta-box-post-type.php:66
+#: includes/class-meta-box-post-type.php:67
 msgid "Add New Meta Box"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:85
+#: includes/class-meta-box-post-type.php:68
 msgid "New Meta Box"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:86
+#: includes/class-meta-box-post-type.php:69
 msgid "Edit Meta Box"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:87
+#: includes/class-meta-box-post-type.php:70
 msgid "Update Meta Box"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:88
+#: includes/class-meta-box-post-type.php:71
 msgid "View Meta Box"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:89
+#: includes/class-meta-box-post-type.php:72
 msgid "Search Meta Box"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:90
+#: includes/class-meta-box-post-type.php:73
 msgid "Not found"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:91
+#: includes/class-meta-box-post-type.php:74
 msgid "Not found in Trash"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:94
+#: includes/class-meta-box-post-type.php:77
 msgid "meta_box"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:95
+#: includes/class-meta-box-post-type.php:78
 msgid "Create custom meta boxes and fields"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:370
-msgid "Users"
-msgstr ""
-
-#: includes/class-meta-box-post-type.php:371
-msgid ""
-"Check the users to grant access to this plugin and the CMB2 plugin. Leave "
-"unchecked to grant access to all users."
-msgstr ""
-
-#: includes/class-meta-box-post-type.php:403
+#: includes/class-meta-box-post-type.php:258
 msgid "Metabox Settings"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:411
+#: includes/class-meta-box-post-type.php:266
 msgid "Post Types"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:412
+#: includes/class-meta-box-post-type.php:267
 msgid "Check the post types that you want to add this meta box to."
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:420
+#: includes/class-meta-box-post-type.php:275
+msgid "Post IDs"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:276
+msgid ""
+"Enter the post ids that you want to add this meta box to. Separate multiple "
+"entries with a comma. Leave blank for the meta box to show up on all post "
+"IDs."
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:283
 msgid "Priority"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:421
+#: includes/class-meta-box-post-type.php:284
 msgid "This is to control what order your meta box appears in."
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:426
+#: includes/class-meta-box-post-type.php:289
 msgid "High"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:427
+#: includes/class-meta-box-post-type.php:290
 msgid "Core"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:428
+#: includes/class-meta-box-post-type.php:291
 msgid "Default"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:429
+#: includes/class-meta-box-post-type.php:292
 msgid "Low"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:435
+#: includes/class-meta-box-post-type.php:298
 msgid "Context"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:436
+#: includes/class-meta-box-post-type.php:299
 msgid ""
 "This additional controls for positioning of the meta box. Advanced displays "
 "after Normal. Side places the meta box in the right sidebar."
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:441
+#: includes/class-meta-box-post-type.php:304
 msgid "Advanced"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:442
+#: includes/class-meta-box-post-type.php:305
 msgid "Normal"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:443
+#: includes/class-meta-box-post-type.php:306
 msgid "Side"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:449
+#: includes/class-meta-box-post-type.php:312
 msgid "Show Names"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:450
+#: includes/class-meta-box-post-type.php:313
 msgid "Show field names on the left"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:457
+#: includes/class-meta-box-post-type.php:320
 msgid "Disable CMB2 Styles"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:458
+#: includes/class-meta-box-post-type.php:321
 msgid "Check to disable the CMB stylesheet"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:464
+#: includes/class-meta-box-post-type.php:327
 msgid "Closed by Default"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:465
+#: includes/class-meta-box-post-type.php:328
 msgid "Check to keep the metabox closed by default"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:486
+#: includes/class-meta-box-post-type.php:345
 msgid "Custom Field Settings"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:494
+#: includes/class-meta-box-post-type.php:352
 msgid "Add the custom fields that you want to display with in this meta box."
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:496
+#: includes/class-meta-box-post-type.php:354
 msgid "Field {#}"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:497
+#: includes/class-meta-box-post-type.php:355
 msgid "Add Another Field"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:498
+#: includes/class-meta-box-post-type.php:356
 msgid "Remove Field"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:504
+#: includes/class-meta-box-post-type.php:362
 msgid "Name"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:505
+#: includes/class-meta-box-post-type.php:363
 msgid "Add a field name."
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:511
+#: includes/class-meta-box-post-type.php:369
 msgid "Description"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:512
+#: includes/class-meta-box-post-type.php:370
 msgid "Add a field description."
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:518
+#: includes/class-meta-box-post-type.php:376
 msgid "Field Type"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:519
-msgid ""
-"Pick what type of field to display. For a full list of fields visit <a href="
-"\"https://github.com/WebDevStudios/CMB2/wiki/Field-Types\">the "
-"documentation</a>. * Not available as a repeatable field † Use file_list for "
-"repeatable"
+#: includes/class-meta-box-post-type.php:377
+msgid "Pick what type of field to display."
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:564
+#: includes/class-meta-box-post-type.php:377
+msgid ""
+"For a full list of fields visit <a href=\"https://github.com/WebDevStudios/"
+"CMB2/wiki/Field-Types\">the documentation</a>."
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:377
+msgid "Not available as a repeatable field."
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:377
+msgid "Use file_list for repeatable."
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:385
+msgid "An arbitrary title field"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:386
+msgid "Text"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:387
+msgid "Text Small"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:388
+msgid "Text Medium"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:389
+msgid "Email"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:390
+msgid "URL"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:391
+msgid "Money"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:392
+msgid "Text Area"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:393
+msgid "Text Area Small"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:394
+msgid "Text Area Code"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:395
+msgid "Date Picker"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:396
+msgid "Time picker"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:397
+msgid "Time zone dropdown"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:398
+msgid "Date Picker (UNIX timestamp)"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:399
+msgid "Text Date/Time Picker Combo (UNIX timestamp)"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:400
+msgid "Text Date/Time Picker/Time zone Combo (serialized DateTime object)"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:401
+msgid "Color picker"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:402
+msgid "Radio Buttons"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:403
+msgid "Radio Buttons Inline"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:404
+msgid "Taxonomy Radio Buttons"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:405
+msgid "Taxonomy Radio Buttons Inline"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:406
+msgid "Select"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:407
+msgid "Taxonomy Select"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:408
+msgid "Checkbox"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:409
+msgid "Multiple Checkboxes"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:410
+msgid "Multiple Checkboxes Inline"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:411
+msgid "Taxonomy Multiple Checkboxes"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:412
+msgid "Taxonomy Multiple Checkboxes Inline"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:413
+msgid "(TinyMCE)"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:414
+msgid "Image/File upload"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:415
+msgid "Image/File list upload"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:416
+msgid ""
+"Converts oembed urls (instagram, twitter, youtube, etc. oEmbed in the Codex)"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:422
 msgid "Repeatable"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:565
+#: includes/class-meta-box-post-type.php:423
 msgid ""
 "Check this box to make the field repeatable. Field types marked with a \"*\" "
 "are not repeatable."
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:571
+#: includes/class-meta-box-post-type.php:429
 msgid "Protocols"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:572
+#: includes/class-meta-box-post-type.php:430
 msgid ""
 "Check the boxes for each allowed protocol. If you are unsure then do nothing "
 "and all protocols will be allowed."
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:591
+#: includes/class-meta-box-post-type.php:449
 msgid "Currency Symbol"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:592
+#: includes/class-meta-box-post-type.php:450
 msgid "Replaces the default \"$\"."
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:598
+#: includes/class-meta-box-post-type.php:456
 msgid "Date Format"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:599
-msgid ""
-"Defaults to \"m/d/Y\". See <a target=\"_blank\" href=\"http://php.net/manual/"
-"en/function.date.php\">php.net/manual/en/function.date.php</a>."
+#: includes/class-meta-box-post-type.php:457
+#: includes/class-meta-box-post-type.php:464
+#: includes/class-meta-box-post-type.php:501
+#: includes/class-meta-box-post-type.php:522
+msgid "Default:"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:605
+#: includes/class-meta-box-post-type.php:457
+#: includes/class-meta-box-post-type.php:464
+msgid ""
+"See <a target=\"_blank\" href=\"http://php.net/manual/en/function.date.php"
+"\">php.net/manual/en/function.date.php</a>."
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:463
 msgid "Time Format"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:606
-msgid ""
-"Defaults to \"h:i A\". See <a target=\"_blank\" href=\"http://php.net/manual/"
-"en/function.date.php\">php.net/manual/en/function.date.php</a>."
-msgstr ""
-
-#: includes/class-meta-box-post-type.php:621
+#: includes/class-meta-box-post-type.php:482
 msgid "Options"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:623
+#: includes/class-meta-box-post-type.php:483
 msgid ""
 "If your field type requires manual options, please add one option per line. "
 "Type value then name seprated by a comma.<br>Example:<br>sml,Small<br>med,"
 "Medium<br>lrg,Large"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:640
+#: includes/class-meta-box-post-type.php:492
+msgid "Taxonomy Options"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:500
 msgid "No Terms Text"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:641
-msgid ""
-"Enter text to change the text that is shown when no terms are found. "
-"Default: \"No terms\"."
+#: includes/class-meta-box-post-type.php:501
+msgid "Enter text to change the text that is shown when no terms are found."
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:647
+#: includes/class-meta-box-post-type.php:501
+msgid "No terms"
+msgstr ""
+
+#: includes/class-meta-box-post-type.php:507
 msgid "Include a \"none\" option"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:648
+#: includes/class-meta-box-post-type.php:508
 msgid "Check this box to include a \"none\" option with this field."
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:654
+#: includes/class-meta-box-post-type.php:514
 msgid "Disable select all"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:655
+#: includes/class-meta-box-post-type.php:515
 msgid "Check this box to disable the select all button for this field."
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:661
+#: includes/class-meta-box-post-type.php:521
 msgid "Button Text"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:662
-msgid ""
-"Enter text to change the upload button text. Default: \"Add or Upload File\"."
+#: includes/class-meta-box-post-type.php:522
+msgid "Enter text to change the upload button text."
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:668
-msgid "Default Value"
+#: includes/class-meta-box-post-type.php:522
+msgid "Add or Upload File"
 msgstr ""
 
-#: includes/class-meta-box-post-type.php:669
+#: includes/class-meta-box-settings.php:71
+#: includes/class-meta-box-settings.php:95
+msgid "CMB2 Settings"
+msgstr ""
+
+#: includes/class-meta-box-settings.php:141
+msgid "Users"
+msgstr ""
+
+#: includes/class-meta-box-settings.php:142
 msgid ""
-"Enter a value to use as a default for this field. If you want a checkbox to "
-"be checked enter \"on\". Leave blank for no default value."
+"Check the users to grant access to this plugin and the CMB2 plugin. Leave "
+"unchecked to grant access to all users."
 msgstr ""
 
 #. Plugin Name of the plugin/theme

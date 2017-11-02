@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CMB2 Admin Extension\n"
 "POT-Creation-Date: 2017-11-02 02:57+0100\n"
-"PO-Revision-Date: 2017-11-02 03:21+0100\n"
+"PO-Revision-Date: 2017-11-02 03:24+0100\n"
 "Last-Translator: Mourad Arifi <arifi.armedia@gmail.com>\n"
 "Language-Team: Leon <leon@211j.com>\n"
 "Language: fr\n"
@@ -197,7 +197,7 @@ msgstr "Désactiver les Styles CMB2"
 
 #: includes/class-meta-box-post-type.php:321
 msgid "Check to disable the CMB stylesheet"
-msgstr "Cochez pour désactiver la feuille de style CMB"
+msgstr "Cochez pour désactiver la feuille de style CMB2"
 
 #: includes/class-meta-box-post-type.php:327
 msgid "Closed by Default"

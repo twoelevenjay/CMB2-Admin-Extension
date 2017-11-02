@@ -24,6 +24,7 @@ CMB2 Admin Extension requires the most current version of the CMB2 plugin. You c
 * Work with basic usage
 
 ### Translation
+* French
 * Portuguese
 * All are welcome
 
@@ -36,7 +37,7 @@ CMB2 Admin Extension requires the most current version of the CMB2 plugin. You c
 * [CMB2](https://github.com/WebDevStudios/CMB2/) from [WebDevStudios](https://webdevstudios.com).
 
 ### Contribution
-All contributions welcome. Please read the [CONTRIBUTING](https://github.com/twoelevenjay/CMB2-Admin-Extension/CONTRIBUTING.md) doc for more details.
+All contributions welcome. Please read the [CONTRIBUTING](https://github.com/twoelevenjay/CMB2-Admin-Extension/blob/master/CONTRIBUTING.md) doc for more details.
 
 ## Installation
 

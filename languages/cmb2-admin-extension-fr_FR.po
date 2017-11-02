@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CMB2 Admin Extension\n"
-"POT-Creation-Date: 2017-11-02 02:57+0100\n"
-"PO-Revision-Date: 2017-11-02 03:24+0100\n"
+"POT-Creation-Date: 2017-11-02 03:25+0100\n"
+"PO-Revision-Date: 2017-11-02 03:49+0100\n"
 "Last-Translator: Mourad Arifi <arifi.armedia@gmail.com>\n"
 "Language-Team: Leon <leon@211j.com>\n"
 "Language: fr\n"
@@ -26,7 +26,7 @@ msgid ""
 "CMB2 Admin Extension depends on the last version of %1$s the CMB2 plugin "
 "%2$s to work!"
 msgstr ""
-"CMB2 Admin Extension dépends de la derniere version de %1s du plugin CMB2 "
+"CMB2 Admin Extension dépends de la dernière version de %1s du plugin CMB2 "
 "%2s pour fonctionner!"
 
 #: cmb2-admin-extension.php:181
@@ -35,7 +35,7 @@ msgid ""
 "The CMB2 plugin is installed but has not been activated. Please %1$s "
 "activate %2$s it to use the CMB2 Admin Extension"
 msgstr ""
-"Le plugin CMB2 est installé mais n'a pas été activé. Veuillez %1s activer "
+"Le plugin CMB2 est installé mais n'a pas été activé. Veuillez l'%1sactiver"
 "%2s pour utiliser CMB2 Admin Extension"
 
 #: includes/class-meta-box-post-type.php:60
@@ -79,7 +79,7 @@ msgstr "Moifier Boîte Méta"
 
 #: includes/class-meta-box-post-type.php:70
 msgid "Update Meta Box"
-msgstr "Méttre à jour Boîte Méta"
+msgstr "Mettre à jour Boîte Méta"
 
 #: includes/class-meta-box-post-type.php:71
 msgid "View Meta Box"
@@ -125,7 +125,7 @@ msgstr "IDs des Articles"
 
 #: includes/class-meta-box-post-type.php:276
 msgid ""
-"Enter the post ids that you want to add this meta box to. Seperate multiple "
+"Enter the post ids that you want to add this meta box to. Separate multiple "
 "entries with a comma. Leave blank for the meta box to show up on all post "
 "IDs."
 msgstr ""
@@ -201,7 +201,7 @@ msgstr "Cochez pour désactiver la feuille de style CMB2"
 
 #: includes/class-meta-box-post-type.php:327
 msgid "Closed by Default"
-msgstr "Fermé par éfaut"
+msgstr "Fermé par défaut"
 
 #: includes/class-meta-box-post-type.php:328
 msgid "Check to keep the metabox closed by default"
@@ -323,11 +323,11 @@ msgstr "Liste déroulante de fuseau horaire"
 
 #: includes/class-meta-box-post-type.php:398
 msgid "Date Picker (UNIX timestamp)"
-msgstr "Sélécteur de Date (horodatage UNIX)"
+msgstr "Sélecteur de Date (horodatage UNIX)"
 
 #: includes/class-meta-box-post-type.php:399
 msgid "Text Date/Time Picker Combo (UNIX timestamp)"
-msgstr "Texte Date / Sélécteur de temps Combo (horodatage UNIX)"
+msgstr "Texte Date / Sélecteur de temps Combo (horodatage UNIX)"
 
 #: includes/class-meta-box-post-type.php:400
 msgid "Text Date/Time Picker/Time zone Combo (serialized DateTime object)"
@@ -337,7 +337,7 @@ msgstr ""
 
 #: includes/class-meta-box-post-type.php:401
 msgid "Color picker"
-msgstr "Sélécteur de couleur"
+msgstr "Sélecteur de couleur"
 
 #: includes/class-meta-box-post-type.php:402
 msgid "Radio Buttons"
@@ -521,7 +521,7 @@ msgstr "Ajouter ou télécharger un Fichier"
 #: includes/class-meta-box-settings.php:71
 #: includes/class-meta-box-settings.php:95
 msgid "CMB2 Settings"
-msgstr "Paramétres CMB2"
+msgstr "Parameters CMB2"
 
 #: includes/class-meta-box-settings.php:141
 msgid "Users"

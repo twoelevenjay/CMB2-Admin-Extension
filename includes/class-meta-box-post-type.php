@@ -273,7 +273,7 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 			
 			$cmb->add_field( array(
 				'name'    => __( 'Post IDs', 'cmb2-admin-extension' ),
-				'desc'    => __( 'Enter the post ids that you want to add this meta box to. Seperate multiple entries with a comma. Leave blank for the meta box to show up on all post IDs.', 'cmb2-admin-extension' ),
+				'desc'    => __( 'Enter the post ids that you want to add this meta box to. Separate multiple entries with a comma. Leave blank for the meta box to show up on all post IDs.', 'cmb2-admin-extension' ),
 				'id'      => $prefix . 'post_id_text',
 				'type'    => 'text',
 				'inline'  => true,

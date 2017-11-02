@@ -1,23 +1,22 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CMB2 Admin Extension\n"
-"POT-Creation-Date: 2017-11-02 03:29+0100\n"
-"PO-Revision-Date: 2017-11-02 03:30+0100\n"
+"POT-Creation-Date: 2017-11-02 03:25+0100\n"
+"PO-Revision-Date: 2017-11-02 03:54+0100\n"
 "Last-Translator: Mourad Arifi <arifi.armedia@gmail.com>\n"
-"Language-Team: Pedro Mendonça <ped.gaspar@gmail.com>\n"
-"Language: pt_PT\n"
+"Language-Team: Leon <leon@211j.com>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 2.0.4\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
-"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;"
-"esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
-"X-Textdomain-Support: yes\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: cmb2-admin-extension.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
@@ -27,8 +26,8 @@ msgid ""
 "CMB2 Admin Extension depends on the last version of %1$s the CMB2 plugin "
 "%2$s to work!"
 msgstr ""
-"O CMB2 Admin Extension depende da última versão do %1s plugin CMB2 %2s para "
-"funcionar!"
+"CMB2 Admin Extension dépends de la dernière version de %1s du plugin CMB2 "
+"%2s pour fonctionner!"
 
 #: cmb2-admin-extension.php:181
 #, php-format
@@ -36,18 +35,18 @@ msgid ""
 "The CMB2 plugin is installed but has not been activated. Please %1$s "
 "activate %2$s it to use the CMB2 Admin Extension"
 msgstr ""
-"O plugin CMB2 está instalado mas não foi activado. Por favor %1s active-o "
-"%2s para usar o CMB2 Admin Extension."
+"Le plugin CMB2 est installé mais n'a pas été activé. Veuillez l'%1sactiver"
+"%2s pour utiliser CMB2 Admin Extension"
 
 #: includes/class-meta-box-post-type.php:60
 msgctxt "Post Type General Name"
 msgid "Meta Boxes"
-msgstr "Metaboxes"
+msgstr "Boîtes Méta"
 
 #: includes/class-meta-box-post-type.php:61
 msgctxt "Post Type Singular Name"
 msgid "Meta Box"
-msgstr "Metabox"
+msgstr "Boîte Méta"
 
 #: includes/class-meta-box-post-type.php:62
 msgid "CMB2"
@@ -55,48 +54,48 @@ msgstr "CMB2"
 
 #: includes/class-meta-box-post-type.php:63
 msgid "Meta Box"
-msgstr "Metabox"
+msgstr "Boîte Méta"
 
 #: includes/class-meta-box-post-type.php:64
 msgid "Meta Box:"
-msgstr "Metabox:"
+msgstr "Boîte Méta:"
 
 #: includes/class-meta-box-post-type.php:65
 msgid "All Meta Boxes"
-msgstr "Todas as metaboxes"
+msgstr "Toutes les boîtes Méta"
 
 #: includes/class-meta-box-post-type.php:66
 #: includes/class-meta-box-post-type.php:67
 msgid "Add New Meta Box"
-msgstr "Adicionar nova metabox"
+msgstr "Ajouter une nouvelle Boîte Méta"
 
 #: includes/class-meta-box-post-type.php:68
 msgid "New Meta Box"
-msgstr "Nova metabox"
+msgstr "Nouvelle Boîte Méta"
 
 #: includes/class-meta-box-post-type.php:69
 msgid "Edit Meta Box"
-msgstr "Editar metabox"
+msgstr "Moifier Boîte Méta"
 
 #: includes/class-meta-box-post-type.php:70
 msgid "Update Meta Box"
-msgstr "Actualizar metabox"
+msgstr "Mettre à jour Boîte Méta"
 
 #: includes/class-meta-box-post-type.php:71
 msgid "View Meta Box"
-msgstr "Ver metabox"
+msgstr "Voire Boîte Méta"
 
 #: includes/class-meta-box-post-type.php:72
 msgid "Search Meta Box"
-msgstr "Procurar metabox"
+msgstr "Rechercher Boîte Méta"
 
 #: includes/class-meta-box-post-type.php:73
 msgid "Not found"
-msgstr "Não encontrado"
+msgstr "Non Trouvé"
 
 #: includes/class-meta-box-post-type.php:74
 msgid "Not found in Trash"
-msgstr "Não encontrado no lixo"
+msgstr "Non trouver dans la corbeille"
 
 #: includes/class-meta-box-post-type.php:77
 msgid "meta_box"
@@ -104,23 +103,25 @@ msgstr "meta_box"
 
 #: includes/class-meta-box-post-type.php:78
 msgid "Create custom meta boxes and fields"
-msgstr "Criar metaboxes e campos personalizados"
+msgstr "Créer des boîtes méta et champs personnalisés"
 
 #: includes/class-meta-box-post-type.php:258
 msgid "Metabox Settings"
-msgstr "Definições da metabox"
+msgstr "Paramètres Boîte Méta"
 
 #: includes/class-meta-box-post-type.php:266
 msgid "Post Types"
-msgstr "Tipos de conteúdo"
+msgstr "Types d'Article"
 
 #: includes/class-meta-box-post-type.php:267
 msgid "Check the post types that you want to add this meta box to."
-msgstr "Seleccione os tipos de conteúdo a que pretende adicionar esta metabox."
+msgstr ""
+"Vérifiez les types de publication auxquels vous souhaitez ajouter cette "
+"boîte de méta."
 
 #: includes/class-meta-box-post-type.php:275
 msgid "Post IDs"
-msgstr "Tipos de conteúdo"
+msgstr "IDs des Articles"
 
 #: includes/class-meta-box-post-type.php:276
 msgid ""
@@ -128,49 +129,51 @@ msgid ""
 "entries with a comma. Leave blank for the meta box to show up on all post "
 "IDs."
 msgstr ""
-"Digite os IDs de postagem para os quais você deseja adicionar esta metabox. "
-"Separar várias entradas com uma vírgula. Deixe em branco para a caixa de "
-"meta aparecer em todas as IDs de postagem."
+"Entrez les ID de publication auxquels vous souhaitez ajouter cette boîte de "
+"méta. Séparer les entrées multiples avec une virgule. Laissez vide pour que "
+"la méta box apparaisse sur tous les ID de publication."
 
 #: includes/class-meta-box-post-type.php:283
 msgid "Priority"
-msgstr "Prioridade"
+msgstr "Priorité"
 
 #: includes/class-meta-box-post-type.php:284
 msgid "This is to control what order your meta box appears in."
-msgstr "Para definir a ordem em que é apresentada a sua metabox."
+msgstr ""
+"Ceci permet de contrôler l'ordre dans lequel votre boîte méta apparaît."
 
 #: includes/class-meta-box-post-type.php:289
 msgid "High"
-msgstr "Alta"
+msgstr "Haut"
 
 #: includes/class-meta-box-post-type.php:290
 msgid "Core"
-msgstr "Core"
+msgstr "Noyau"
 
 #: includes/class-meta-box-post-type.php:291
 msgid "Default"
-msgstr "Por omissão"
+msgstr "Défaut"
 
 #: includes/class-meta-box-post-type.php:292
 msgid "Low"
-msgstr "Baixa"
+msgstr "Bas"
 
 #: includes/class-meta-box-post-type.php:298
 msgid "Context"
-msgstr "Contexto"
+msgstr "Contexte"
 
 #: includes/class-meta-box-post-type.php:299
 msgid ""
 "This additional controls for positioning of the meta box. Advanced displays "
 "after Normal. Side places the meta box in the right sidebar."
 msgstr ""
-"Para definir a posição da sua metabox. \"Avançado\" é mostrado depois de "
-"\"Normal\". \"Lateral\" posiciona a metabox na barra lateral direita."
+"Ces contrôles supplémentaires pour le positionnement de la boîte méta. "
+"Affichages avancés après Normal. Coté place la boîte méta dans la barre "
+"latérale droite."
 
 #: includes/class-meta-box-post-type.php:304
 msgid "Advanced"
-msgstr "Avançado"
+msgstr "Avancée"
 
 #: includes/class-meta-box-post-type.php:305
 msgid "Normal"
@@ -178,107 +181,109 @@ msgstr "Normal"
 
 #: includes/class-meta-box-post-type.php:306
 msgid "Side"
-msgstr "Lateral"
+msgstr "Coté"
 
 #: includes/class-meta-box-post-type.php:312
 msgid "Show Names"
-msgstr "Mostrar nomes"
+msgstr "Afficher les noms"
 
 #: includes/class-meta-box-post-type.php:313
 msgid "Show field names on the left"
-msgstr "Mostrar nomes de campos à esquerda"
+msgstr "Afficher les noms de champs sur la gauche"
 
 #: includes/class-meta-box-post-type.php:320
 msgid "Disable CMB2 Styles"
-msgstr "Desactivar estilos do CBM2"
+msgstr "Désactiver les Styles CMB2"
 
 #: includes/class-meta-box-post-type.php:321
 msgid "Check to disable the CMB stylesheet"
-msgstr "Seleccione para desactivar a folha de estilos do CMB"
+msgstr "Cochez pour désactiver la feuille de style CMB2"
 
 #: includes/class-meta-box-post-type.php:327
 msgid "Closed by Default"
-msgstr "Fechada por omissão"
+msgstr "Fermé par défaut"
 
 #: includes/class-meta-box-post-type.php:328
 msgid "Check to keep the metabox closed by default"
-msgstr "Seleccione para manter a metabox fechada por omissão."
+msgstr "Vérifier que la métabox est fermée par défaut"
 
 #: includes/class-meta-box-post-type.php:345
 msgid "Custom Field Settings"
-msgstr "Definições de campos personalizados"
+msgstr "Paramètres de champ personnalisés"
 
 #: includes/class-meta-box-post-type.php:352
 msgid "Add the custom fields that you want to display with in this meta box."
-msgstr "Adicione os campos personalizados que pretende mostrar nesta metabox."
+msgstr ""
+"Ajoutez les champs personnalisés que vous souhaitez afficher dans cette "
+"boîte de méta."
 
 #: includes/class-meta-box-post-type.php:354
 msgid "Field {#}"
-msgstr "Campo {#}"
+msgstr "Champ {#}"
 
 #: includes/class-meta-box-post-type.php:355
 msgid "Add Another Field"
-msgstr "Adicionar outro campo"
+msgstr "Ajouter un autre champ"
 
 #: includes/class-meta-box-post-type.php:356
 msgid "Remove Field"
-msgstr "Remover campo"
+msgstr "Enlever le champ"
 
 #: includes/class-meta-box-post-type.php:362
 msgid "Name"
-msgstr "Nome"
+msgstr "Nom"
 
 #: includes/class-meta-box-post-type.php:363
 msgid "Add a field name."
-msgstr "Adicione um nome de campo."
+msgstr "Ajouter un nom de champ"
 
 #: includes/class-meta-box-post-type.php:369
 msgid "Description"
-msgstr "Descrição"
+msgstr "Description"
 
 #: includes/class-meta-box-post-type.php:370
 msgid "Add a field description."
-msgstr "Adicione uma descrição de campo."
+msgstr "Ajouter un champ de description"
 
 #: includes/class-meta-box-post-type.php:376
 msgid "Field Type"
-msgstr "Tipo de campo"
+msgstr "Type de champ"
 
 #: includes/class-meta-box-post-type.php:377
 msgid "Pick what type of field to display."
-msgstr "Escolha o tipo de campo a mostrar."
+msgstr "Choisissez quel type de champ à afficher."
 
 #: includes/class-meta-box-post-type.php:377
 msgid ""
 "For a full list of fields visit <a href=\"https://github.com/WebDevStudios/"
 "CMB2/wiki/Field-Types\">the documentation</a>."
 msgstr ""
-"Para uma lista completa dos campos veja a <a href=\"https://github.com/"
-"WebDevStudios/CMB2/wiki/Field-Types\">documentação</a>."
+"Pour une liste complète des champs, visitez <a href=\"https://github.com/"
+"WebDevStudios/CMB2/wiki/Field-Types\">la documentation</a>."
 
 #: includes/class-meta-box-post-type.php:377
 msgid "Not available as a repeatable field."
-msgstr "Não disponível para repetir."
+msgstr "Non disponible en tant que champ répétable."
 
 #: includes/class-meta-box-post-type.php:377
 msgid "Use file_list for repeatable."
-msgstr "Para repetir, use o campo tipo file_list."
+msgstr "Utilisez file_list pour répéter."
 
 #: includes/class-meta-box-post-type.php:385
 msgid "An arbitrary title field"
-msgstr "Um campo de título arbitrário"
+msgstr "Un champ de titre arbitraire"
 
 #: includes/class-meta-box-post-type.php:386
 msgid "Text"
-msgstr "Texto"
+msgstr "Texte"
 
 #: includes/class-meta-box-post-type.php:387
 msgid "Text Small"
-msgstr "Texto pequeno"
+msgstr "Texte Petit"
 
 #: includes/class-meta-box-post-type.php:388
 msgid "Text Medium"
-msgstr "Texto médio"
+msgstr "Texte Moyen"
 
 #: includes/class-meta-box-post-type.php:389
 msgid "Email"
@@ -290,91 +295,93 @@ msgstr "URL"
 
 #: includes/class-meta-box-post-type.php:391
 msgid "Money"
-msgstr "Dinheiro"
+msgstr "Monnaie"
 
 #: includes/class-meta-box-post-type.php:392
 msgid "Text Area"
-msgstr "Área de texto"
+msgstr "Zone de texte"
 
 #: includes/class-meta-box-post-type.php:393
 msgid "Text Area Small"
-msgstr "Área de texto pequena"
+msgstr "Zone de texte (petite)"
 
 #: includes/class-meta-box-post-type.php:394
 msgid "Text Area Code"
-msgstr "Área de texto para código"
+msgstr "Zone de texte de Code"
 
 #: includes/class-meta-box-post-type.php:395
 msgid "Date Picker"
-msgstr "Selecção de data"
+msgstr "Sélécteur de Date"
 
 #: includes/class-meta-box-post-type.php:396
 msgid "Time picker"
-msgstr "Selecção de hora"
+msgstr "Sélecteur de temps"
 
 #: includes/class-meta-box-post-type.php:397
 msgid "Time zone dropdown"
-msgstr "Selecção de fuso horário"
+msgstr "Liste déroulante de fuseau horaire"
 
 #: includes/class-meta-box-post-type.php:398
 msgid "Date Picker (UNIX timestamp)"
-msgstr "Selecção de data (UNIX timestamp)"
+msgstr "Sélecteur de Date (horodatage UNIX)"
 
 #: includes/class-meta-box-post-type.php:399
 msgid "Text Date/Time Picker Combo (UNIX timestamp)"
-msgstr "Selecção de data e hora combinados (UNIX timestamp)"
+msgstr "Texte Date / Sélecteur de temps Combo (horodatage UNIX)"
 
 #: includes/class-meta-box-post-type.php:400
 msgid "Text Date/Time Picker/Time zone Combo (serialized DateTime object)"
-msgstr "Selecção de data, hora e fuso horário combinados (UNIX timestamp)"
+msgstr ""
+"Texte Date / Sélecteur de temps / Fuseau horaire Combo (objet DateTime "
+"sérialisé)"
 
 #: includes/class-meta-box-post-type.php:401
 msgid "Color picker"
-msgstr "Selecção de cor"
+msgstr "Sélecteur de couleur"
 
 #: includes/class-meta-box-post-type.php:402
 msgid "Radio Buttons"
-msgstr "Botões de opções"
+msgstr "Boutons Radio"
 
 #: includes/class-meta-box-post-type.php:403
 msgid "Radio Buttons Inline"
-msgstr "Botões de opções em linha"
+msgstr "Boutons Radio Inline"
 
 #: includes/class-meta-box-post-type.php:404
 msgid "Taxonomy Radio Buttons"
-msgstr "Botões de opção de taxonomia"
+msgstr "Boutons Radio de Taxonomie"
 
 #: includes/class-meta-box-post-type.php:405
 msgid "Taxonomy Radio Buttons Inline"
-msgstr "Botões de opção de taxonomia em linha"
+msgstr "Boutons Radio de Taxonomie Inline"
 
 #: includes/class-meta-box-post-type.php:406
 msgid "Select"
-msgstr "Selecção"
+msgstr "Choix"
 
 #: includes/class-meta-box-post-type.php:407
 msgid "Taxonomy Select"
-msgstr "Selecção de taxonomia"
+msgstr "Choix de Taxonomie"
 
 #: includes/class-meta-box-post-type.php:408
 msgid "Checkbox"
-msgstr "Caixa de selecção"
+msgstr "Case à cocher"
 
 #: includes/class-meta-box-post-type.php:409
 msgid "Multiple Checkboxes"
-msgstr "Caixas de selecção múltiplas"
+msgstr "Plusieurs Cases à cocher"
 
 #: includes/class-meta-box-post-type.php:410
 msgid "Multiple Checkboxes Inline"
-msgstr "Caixas de selecção múltiplas em linha"
+msgstr "Plusieurs Cases à cocher Inline"
 
 #: includes/class-meta-box-post-type.php:411
 msgid "Taxonomy Multiple Checkboxes"
-msgstr "Caixas de selecção múltiplas de taxonomia"
+msgstr "Plusieurs Cases à cocher de Taxonomie"
 
 #: includes/class-meta-box-post-type.php:412
 msgid "Taxonomy Multiple Checkboxes Inline"
-msgstr "Caixas de selecção múltiplas de taxonomia em linha"
+msgstr "Plusieurs Cases à cocher de Taxonomie Inline"
 
 #: includes/class-meta-box-post-type.php:413
 msgid "(TinyMCE)"
@@ -382,59 +389,60 @@ msgstr "(TinyMCE)"
 
 #: includes/class-meta-box-post-type.php:414
 msgid "Image/File upload"
-msgstr "Carregar imagem/ficheiro"
+msgstr "Image/Fichier à télécharger"
 
 #: includes/class-meta-box-post-type.php:415
 msgid "Image/File list upload"
-msgstr "Carregar lista de imagens/ficheiros"
+msgstr "Liste d'Images/Fichiers à télécharger"
 
 #: includes/class-meta-box-post-type.php:416
 msgid ""
 "Converts oembed urls (instagram, twitter, youtube, etc. oEmbed in the Codex)"
-msgstr "URL oEmbed (Instagram, Twitter, YouTube, etc. oEmbed no Codex)"
+msgstr ""
+"Convertit les URLs insérées (instagram, twitter, youtube, etc.) dans le Codex"
 
 #: includes/class-meta-box-post-type.php:422
 msgid "Repeatable"
-msgstr "Repetir"
+msgstr "Répétable"
 
 #: includes/class-meta-box-post-type.php:423
 msgid ""
 "Check this box to make the field repeatable. Field types marked with a \"*\" "
 "are not repeatable."
 msgstr ""
-"Seleccione esta opção para tornar o campo repetível. Os tipos de campos "
-"marcados com um \"*\" não são repetíveis."
+"Cochez cette case pour rendre le champ répétable. Les types de champs "
+"marqués d'un \"*\" ne sont pas répétables."
 
 #: includes/class-meta-box-post-type.php:429
 msgid "Protocols"
-msgstr "Protocolos"
+msgstr "Protocoles"
 
 #: includes/class-meta-box-post-type.php:430
 msgid ""
 "Check the boxes for each allowed protocol. If you are unsure then do nothing "
 "and all protocols will be allowed."
 msgstr ""
-"Seleccione as opções para cada protocolo permitido. Em caso de dúvida não "
-"seleccione nenhum, para todos os protocolos serem permitidos."
+"Cochez les cases pour chaque protocole autorisé. Si vous n'êtes pas sûr, ne "
+"faites rien et tous les protocoles seront autorisés."
 
 #: includes/class-meta-box-post-type.php:449
 msgid "Currency Symbol"
-msgstr "Símbolo da moeda"
+msgstr "Symbole de devise"
 
 #: includes/class-meta-box-post-type.php:450
 msgid "Replaces the default \"$\"."
-msgstr "Substitui o \"$\" por omissão."
+msgstr "Remplacer le \"$\" par défaut."
 
 #: includes/class-meta-box-post-type.php:456
 msgid "Date Format"
-msgstr "Formato da data"
+msgstr "Format de la Date"
 
 #: includes/class-meta-box-post-type.php:457
 #: includes/class-meta-box-post-type.php:464
 #: includes/class-meta-box-post-type.php:501
 #: includes/class-meta-box-post-type.php:522
 msgid "Default:"
-msgstr "Por omissão:"
+msgstr "Défaut:"
 
 #: includes/class-meta-box-post-type.php:457
 #: includes/class-meta-box-post-type.php:464
@@ -442,16 +450,16 @@ msgid ""
 "See <a target=\"_blank\" href=\"http://php.net/manual/en/function.date.php"
 "\">php.net/manual/en/function.date.php</a>."
 msgstr ""
-"Ver <a target=\"_blank\" href=\"http://php.net/manual/en/function.date.php"
-"\">php.net/manual/en/function.date.php</a>."
+"Voir <a target=\"_blank\" href=\"http://php.net/manual/fr/function.date.php"
+"\">php.net/manual/fr/function.date.php</a>."
 
 #: includes/class-meta-box-post-type.php:463
 msgid "Time Format"
-msgstr "Formato da hora"
+msgstr "Format de l'heur"
 
 #: includes/class-meta-box-post-type.php:482
 msgid "Options"
-msgstr "Opções"
+msgstr "Options"
 
 #: includes/class-meta-box-post-type.php:483
 msgid ""
@@ -459,73 +467,73 @@ msgid ""
 "Type value then name seprated by a comma.<br>Example:<br>sml,Small<br>med,"
 "Medium<br>lrg,Large"
 msgstr ""
-"Se o seu tipo de campo precisar de opções manuais, por favor adicione uma "
-"opção por linha. Insira o nome seguido do valor, separados por uma vírgula."
-"<br>Exemplo:<br>peq,Pequeno<br>med,Médio<br>grd,Grande"
+"Si votre type de champ nécessite des options manuelles, veuillez ajouter une "
+"option par ligne. Tapez la valeur puis le nom est séparé par une virgule. "
+"<br> Exemple: <br> sml, Small <br> med, Medium <br> lrg, Large"
 
 #: includes/class-meta-box-post-type.php:492
 msgid "Taxonomy Options"
-msgstr "Opções de taxonomia"
+msgstr "Options de Taxonomie"
 
 #: includes/class-meta-box-post-type.php:500
 msgid "No Terms Text"
-msgstr "Texto para falta de termos"
+msgstr "Aucun texte de terms"
 
 #: includes/class-meta-box-post-type.php:501
 msgid "Enter text to change the text that is shown when no terms are found."
-msgstr "Insira o texto para indicar que não foram encontrados termos."
+msgstr ""
+"Entrez du texte pour modifier le texte affiché lorsque aucun term n'est "
+"trouvé."
 
 #: includes/class-meta-box-post-type.php:501
 msgid "No terms"
-msgstr "Sem termos"
+msgstr "Aucun term"
 
 #: includes/class-meta-box-post-type.php:507
 msgid "Include a \"none\" option"
-msgstr "Incluir uma opção \"nenhum\""
+msgstr "Inclure une option \"aucun\""
 
 #: includes/class-meta-box-post-type.php:508
 msgid "Check this box to include a \"none\" option with this field."
-msgstr ""
-"Seleccione esta opção para incluir uma opção \"nenhum\" dentro deste campo."
+msgstr "Cochez cette case pour inclure une option \"aucun\" avec ce champ."
 
 #: includes/class-meta-box-post-type.php:514
 msgid "Disable select all"
-msgstr "Desactivar seleccionar todos"
+msgstr "Désactiver sélectionner tout"
 
 #: includes/class-meta-box-post-type.php:515
 msgid "Check this box to disable the select all button for this field."
 msgstr ""
-"Seleccione esta opção para desactivar a caixa para seleccionar tudo para "
-"este campo."
+"Cochez cette case pour désactiver le bouton Sélectionner tout pour ce champ."
 
 #: includes/class-meta-box-post-type.php:521
 msgid "Button Text"
-msgstr "Texto do botão"
+msgstr "Bouton Texte"
 
 #: includes/class-meta-box-post-type.php:522
 msgid "Enter text to change the upload button text."
-msgstr "Insira o texto do botão Carregar."
+msgstr "Entrez le texte pour modifier le texte du bouton de téléchargement."
 
 #: includes/class-meta-box-post-type.php:522
 msgid "Add or Upload File"
-msgstr "Adicionar ou carregar ficheiro"
+msgstr "Ajouter ou télécharger un Fichier"
 
 #: includes/class-meta-box-settings.php:71
 #: includes/class-meta-box-settings.php:95
 msgid "CMB2 Settings"
-msgstr "Definições do CMB2"
+msgstr "Paramètres CMB2"
 
 #: includes/class-meta-box-settings.php:141
 msgid "Users"
-msgstr "Utilizadores"
+msgstr "Utilisateurs"
 
 #: includes/class-meta-box-settings.php:142
 msgid ""
 "Check the users to grant access to this plugin and the CMB2 plugin. Leave "
 "unchecked to grant access to all users."
 msgstr ""
-"Seleccione os utilizadores a que pretende dar acesso a este plugin e ao "
-"CMB2. Não seleccione nenhum, para garantir o acesso a todos os utilizadores."
+"Vérifiez les utilisateurs pour accorder l'accès à ce plugin et le plugin "
+"CMB2. Ne pas cocher pour accorder l'accès à tous les utilisateurs."
 
 #. Plugin Name of the plugin/theme
 msgid "CMB2 Admin Extension"
@@ -540,8 +548,9 @@ msgid ""
 "CMB2 Admin Extension add a user interface for admins to create CMB2 meta "
 "boxes from the WordPress admin."
 msgstr ""
-"O CMB2 Admin Extension adiciona uma interface de administração para criar "
-"metaboxes do CMB2 a partir da administração do WordPress."
+"CMB2 Admin Extension ajouter une interface utilisateur pour les "
+"administrateurs pour créer des boîtes méta CMB2 à partir de l'admin "
+"WordPress."
 
 #. Author of the plugin/theme
 msgid "twoelevenjay"
@@ -550,3 +559,20 @@ msgstr "twoelevenjay"
 #. Author URI of the plugin/theme
 msgid "http://211j.com"
 msgstr "http://211j.com"
+
+#~ msgid ""
+#~ "Defaults to \"h:i A\". See <a target=\"_blank\" href=\"http://php.net/"
+#~ "manual/en/function.date.php\">php.net/manual/en/function.date.php</a>."
+#~ msgstr ""
+#~ "Par défaut à \"h:i A\". Voir <a target=\"_blank\" href=\"http://php.net/"
+#~ "manual/en/function.date.php\">php.net/manual/en/function.date.php</a>."
+
+#~ msgid "Default Value"
+#~ msgstr "Valeur par défaut"
+
+#~ msgid ""
+#~ "Enter a value to use as a default for this field. If you want a checkbox "
+#~ "to be checked enter \"on\". Leave blank for no default value."
+#~ msgstr ""
+#~ "Entrez une valeur à utiliser par défaut pour ce champ. Si vous voulez une "
+#~ "case à cocher, entrez \"on\". Laissez vide pour aucune valeur par défaut."

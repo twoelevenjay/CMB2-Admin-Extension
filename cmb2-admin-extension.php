@@ -102,7 +102,7 @@ class CMB2_Admin_Extension_Class {
 	public static function get_instance() {
 		// If the single instance hasn't been set, set it now.
 		if ( null === self::$instance ) {
-			self::$instance = new self;
+			self::$instance = new self();
 		}
 
 		return self::$instance;
@@ -163,7 +163,16 @@ class CMB2_Admin_Extension_Class {
 
 		?>
 			<div class="error">
-				<p><?php printf( esc_html__( 'CMB2 Admin Extension depends on the last version of %1$s the CMB2 plugin %2$s to work!', 'cmb2-admin-extension' ), '<a href="https://wordpress.org/plugins/cmb2/">', '</a>' ); ?></p>
+				<p>
+					<?php
+					printf(
+						/* translators: 1: link opener; 2: link closer. */
+						esc_html__( 'CMB2 Admin Extension depends on the last version of %1$s the CMB2 plugin %2$s to work!', 'cmb2-admin-extension' ),
+						'<a href="https://wordpress.org/plugins/cmb2/">',
+						'</a>'
+					);
+					?>
+				</p>
 			</div>
 		<?php
 
@@ -178,7 +187,16 @@ class CMB2_Admin_Extension_Class {
 
 		?>
 			<div class="error">
-				<p><?php printf( esc_html__( 'The CMB2 plugin is installed but has not been activated. Please %1$s activate %2$s it to use the CMB2 Admin Extension', 'cmb2-admin-extension' ), '<a href="' . esc_url( admin_url( 'plugins.php' ) ) . '">', '</a>' ); ?></p>
+				<p>
+					<?php
+					printf(
+						/* translators: 1: link opener; 2: link closer. */
+						esc_html__( 'The CMB2 plugin is installed but has not been activated. Please %1$s activate %2$s it to use the CMB2 Admin Extension', 'cmb2-admin-extension' ),
+						'<a href="' . esc_url( admin_url( 'plugins.php' ) ) . '">',
+						'</a>'
+					);
+					?>
+				</p>
 			</div>
 		<?php
 

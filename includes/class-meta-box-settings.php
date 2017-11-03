@@ -106,7 +106,7 @@ if ( ! class_exists( 'CMB2_Meta_Box_Settings' ) ) {
 		 */
 		public function user_options() {
 
-			$users = get_users();
+			$users        = get_users();
 			$user_options = array();
 			foreach ( $users as $user ) {
 

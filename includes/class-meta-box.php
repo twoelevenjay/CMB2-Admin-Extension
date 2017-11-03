@@ -67,7 +67,7 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 		public static function get_instance() {
 			// If the single instance hasn't been set, set it now.
 			if ( self::$instance === null ) {
-				self::$instance = new self;
+				self::$instance = new self();
 			}
 
 			return self::$instance;
@@ -83,7 +83,7 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 
 			$cmb2_settings = get_option( '_cmb2_settings' );
 
-			if ( empty( $cmb2_settings ) || current_user_can('administrator')) {
+			if ( empty( $cmb2_settings ) || current_user_can( 'administrator' ) ) {
 				// No settings saved.
 				return true;
 			}
@@ -192,7 +192,7 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 		 * Conditional to check if the field argument should be added..
 		 *
 		 * @since 1.1.4
-		 * @param string $field_options string of options for fields liek select.
+		 * @param string $field_options String of options for fields liek select.
 		 */
 		private function add_option_arg( $field_options ) {
 
@@ -251,10 +251,10 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 		 * @since  1.1.4
 		 * @param  array  $field      Field definition.
 		 * @param  string $field_type A CMB2 field type.
-		 * @param  string $field_key  $field key to check.
+		 * @param  string $field_key  Field key to check.
 		 * @return boolean.
 		 */
-		static function should_add_arg( $field, $field_type, $field_key ) {
+		public static function should_add_arg( $field, $field_type, $field_key ) {
 
 			return ( $field['_cmb2_field_type_select'] === $field_type && ( ! empty( $field[ $field_key ] ) && $field[ $field_key ] !== '' ) );
 		}
@@ -284,8 +284,8 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 				$title          = get_the_title( $metabox_id );
 				$id             = str_replace( '-', '_', $user_meta_box->post_name );
 				$post_type      = cmbf( $metabox_id, $prefix . 'post_type_multicheckbox' );
-				$post_id_text	= cmbf( $metabox_id, $prefix . 'post_id_text' );
-				$show_on 	= explode(',', $post_id_text);
+				$post_id_text   = cmbf( $metabox_id, $prefix . 'post_id_text' );
+				$show_on        = explode( ',', $post_id_text );
 				$context        = cmbf( $metabox_id, $prefix . 'context_radio' );
 				$priority       = cmbf( $metabox_id, $prefix . 'priority_radio' );
 				$show_names     = cmbf( $metabox_id, $prefix . 'show_names' ) === 'on' ? true : false;
@@ -296,29 +296,32 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 				/**
 				 * Initiate the metabox.
 				 */
-				if ($post_id_text !== ''){
-				${ 'cmb_' . $id } = new_cmb2_box( array(
-					'id'           => $id,
-					'title'        => $title,
-					'object_types' => $post_type, // Post type.
-					'show_on'      => array( 'key' => 'id', 'value' => $show_on ),
-					'context'      => $context,
-					'priority'     => $priority,
-					'show_names'   => $show_names,
-					'cmb_styles'   => $disable_styles,
-					'closed'       => $closed,
-				) );
+				if ( $post_id_text !== '' ) {
+					${ 'cmb_' . $id } = new_cmb2_box( array(
+						'id'           => $id,
+						'title'        => $title,
+						'object_types' => $post_type, // Post type.
+						'show_on'      => array(
+							'key'   => 'id',
+							'value' => $show_on,
+						),
+						'context'      => $context,
+						'priority'     => $priority,
+						'show_names'   => $show_names,
+						'cmb_styles'   => $disable_styles,
+						'closed'       => $closed,
+					) );
 				} else {
-				${ 'cmb_' . $id } = new_cmb2_box( array(
-					'id'           => $id,
-					'title'        => $title,
-					'object_types' => $post_type, // Post type.
-					'context'      => $context,
-					'priority'     => $priority,
-					'show_names'   => $show_names,
-					'cmb_styles'   => $disable_styles,
-					'closed'       => $closed,
-				) );
+					${ 'cmb_' . $id } = new_cmb2_box( array(
+						'id'           => $id,
+						'title'        => $title,
+						'object_types' => $post_type, // Post type.
+						'context'      => $context,
+						'priority'     => $priority,
+						'show_names'   => $show_names,
+						'cmb_styles'   => $disable_styles,
+						'closed'       => $closed,
+					) );
 				}
 
 				foreach ( $fields as $field ) {
@@ -331,9 +334,11 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 						'_cmb2_repeatable_checkbox' => null,
 						'_cmb2_none_checkbox'       => null,
 					) );
+
 					$this->field = $field;
 					$field_id    = '_' . strtolower( str_replace( ' ', '_', $field['_cmb2_name_text'] ) );
-					$this->field_args  = array(
+
+					$this->field_args = array(
 						'name' => $field['_cmb2_name_text'],
 						'desc' => $field['_cmb2_decription_textarea'],
 						'id'   => $field_id,
@@ -359,14 +364,14 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 						$field_args['show_option_none'] = true;
 					}
 					$should_add = array(
-						'text_url' => array( 'protocols', '_cmb2_protocols_checkbox' ),
-						'text_money' => array( 'before_field', '_cmb2_currency_text' ),
-						'text_time' => array( 'time_format', '_cmb2_time_format' ),
+						'text_url'                         => array( 'protocols', '_cmb2_protocols_checkbox' ),
+						'text_money'                       => array( 'before_field', '_cmb2_currency_text' ),
+						'text_time'                        => array( 'time_format', '_cmb2_time_format' ),
 						'text_datetime_timestamp_timezone' => array( 'time_format', '_cmb2_time_format' ),
-						'text_datetime_timestamp' => array( 'time_format', '_cmb2_time_format' ),
-						'text_date' => array( 'date_format', '_cmb2_date_format' ),
-						'text_date_timestamp' => array( 'date_format', '_cmb2_date_format' ),
-						'select_timezone' => array( 'timezone_meta_key', '_cmb2_time_zone_key_select' ),
+						'text_datetime_timestamp'          => array( 'time_format', '_cmb2_time_format' ),
+						'text_date'                        => array( 'date_format', '_cmb2_date_format' ),
+						'text_date_timestamp'              => array( 'date_format', '_cmb2_date_format' ),
+						'select_timezone'                  => array( 'timezone_meta_key', '_cmb2_time_zone_key_select' ),
 						'text_datetime_timestamp_timezone' => array( 'timezone_meta_key', '_cmb2_time_zone_key_select' ),
 						// '' => array( 'options', array( 'add_upload_file_text', '_cmb2_add_upload_file_text' ) ),
 					);

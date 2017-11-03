@@ -17,11 +17,25 @@
 
 	<!-- ##### Code style ##### -->
 	<rule ref="WordPress">
-		<exclude name="WordPress.VIP.PostsPerPage.posts_per_page" />
-		<exclude name="WordPress.PHP.YodaConditions.NotYoda" />
+		<exclude name="WordPress.VIP.PostsPerPage.posts_per_page_posts_per_page"/>
+		<exclude name="WordPress.PHP.YodaConditions.NotYoda"/>
 	</rule>
 
-	<!-- exclude the 'empty' index files from some documentation checks -->
+	<rule ref="WordPress.Arrays.MultipleStatementAlignment">
+		<properties>
+			<property name="exact" value="false"/>
+			<property name="ignoreNewlines" value="false"/>
+			<property name="alignMultilineItems" value="!=100"/>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.Files.FileName">
+		<properties>
+			<property name="strict_class_file_names" value="false"/>
+		</properties>
+	</rule>
+
+	<!-- Exclude the 'empty' index files from some documentation checks -->
 	<rule ref="Squiz.Commenting.FileComment.WrongStyle">
 		<exclude-pattern>*/index\.php</exclude-pattern>
 	</rule>

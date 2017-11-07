@@ -365,6 +365,37 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 				'desc'       => __( 'Add a field name.', 'cmb2-admin-extension' ),
 				'id'         => $prefix . 'name_text',
 				'type'       => 'text',
+				'attributes'       => array(
+					'class' => 'field_name',
+				),
+			) );
+
+			$cmb_group->add_group_field( $group_field_id, array(
+				'name'        => 'Native Usage',
+				'description' => 'This is the WordPress function used to get post meta. Copy and paste this code to your template files to use this meta data on the front end.',
+				'id'          => $prefix . 'get_post_meta',
+				'type'        => 'textarea_code',
+				'save_field'  => false,
+				'attributes'  => array(
+					'class'    => 'get_post_meta',
+					'rows'     => 1,
+					'readonly' => 'readonly',
+					'disabled' => 'disabled',
+				),
+			) );
+
+			$cmb_group->add_group_field( $group_field_id, array(
+				'name'        => 'CMB2AE Usage',
+				'description' => 'This is the CMB2 Admin Extension function used to get post meta. Copy and paste this code to your template files to use this meta data on the front end.',
+				'id'          => $prefix . 'cmbf',
+				'type'        => 'textarea_code',
+				'save_field'  => false,
+				'attributes'  => array(
+					'class'    => 'cmbf',
+					'rows'     => 1,
+					'readonly' => 'readonly',
+					'disabled' => 'disabled',
+				),
 			) );
 
 			$cmb_group->add_group_field( $group_field_id, array(

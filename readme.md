@@ -5,8 +5,8 @@
 **Donate link:**          https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=leon%40211j%2ecom&lc=MQ&item_name=Two%20Eleven%20Jay&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest  
 **Tags:**                 metaboxes, forms, fields, options, settings  
 **Requires at least:**    4.0  
-**Tested up to:**         4.6  
-**Stable tag:**           0.1.6  
+**Tested up to:**         4.8  
+**Stable tag:**           0.1.7  
 **License:**              GPLv2 or later  
 **License URI:**          http://www.gnu.org/licenses/gpl-2.0.html  
 

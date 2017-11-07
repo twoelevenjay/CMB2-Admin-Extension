@@ -2,6 +2,11 @@
 
 ## Changelog
 
+### 0.1.7 beta 11.07.2017
+* Display usage functions like "get_post_meta" with generated meta key.
+* Update codebase to comply with the latest coding standards. Props [@jrfnl](https://github.com/jrfnl)
+* Correct portuguese (pt_PT) translated previously changed. Props [@pedro-mendonca](https://github.com/pedro-mendonca)
+
 ### 0.1.6 beta 10.19.2017
 * Provide defaults for the fields. Props [@georgestephanis](https://github.com/georgestephanis)
 

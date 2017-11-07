@@ -275,9 +275,9 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 
 			$prefix = $this->prefix;
 
-			$user_meta_boxes = get_posts( $args );
+			$user_meta_boxes = new WP_Query( $args );
 
-			foreach ( $user_meta_boxes as $user_meta_box ) {
+			foreach ( $user_meta_boxes->posts as $user_meta_box ) {
 
 				$metabox_id = $user_meta_box->ID;
 

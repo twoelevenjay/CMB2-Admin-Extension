@@ -9,21 +9,21 @@ jQuery( function( $ ) {
 		 * Initialize meta box fields behavior.
 		 */
 		init: function() {
-            this.show_hide_on_load();
-			this.field_type_change();
-			this.field_name_change();
-			this.display_usage_functions();
+            this.showHideOnLoad();
+			this.fieldTypeChange();
+			this.fieldNameChange();
+			this.displayUsageFunctions();
 		},
 
 		/**
 		 * Show / hide field rows based on field_type_select selected value.
 		 *
-		 * show_hide
+		 * showHide
 		 *
 		 *
 		 *
 		 */
-		show_hide: function( fieldTypeSelect ) {
+		showHide: function( fieldTypeSelect ) {
             var fieldTypeVal = $( fieldTypeSelect ).val();
             var fieldSet     = $( fieldTypeSelect ).closest( '.cmb-field-list' );
             $( '.cmb-row.cmb_hide_field', fieldSet ).hide();
@@ -31,65 +31,66 @@ jQuery( function( $ ) {
 		},
 
 		/**
-		 * Use the show_hide() function on each field group's field rows on page load.
+		 * Use the showHide() function on each field group's field rows on page load.
 		 *
-		 * show_hide_on_load
+		 * showHideOnLoad
 		 *
 		 *
 		 *
 		 */
-		show_hide_on_load: function() {
+		showHideOnLoad: function() {
             var fieldTypeSelects = $( '.field_type_select' );
             fieldTypeSelects.each( function() {
-                cmb2MetaBoxField.show_hide( this );
+                cmb2MetaBoxField.showHide( this );
             } );
 
 		},
 
 		/**
-		 * Use the show_hide() function on this field group's field rows on field_type_select change.
+		 * Use the showHide() function on this field group's field rows on field_type_select change.
 		 *
-		 * field_type_change
+		 * fieldTypeChange
 		 *
 		 *
 		 *
 		 */
-		field_type_change: function() {
+		fieldTypeChange: function() {
             $( '.cmb2-metabox' ).on( 'change', '.field_type_select', function( e ) {
                 var fieldTypeSelect = e.target;
-                cmb2MetaBoxField.show_hide( fieldTypeSelect );
+                cmb2MetaBoxField.showHide( fieldTypeSelect );
             } );
 		},
 
 		/**
 		 * Update the usage code snippets when field_name changes.
 		 *
-		 * field_name_change
+		 * fieldNameChange
 		 *
 		 *
 		 *
 		 */
-		field_name_change: function() {
+		fieldNameChange: function() {
             $( '.cmb2-metabox' ).on( 'change keyup', '.field_name', function( e ) {
-                this.display_usage_functions();
+                this.displayUsageFunctions();
             }.bind( this ) );
 		},
 
 		/**
 		 * Convert field name to usage code snippet.
 		 *
-		 * display_usage_functions
+		 * displayUsageFunctions
 		 *
 		 *
 		 *
 		 */
-		display_usage_functions: function() {
-			var field_name = $( '.field_name' );
-			var wrapper = field_name.closest( '.cmb-field-list' );
-			var get_post_meta = $( '.get_post_meta', wrapper );
+		displayUsageFunctions: function() {
+			var fieldName = $( '.field_name' );
+			var wrapper = fieldName.closest( '.cmb-field-list' );
+			var getPostMeta = $( '.get_post_meta', wrapper );
 			var cmbf = $( '.cmbf', wrapper );
-			get_post_meta.val( 'get_post_meta( get_the_ID(), \'_' + field_name.val().toLowerCase().replace( / /g, '_' ) + '\', true );');
-			cmbf.val( 'cmbf( get_the_ID(), \'_' + field_name.val().toLowerCase().replace( / /g, '_' ) + '\' );');
+			var fieldNameVal = fieldName.val().toLowerCase().replace( / /g, '_' );
+			getPostMeta.val( 'get_post_meta( get_the_ID(), \'_' + fieldNameVal + '\', true );');
+			cmbf.val( 'cmbf( get_the_ID(), \'_' + fieldNameVal + '\' );');
 		}
 	};
 

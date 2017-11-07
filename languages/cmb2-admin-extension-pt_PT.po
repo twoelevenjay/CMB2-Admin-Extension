@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CMB2 Admin Extension\n"
-"POT-Creation-Date: 2017-11-02 03:29+0100\n"
-"PO-Revision-Date: 2017-11-02 03:30+0100\n"
-"Last-Translator: Mourad Arifi <arifi.armedia@gmail.com>\n"
+"POT-Creation-Date: 2017-11-02 13:55+0000\n"
+"PO-Revision-Date: 2017-11-02 13:59+0000\n"
+"Last-Translator: Pedro Mendonça <ped.gaspar@gmail.com>\n"
 "Language-Team: Pedro Mendonça <ped.gaspar@gmail.com>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,7 @@ msgid ""
 "CMB2 Admin Extension depends on the last version of %1$s the CMB2 plugin "
 "%2$s to work!"
 msgstr ""
-"O CMB2 Admin Extension depende da última versão do %1s plugin CMB2 %2s para "
+"O CMB2 Admin Extension depende da última versão do %1$splugin CMB2%2$s para "
 "funcionar!"
 
 #: cmb2-admin-extension.php:181
@@ -36,8 +36,8 @@ msgid ""
 "The CMB2 plugin is installed but has not been activated. Please %1$s "
 "activate %2$s it to use the CMB2 Admin Extension"
 msgstr ""
-"O plugin CMB2 está instalado mas não foi activado. Por favor %1s active-o "
-"%2s para usar o CMB2 Admin Extension."
+"O plugin CMB2 está instalado mas não foi activado. Por favor %1$sactive-o"
+"%2$s para usar o CMB2 Admin Extension."
 
 #: includes/class-meta-box-post-type.php:60
 msgctxt "Post Type General Name"
@@ -120,7 +120,7 @@ msgstr "Seleccione os tipos de conteúdo a que pretende adicionar esta metabox."
 
 #: includes/class-meta-box-post-type.php:275
 msgid "Post IDs"
-msgstr "Tipos de conteúdo"
+msgstr "ID dos conteúdos"
 
 #: includes/class-meta-box-post-type.php:276
 msgid ""
@@ -128,9 +128,9 @@ msgid ""
 "entries with a comma. Leave blank for the meta box to show up on all post "
 "IDs."
 msgstr ""
-"Digite os IDs de postagem para os quais você deseja adicionar esta metabox. "
-"Separar várias entradas com uma vírgula. Deixe em branco para a caixa de "
-"meta aparecer em todas as IDs de postagem."
+"Insira os ID dos conteúdos a que pretende adicionar esta metabox. Separe os "
+"múltiplos itens com vírgulas. Deixe em branco para a metabox ser mostrada em "
+"todos os ID de conteúdos."
 
 #: includes/class-meta-box-post-type.php:283
 msgid "Priority"

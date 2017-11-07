@@ -70,7 +70,7 @@ jQuery( function( $ ) {
 		 *
 		 */
 		fieldNameChange: function() {
-            $( '.cmb2-metabox' ).on( 'change keyup', '.field_name', function( e ) {
+            $( '.cmb2-metabox' ).on( 'change keyup', '.field_name', function() {
                 this.displayUsageFunctions();
             }.bind( this ) );
 		},

@@ -89,8 +89,8 @@ jQuery( function( $ ) {
 			var getPostMeta = $( '.get_post_meta', wrapper );
 			var cmbf = $( '.cmbf', wrapper );
 			var fieldNameVal = fieldName.val().toLowerCase().replace( / /g, '_' );
-			getPostMeta.val( 'get_post_meta( get_the_ID(), \'_' + fieldNameVal + '\', true );');
-			cmbf.val( 'cmbf( get_the_ID(), \'_' + fieldNameVal + '\' );');
+			getPostMeta.val( 'get_post_meta( get_the_ID(), \'_' + fieldNameVal + '\', true );' );
+			cmbf.val( 'cmbf( get_the_ID(), \'_' + fieldNameVal + '\' );' );
 		}
 	};
 

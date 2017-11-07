@@ -365,7 +365,7 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 				'desc'       => __( 'Add a field name.', 'cmb2-admin-extension' ),
 				'id'         => $prefix . 'name_text',
 				'type'       => 'text',
-				'attributes'       => array(
+				'attributes' => array(
 					'class' => 'field_name',
 				),
 			) );
@@ -499,18 +499,6 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 				'type'    => 'text_small',
 			) );
 
-			/*
-			@todo Make this field generate options from predefined time zone fields. Maybe both from previously saved fields and ones just created via javascript.
-
-			$cmb_group->add_group_field( $group_field_id, array(
-				'name'             =>  __( 'Time Zone', 'cmb2-admin-extension' ),
-				'desc'             =>  __( 'Select a time zone field to make this field honor.', 'cmb2-admin-extension' ),
-				'id'               => $prefix . 'time_zone_key_select',
-				'type'             => 'select',
-				'options'          => array(),
-			) );
-			*/
-
 			$cmb_group->add_group_field( $group_field_id, array(
 				'name' => __( 'Options', 'cmb2-admin-extension' ),
 				'desc' => __( 'If your field type requires manual options, please add one option per line. Type value then name seprated by a comma.<br>Example:<br>sml,Small<br>med,Medium<br>lrg,Large', 'cmb2-admin-extension' ),
@@ -556,15 +544,6 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 				'id'      => $prefix . 'add_upload_file_text',
 				'type'    => 'text_small',
 			) );
-
-			/*
-			$cmb_group->add_group_field( $group_field_id, array(
-				'name' => __( 'Default Value', 'cmb2-admin-extension' ),
-				'desc' => __( 'Enter a value to use as a default for this field. If you want a checkbox to be checked enter "on". Leave blank for no default value.', 'cmb2-admin-extension' ),
-				'id'   => $prefix . 'default_value_text',
-				'type' => 'text',
-			) );
-			*/
 		}
 	}
 

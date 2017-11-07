@@ -373,7 +373,6 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 						'text_date_timestamp'              => array( 'date_format', '_cmb2_date_format' ),
 						'select_timezone'                  => array( 'timezone_meta_key', '_cmb2_time_zone_key_select' ),
 						'text_datetime_timestamp_timezone' => array( 'timezone_meta_key', '_cmb2_time_zone_key_select' ),
-						// '' => array( 'options', array( 'add_upload_file_text', '_cmb2_add_upload_file_text' ) ),
 					);
 					foreach ( $should_add as $arg => $value ) {
 						$this->add_arg( $arg, $value );

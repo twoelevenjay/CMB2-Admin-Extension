@@ -73,6 +73,7 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 				'not_found'           => __( 'Not found', 'cmb2-admin-extension' ),
 				'not_found_in_trash'  => __( 'Not found in Trash', 'cmb2-admin-extension' ),
 			);
+
 			$args = array(
 				'label'               => __( 'meta_box', 'cmb2-admin-extension' ),
 				'description'         => __( 'Create custom meta boxes and fields', 'cmb2-admin-extension' ),
@@ -208,6 +209,7 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 					'add_upload_file_text'     => 'cmb_hide_field file',
 					'default_value_text'       => 'default_value',
 				);
+
 				$classes = $this->conditionally_add_class( $field->args['_id'], $field_classes, $classes );
 			}
 			return $classes;
@@ -270,7 +272,7 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 				'options' => $post_types,
 				'inline'  => true,
 			) );
-			
+
 			$cmb->add_field( array(
 				'name'    => __( 'Post IDs', 'cmb2-admin-extension' ),
 				'desc'    => __( 'Enter the post ids that you want to add this meta box to. Separate multiple entries with a comma. Leave blank for the meta box to show up on all post IDs.', 'cmb2-admin-extension' ),
@@ -278,7 +280,7 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 				'type'    => 'text',
 				'inline'  => true,
 			) );
-			
+
 			$cmb->add_field( array(
 				'name'    => __( 'Priority', 'cmb2-admin-extension' ),
 				'desc'    => __( 'This is to control what order your meta box appears in.', 'cmb2-admin-extension' ),
@@ -339,7 +341,7 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 		 */
 		public function init_custom_field_settings() {
 
-			$prefix = $this->prefix;
+			$prefix    = $this->prefix;
 			$cmb_group = new_cmb2_box( array(
 				'id'           => $prefix . 'custom_fields',
 				'title'        => __( 'Custom Field Settings', 'cmb2-admin-extension' ),
@@ -398,7 +400,7 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 					'text_date_timestamp'              => 'text_date_timestamp: ' . __( 'Date Picker (UNIX timestamp)', 'cmb2-admin-extension' ),
 					'text_datetime_timestamp'          => 'text_datetime_timestamp: ' . __( 'Text Date/Time Picker Combo (UNIX timestamp)', 'cmb2-admin-extension' ),
 					'text_datetime_timestamp_timezone' => 'text_datetime_timestamp_timezone: ' . __( 'Text Date/Time Picker/Time zone Combo (serialized DateTime object)', 'cmb2-admin-extension' ),
-					'color_picker'                      => 'colorpicker: ' . __( 'Color picker', 'cmb2-admin-extension' ),
+					'color_picker'                     => 'colorpicker: ' . __( 'Color picker', 'cmb2-admin-extension' ),
 					'radio'                            => 'radio: ' . __( 'Radio Buttons', 'cmb2-admin-extension' ) . ' *',
 					'radio_inline'                     => 'radio_inline: ' . __( 'Radio Buttons Inline', 'cmb2-admin-extension' ) . ' *',
 					'taxonomy_radio'                   => 'taxonomy_radio: ' . __( 'Taxonomy Radio Buttons', 'cmb2-admin-extension' ) . ' *',

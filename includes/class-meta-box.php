@@ -195,16 +195,17 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 		 * @param string $field_options String of options for fields liek select.
 		 */
 		private function add_option_arg( $field_options ) {
-
-			$field_options = explode( PHP_EOL, $field_options );
+			$field_options = preg_split( "/\\r\\n|\\r|\\n/", $field_options );
+			$options       = array();
 			foreach ( $field_options as $option ) {
 				$opt_arr = explode( ',', $option );
 				if ( ! isset( $opt_arr[1] ) ) {
+					$options[ $option ] = $option;
 					continue;
 				}
-				$field_options[ $opt_arr[0] ] = $opt_arr[1];
+				$options[ $opt_arr[0] ] = $opt_arr[1];
 			}
-			$this->field_args['options'] = $field_options;
+			$this->field_args['options'] = $options;
 		}
 
 		/**
@@ -358,10 +359,10 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 						$this->add_strpos_arg( $arg_value );
 					}
 					if ( $field['_cmb2_repeatable_checkbox'] === 'on' && $this->is_repeatable( $field['_cmb2_field_type_select'] ) ) {
-						$field_args['repeatable'] = true;
+						$this->field_args['repeatable'] = true;
 					}
 					if ( $field['_cmb2_none_checkbox'] === 'on' && $this->has_options( $field['_cmb2_field_type_select'] ) ) {
-						$field_args['show_option_none'] = true;
+						$this->field_args['show_option_none'] = true;
 					}
 					$should_add = array(
 						'text_url'                         => array( 'protocols', '_cmb2_protocols_checkbox' ),

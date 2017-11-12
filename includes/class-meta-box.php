@@ -195,17 +195,17 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 		 * @param string $field_options String of options for fields liek select.
 		 */
 		private function add_option_arg( $field_options ) {
-            $field_options = preg_split("/\\r\\n|\\r|\\n/", $field_options );
-            $options = array();
+			$field_options = preg_split( "/\\r\\n|\\r|\\n/", $field_options );
+			$options       = array();
 			foreach ( $field_options as $option ) {
 				$opt_arr = explode( ',', $option );
 				if ( ! isset( $opt_arr[1] ) ) {
-                    $options[ $option ] = $option;
-                    continue;
-                }
-                $options[ $opt_arr[0] ] = $opt_arr[1];
+					$options[ $option ] = $option;
+					continue;
+				}
+				$options[ $opt_arr[0] ] = $opt_arr[1];
 			}
-            $this->field_args['options'] = $options;
+			$this->field_args['options'] = $options;
 		}
 
 		/**

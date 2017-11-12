@@ -358,10 +358,10 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 						$this->add_strpos_arg( $arg_value );
 					}
 					if ( $field['_cmb2_repeatable_checkbox'] === 'on' && $this->is_repeatable( $field['_cmb2_field_type_select'] ) ) {
-						$field_args['repeatable'] = true;
+						$this->field_args['repeatable'] = true;
 					}
 					if ( $field['_cmb2_none_checkbox'] === 'on' && $this->has_options( $field['_cmb2_field_type_select'] ) ) {
-						$field_args['show_option_none'] = true;
+						$this->field_args['show_option_none'] = true;
 					}
 					$should_add = array(
 						'text_url'                         => array( 'protocols', '_cmb2_protocols_checkbox' ),

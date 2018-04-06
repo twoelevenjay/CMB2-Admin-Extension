@@ -123,9 +123,9 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 			$screen = get_current_screen();
 			if ( $screen->post_type === 'meta_box' ) {
 
-				wp_register_style( 'cmb2_admin_styles', CMB2AE_URI . '/css/meta-box-fields.css', false, '0.0.8' );
+				wp_register_style( 'cmb2_admin_styles', CMB2AE_URI . '/css/meta-box-fields.css', array(), '0.0.8' );
 				wp_enqueue_style( 'cmb2_admin_styles' );
-				wp_enqueue_script( 'cmb2_admin_scripts', CMB2AE_URI . '/js/meta-box-fields.js', true, array( 'jquery' ), '0.0.8' );
+				wp_enqueue_script( 'cmb2_admin_scripts', CMB2AE_URI . '/js/meta-box-fields.js', array( 'jquery' ), '0.0.8', true );
 			}
 		}
 

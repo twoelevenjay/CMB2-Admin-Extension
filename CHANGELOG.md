@@ -2,6 +2,9 @@
 
 ## Changelog
 
+### 0.1.8 beta 04.06.2018
+* Fix the argument order in the wp_enqueue_script call.
+
 ### 0.1.7 beta 11.07.2017
 * Display usage functions like "get_post_meta" with generated meta key.
 * Update codebase to comply with the latest coding standards. Props [@jrfnl](https://github.com/jrfnl)

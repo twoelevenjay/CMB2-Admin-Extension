@@ -2,6 +2,9 @@
 
 ## Changelog
 
+### 0.2.3 beta 04.23.2018
+* Fix headers already sent warning.
+
 ### 0.2.2 beta 04.23.2018
 * Show different example code for repeatable groups.
 

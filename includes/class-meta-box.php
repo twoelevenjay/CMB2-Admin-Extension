@@ -338,7 +338,7 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 			$meta_data['id']             = str_replace( '-', '_', $user_meta_box->post_name );
 			$meta_data['post_type']      = cmbf( $metabox_id, $prefix . 'post_type_multicheckbox' );
 			$post_id_text                = cmbf( $metabox_id, $prefix . 'post_id_text' );
-			$meta_data['show_on']        = explode( ',', $post_id_text );
+			$meta_data['show_on']        = $post_id_text !== '' ? explode( ',', $post_id_text ) : array();
 			$meta_data['context']        = cmbf( $metabox_id, $prefix . 'context_radio' );
 			$meta_data['priority']       = cmbf( $metabox_id, $prefix . 'priority_radio' );
 			$meta_data['show_names']     = cmbf( $metabox_id, $prefix . 'show_names' ) === 'on' ? true : false;

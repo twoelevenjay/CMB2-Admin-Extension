@@ -16,6 +16,8 @@ CMB2 Admin Extension adds a user interface for admins to create CMB2 meta boxes 
 
 CMB2 Admin Extension adds a user interface for admins to create CMB2 meta boxes from the WordPress admin.
 
+**[Download plugin on wordpress.org](https://wordpress.org/plugins/cmb2-admin-extension/)**
+
 CMB2 Admin Extension requires the most current version of the CMB2 plugin. You can find that [here](https://wordpress.org/plugins/cmb2/) . And you can find documentation on CMB2 [here](https://github.com/WebDevStudios/CMB2/wiki/Field-Types#types).
 
 ### Features:

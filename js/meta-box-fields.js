@@ -13,17 +13,18 @@ jQuery( function( $ ) {
 			this.fieldTypeChange();
 			this.fieldNameChange();
 			this.displayUsageFunctions();
+			this.bindActionsToCmb2Events();
 		},
 
 		/**
 		 * Show / hide field rows based on field_type_select selected value.
 		 *
-		 * showHide
+		 * showHideMain
 		 *
 		 *
 		 *
 		 */
-		showHide: function( fieldTypeSelect ) {
+		showHideMain: function( fieldTypeSelect ) {
             var fieldTypeVal = $( fieldTypeSelect ).val();
             var fieldSet     = $( fieldTypeSelect ).closest( '.cmb-field-list' );
             $( '.cmb-row.cmb_hide_field', fieldSet ).hide();
@@ -31,9 +32,26 @@ jQuery( function( $ ) {
 		},
 
 		/**
-		 * Use the showHide() function on each field group's field rows on page load.
+		 * Show / hide field rows based on field_type_select selected value.
 		 *
-		 * showHideOnLoad
+		 * showHideMain
+		 *
+		 *
+		 *
+		 */
+		showHideSide: function() {
+            var isRepeatable = $( '#_cmb2_repeatable_group' ).is( ':checked' );
+			var repeatableOptions = $( '.cmb2-id--cmb2-group-description, .cmb2-id--cmb2-entry-name' );
+			repeatableOptions.hide();
+			if ( isRepeatable ) {
+				repeatableOptions.show();
+			}
+		},
+
+		/**
+		 * Use the showHideMain() function on each field group's field rows on page load.
+		 *
+		 * showHideMainOnLoad
 		 *
 		 *
 		 *
@@ -41,13 +59,14 @@ jQuery( function( $ ) {
 		showHideOnLoad: function() {
             var fieldTypeSelects = $( '.field_type_select' );
             fieldTypeSelects.each( function() {
-                cmb2MetaBoxField.showHide( this );
+                cmb2MetaBoxField.showHideMain( this );
             } );
+			cmb2MetaBoxField.showHideSide();
 
 		},
 
 		/**
-		 * Use the showHide() function on this field group's field rows on field_type_select change.
+		 * Use the showHideMain() function on this field group's field rows on field_type_select change.
 		 *
 		 * fieldTypeChange
 		 *
@@ -57,7 +76,21 @@ jQuery( function( $ ) {
 		fieldTypeChange: function() {
             $( '.cmb2-metabox' ).on( 'change', '.field_type_select', function( e ) {
                 var fieldTypeSelect = e.target;
-                cmb2MetaBoxField.showHide( fieldTypeSelect );
+                cmb2MetaBoxField.showHideMain( fieldTypeSelect );
+            } );
+		},
+
+		/**
+		 * Use the showHideMain() function on this field group's field rows on field_type_select change.
+		 *
+		 * fieldTypeChange
+		 *
+		 *
+		 *
+		 */
+		isRepeatableChanged: function() {
+            $( '#_cmb2_repeatable_group' ).on( 'change', function( e ) {
+                cmb2MetaBoxField.showHideSide();
             } );
 		},
 
@@ -91,6 +124,21 @@ jQuery( function( $ ) {
 			var fieldNameVal = fieldName.val().toLowerCase().replace( / /g, '_' );
 			getPostMeta.val( 'get_post_meta( get_the_ID(), \'_' + fieldNameVal + '\', true );' );
 			cmbf.val( 'cmbf( get_the_ID(), \'_' + fieldNameVal + '\' );' );
+		},
+
+		/**
+		 * Run the show / hide functions after reaptabel groups have been manipulated.
+		 *
+		 * bindActionsToCmb2Events
+		 *
+		 *
+		 *
+		 */
+		bindActionsToCmb2Events: function() {
+
+			$( document ).on( 'click', '.cmb-add-group-row, .cmb-remove-group-row, .cmb-shift-rows', function() {
+				cmb2MetaBoxField.showHideOnLoad();
+			} );
 		}
 	};
 

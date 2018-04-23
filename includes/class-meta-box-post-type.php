@@ -195,7 +195,7 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 			$screen = get_current_screen();
 			if ( $screen->post_type === 'meta_box' ) {
 				$field_classes = array(
-					'repeatable_checkbox'      => 'cmb_hide_field  text text_small text_medium text_email text_url text_money textarea textarea_small textarea_code text_date text_timeselect_timezone text_date_timestamp text_datetime_timestamp text_datetime_timestamp_timezone color_picker select multicheck multicheck_inline',
+					'repeatable_checkbox'      => 'cmb_hide_field text text_small text_medium text_email text_url text_money textarea textarea_small textarea_code text_date text_timeselect_timezone text_date_timestamp text_datetime_timestamp text_datetime_timestamp_timezone color_picker select multicheck multicheck_inline',
 					'protocols_checkbox'       => 'cmb_hide_field text_url',
 					'currency_text'            => 'cmb_hide_field text_money',
 					'date_format'              => 'cmb_hide_field text_date text_date_timestamp',
@@ -241,7 +241,6 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 		 */
 		public function init_meta_box_settings() {
 
-			// Start with an underscore to hide fields from custom fields list.
 			$prefix            = $this->prefix;
 			$post_type_objects = get_post_types( '', 'object' );
 			$post_types        = array();
@@ -339,6 +338,20 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 				'type' => 'checkbox',
 			) );
 
+			$cmb->add_field( array(
+				'name'   => __( 'Description', 'cmb2-admin-extension' ),
+				'desc'   => __( 'Short description for the repeatable group.', 'cmb2-admin-extension' ),
+				'id'     => $prefix . 'group_description',
+				'type'   => 'textarea_small',
+			) );
+
+			$cmb->add_field( array(
+				'name'   => __( 'Entry Name', 'cmb2-admin-extension' ),
+				'desc'   => __( 'Text to be used as entry name for each row (i.e. Entry 1). Defaults to the word "Entry".', 'cmb2-admin-extension' ),
+				'id'     => $prefix . 'entry_name',
+				'type'   => 'text',
+				'inline' => true,
+			) );
 		}
 
 		/**

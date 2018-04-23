@@ -322,11 +322,7 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 				$this->add_arg( $arg, $value );
 			}
 			if ( $group_field_id ) {
-				$metabox->add_group_field( $group_field_id, array(
-					'name' => 'Entry Title',
-					'id'   => 'title',
-					'type' => 'text',
-				) );
+				$metabox->add_group_field( $group_field_id, $this->field_args );
 				return;
 			}
 			$metabox->add_field( $this->field_args );
@@ -364,6 +360,9 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 			$meta_data['disable_styles'] = $this->string_to_bool( cmbf( $metabox_id, $prefix . 'disable_styles' ) );
 			$meta_data['closed']         = $this->string_to_bool( cmbf( $metabox_id, $prefix . 'closed' ) );
 			$meta_data['repeatable']     = $this->string_to_bool( cmbf( $metabox_id, $prefix . 'repeatable_group' ) );
+			$meta_data['group_desc']     = cmbf( $metabox_id, $prefix . 'group_description' );
+			$entry_name                  = cmbf( $metabox_id, $prefix . 'entry_name' );
+			$meta_data['entry_name']     = $entry_name ? $entry_name : 'Entry';
 			$meta_data['fields']         = cmbf( $metabox_id, $prefix . 'custom_field' );
 
 			return $meta_data;
@@ -414,13 +413,13 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 				if ( $meta_data['repeatable'] ) {
 
 					$group_field_id = ${ 'cmb_' . $meta_data['id'] }->add_field( array(
-						'id'          => $this->prefix . $meta_data['id'] . 'repeatable_group',
+						'id'          => $this->prefix . $meta_data['id'] . '_repeatable_group',
 						'type'        => 'group',
-						'description' => __( 'Generates reusable form entries', 'cmb2' ),
+						'description' => $meta_data['group_desc'],
 						'options'     => array(
-							'group_title'   => __( 'Entry {#}', 'cmb2' ),
-							'add_button'    => __( 'Add Another Entry', 'cmb2' ),
-							'remove_button' => __( 'Remove Entry', 'cmb2' ),
+							'group_title'   => $meta_data['entry_name'] . __( ' {#}', 'cmb2' ),
+							'add_button'    => __( 'Add Another ', 'cmb2' ) . $meta_data['entry_name'],
+							'remove_button' => __( 'Remove ', 'cmb2' ) . $meta_data['entry_name'],
 							'sortable'      => true,
 						),
 					) );

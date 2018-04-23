@@ -13,7 +13,7 @@ jQuery( function( $ ) {
 			this.fieldTypeChange();
 			this.fieldNameChange();
 			this.displayUsageFunctions();
-			this.bindActionsToCmb2Events();
+			this.bindActionsToEvents();
 		},
 
 		/**
@@ -129,15 +129,18 @@ jQuery( function( $ ) {
 		/**
 		 * Run the show / hide functions after reaptabel groups have been manipulated.
 		 *
-		 * bindActionsToCmb2Events
+		 * bindActionsToEvents
 		 *
 		 *
 		 *
 		 */
-		bindActionsToCmb2Events: function() {
+		bindActionsToEvents: function() {
 
 			$( document ).on( 'click', '.cmb-add-group-row, .cmb-remove-group-row, .cmb-shift-rows', function() {
 				cmb2MetaBoxField.showHideOnLoad();
+			} );
+			$( '#_cmb2_repeatable_group' ).on( 'change', function() {
+				cmb2MetaBoxField.showHideSide();
 			} );
 		}
 	};

@@ -247,9 +247,9 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 		}
 
 		/**
-		 * Conditional to check if the field argument should be added..
+		 * Conditional to check if the field argument should be added.
 		 *
-		 * @since  1.1.4
+		 * @since  0.1.4
 		 * @param  array  $field      Field definition.
 		 * @param  string $field_type A CMB2 field type.
 		 * @param  string $field_key  Field key to check.
@@ -258,6 +258,95 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 		public static function should_add_arg( $field, $field_type, $field_key ) {
 
 			return ( $field['_cmb2_field_type_select'] === $field_type && ( ! empty( $field[ $field_key ] ) && $field[ $field_key ] !== '' ) );
+		}
+
+		/**
+		 * Add the current field to the metabox.
+		 *
+		 * @since  0.2.0
+		 * @param array  $field Field definition.
+		 * @param object $metabox Metabox object.
+		 */
+		public function add_field( $field, $metabox ) {
+
+			$field = wp_parse_args( $field, array(
+				'_cmb2_name_text'           => null,
+				'_cmb2_decription_textarea' => null,
+				'_cmb2_field_type_select'   => null,
+				'_cmb2_options_textarea'    => false,
+				'_cmb2_repeatable_checkbox' => null,
+				'_cmb2_none_checkbox'       => null,
+			) );
+
+			$this->field = $field;
+			$field_id    = '_' . strtolower( str_replace( ' ', '_', $field['_cmb2_name_text'] ) );
+
+			$this->field_args = array(
+				'name' => $field['_cmb2_name_text'],
+				'desc' => $field['_cmb2_decription_textarea'],
+				'id'   => $field_id,
+				'type' => $field['_cmb2_field_type_select'],
+			);
+
+			$field_options = $field['_cmb2_options_textarea'];
+			if ( $field_options ) {
+				$this->add_option_arg( $field_options );
+			}
+			$should_add_strpos = array(
+				array( 'tax', 'taxonomy', '_cmb2_tax_options_radio_inline' ),
+				array( 'tax', array( 'options', 'no_terms_text' ), '_cmb2_no_terms_text' ),
+				array( 'multicheck', 'select_all_button', '_cmb2_select_all_checkbox' ),
+			);
+			foreach ( $should_add_strpos as $arg_value ) {
+				$this->add_strpos_arg( $arg_value );
+			}
+			if ( $field['_cmb2_repeatable_checkbox'] === 'on' && $this->is_repeatable( $field['_cmb2_field_type_select'] ) ) {
+				$this->field_args['repeatable'] = true;
+			}
+			if ( $field['_cmb2_none_checkbox'] === 'on' && $this->has_options( $field['_cmb2_field_type_select'] ) ) {
+				$this->field_args['show_option_none'] = true;
+			}
+			$should_add = array(
+				'text_url'                         => array( 'protocols', '_cmb2_protocols_checkbox' ),
+				'text_money'                       => array( 'before_field', '_cmb2_currency_text' ),
+				'text_time'                        => array( 'time_format', '_cmb2_time_format' ),
+				'text_datetime_timestamp_timezone' => array( 'time_format', '_cmb2_time_format' ),
+				'text_datetime_timestamp'          => array( 'time_format', '_cmb2_time_format' ),
+				'text_date'                        => array( 'date_format', '_cmb2_date_format' ),
+				'text_date_timestamp'              => array( 'date_format', '_cmb2_date_format' ),
+				'select_timezone'                  => array( 'timezone_meta_key', '_cmb2_time_zone_key_select' ),
+				'text_datetime_timestamp_timezone' => array( 'timezone_meta_key', '_cmb2_time_zone_key_select' ),
+			);
+			foreach ( $should_add as $arg => $value ) {
+				$this->add_arg( $arg, $value );
+			}
+			$metabox->add_field( $this->field_args );
+		}
+
+		/**
+		 * Get the metabox post meta.
+		 *
+		 * @since  0.2.0
+		 * @param object $user_meta_box Post object.
+		 */
+		public function get_meta_data( $user_meta_box ) {
+
+			$prefix     = $this->prefix;
+			$metabox_id = $user_meta_box->ID;
+
+			$meta_data['title']          = get_the_title( $metabox_id );
+			$meta_data['id']             = str_replace( '-', '_', $user_meta_box->post_name );
+			$meta_data['post_type']      = cmbf( $metabox_id, $prefix . 'post_type_multicheckbox' );
+			$post_id_text                = cmbf( $metabox_id, $prefix . 'post_id_text' );
+			$meta_data['show_on']        = explode( ',', $post_id_text );
+			$meta_data['context']        = cmbf( $metabox_id, $prefix . 'context_radio' );
+			$meta_data['priority']       = cmbf( $metabox_id, $prefix . 'priority_radio' );
+			$meta_data['show_names']     = cmbf( $metabox_id, $prefix . 'show_names' ) === 'on' ? true : false;
+			$meta_data['disable_styles'] = cmbf( $metabox_id, $prefix . 'disable_styles' ) === 'on' ? true : false;
+			$meta_data['closed']         = cmbf( $metabox_id, $prefix . 'closed' ) === 'on' ? true : false;
+			$meta_data['fields']         = cmbf( $metabox_id, $prefix . 'custom_field' );
+
+			return $meta_data;
 		}
 
 		/**
@@ -274,112 +363,34 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 				'suppress_filters' => false,
 			);
 
-			$prefix = $this->prefix;
-
 			$user_meta_boxes = new WP_Query( $args );
 
 			foreach ( $user_meta_boxes->posts as $user_meta_box ) {
 
-				$metabox_id = $user_meta_box->ID;
-
-				$title          = get_the_title( $metabox_id );
-				$id             = str_replace( '-', '_', $user_meta_box->post_name );
-				$post_type      = cmbf( $metabox_id, $prefix . 'post_type_multicheckbox' );
-				$post_id_text   = cmbf( $metabox_id, $prefix . 'post_id_text' );
-				$show_on        = explode( ',', $post_id_text );
-				$context        = cmbf( $metabox_id, $prefix . 'context_radio' );
-				$priority       = cmbf( $metabox_id, $prefix . 'priority_radio' );
-				$show_names     = cmbf( $metabox_id, $prefix . 'show_names' ) === 'on' ? true : false;
-				$disable_styles = cmbf( $metabox_id, $prefix . 'disable_styles' ) === 'on' ? true : false;
-				$closed         = cmbf( $metabox_id, $prefix . 'closed' ) === 'on' ? true : false;
-				$fields         = cmbf( $metabox_id, $prefix . 'custom_field' );
-
+				$meta_data = $this->get_meta_data( $user_meta_box );
 				/**
 				 * Initiate the metabox.
 				 */
-				if ( $post_id_text !== '' ) {
-					${ 'cmb_' . $id } = new_cmb2_box( array(
-						'id'           => $id,
-						'title'        => $title,
-						'object_types' => $post_type, // Post type.
-						'show_on'      => array(
-							'key'   => 'id',
-							'value' => $show_on,
-						),
-						'context'      => $context,
-						'priority'     => $priority,
-						'show_names'   => $show_names,
-						'cmb_styles'   => $disable_styles,
-						'closed'       => $closed,
-					) );
-				} else {
-					${ 'cmb_' . $id } = new_cmb2_box( array(
-						'id'           => $id,
-						'title'        => $title,
-						'object_types' => $post_type, // Post type.
-						'context'      => $context,
-						'priority'     => $priority,
-						'show_names'   => $show_names,
-						'cmb_styles'   => $disable_styles,
-						'closed'       => $closed,
-					) );
+				$new_cmb2_args = array(
+					'id'           => $meta_data['id'],
+					'title'        => $meta_data['title'],
+					'object_types' => $meta_data['post_type'], // Post type.
+					'context'      => $meta_data['context'],
+					'priority'     => $meta_data['priority'],
+					'show_names'   => $meta_data['show_names'],
+					'cmb_styles'   => $meta_data['disable_styles'],
+					'closed'       => $meta_data['closed'],
+				);
+				if ( ! empty( $meta_data['show_on'] ) ) {
+					$new_cmb2_args['show_on'] = array(
+						'key'   => 'id',
+						'value' => $meta_data['show_on'],
+					);
 				}
+				${ 'cmb_' . $meta_data['id'] } = new_cmb2_box( $new_cmb2_args );
+				foreach ( $meta_data['fields'] as $field ) {
 
-				foreach ( $fields as $field ) {
-
-					$field = wp_parse_args( $field, array(
-						'_cmb2_name_text'           => null,
-						'_cmb2_decription_textarea' => null,
-						'_cmb2_field_type_select'   => null,
-						'_cmb2_options_textarea'    => false,
-						'_cmb2_repeatable_checkbox' => null,
-						'_cmb2_none_checkbox'       => null,
-					) );
-
-					$this->field = $field;
-					$field_id    = '_' . strtolower( str_replace( ' ', '_', $field['_cmb2_name_text'] ) );
-
-					$this->field_args = array(
-						'name' => $field['_cmb2_name_text'],
-						'desc' => $field['_cmb2_decription_textarea'],
-						'id'   => $field_id,
-						'type' => $field['_cmb2_field_type_select'],
-					);
-
-					$field_options = $field['_cmb2_options_textarea'];
-					if ( $field_options ) {
-						$this->add_option_arg( $field_options );
-					}
-					$should_add_strpos = array(
-						array( 'tax', 'taxonomy', '_cmb2_tax_options_radio_inline' ),
-						array( 'tax', array( 'options', 'no_terms_text' ), '_cmb2_no_terms_text' ),
-						array( 'multicheck', 'select_all_button', '_cmb2_select_all_checkbox' ),
-					);
-					foreach ( $should_add_strpos as $arg_value ) {
-						$this->add_strpos_arg( $arg_value );
-					}
-					if ( $field['_cmb2_repeatable_checkbox'] === 'on' && $this->is_repeatable( $field['_cmb2_field_type_select'] ) ) {
-						$this->field_args['repeatable'] = true;
-					}
-					if ( $field['_cmb2_none_checkbox'] === 'on' && $this->has_options( $field['_cmb2_field_type_select'] ) ) {
-						$this->field_args['show_option_none'] = true;
-					}
-					$should_add = array(
-						'text_url'                         => array( 'protocols', '_cmb2_protocols_checkbox' ),
-						'text_money'                       => array( 'before_field', '_cmb2_currency_text' ),
-						'text_time'                        => array( 'time_format', '_cmb2_time_format' ),
-						'text_datetime_timestamp_timezone' => array( 'time_format', '_cmb2_time_format' ),
-						'text_datetime_timestamp'          => array( 'time_format', '_cmb2_time_format' ),
-						'text_date'                        => array( 'date_format', '_cmb2_date_format' ),
-						'text_date_timestamp'              => array( 'date_format', '_cmb2_date_format' ),
-						'select_timezone'                  => array( 'timezone_meta_key', '_cmb2_time_zone_key_select' ),
-						'text_datetime_timestamp_timezone' => array( 'timezone_meta_key', '_cmb2_time_zone_key_select' ),
-					);
-					foreach ( $should_add as $arg => $value ) {
-						$this->add_arg( $arg, $value );
-					}
-					${ 'cmb_' . $id }->add_field( $this->field_args );
-
+					$this->add_field( $field, ${ 'cmb_' . $meta_data['id'] } );
 				}
 			}
 		}

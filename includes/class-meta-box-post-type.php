@@ -241,11 +241,6 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 		 */
 		public function init_meta_box_settings() {
 
-			global $post;
-
-										echo '<pre>';
-										print_r( $post );
-										echo '</pre>';
 			$prefix            = $this->prefix;
 			$post_type_objects = get_post_types( '', 'object' );
 			$post_types        = array();

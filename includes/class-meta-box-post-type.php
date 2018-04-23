@@ -467,7 +467,6 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 					'file'                             => 'file: ' . __( 'Image/File upload', 'cmb2-admin-extension' ) . ' *†',
 					'file_list'                        => 'file_list: ' . __( 'Image/File list upload', 'cmb2-admin-extension' ),
 					'oembed'                           => 'oembed: ' . __( 'Converts oembed urls (instagram, twitter, youtube, etc. oEmbed in the Codex)', 'cmb2-admin-extension' ),
-					// 'group'                            => 'group: ' . __( 'Hybrid field that supports adding other fields as a repeatable group.', 'cmb2-admin-extension' ) . ' *',
 				),
 			) );
 

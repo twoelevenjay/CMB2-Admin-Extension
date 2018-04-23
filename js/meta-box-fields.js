@@ -89,7 +89,7 @@ jQuery( function( $ ) {
 		 *
 		 */
 		isRepeatableChanged: function() {
-            $( '#_cmb2_repeatable_group' ).on( 'change', function( e ) {
+            $( '#_cmb2_repeatable_group' ).on( 'change', function() {
                 cmb2MetaBoxField.showHideSide();
             } );
 		},

@@ -41,10 +41,13 @@ jQuery( function( $ ) {
 		 */
 		showHideSide: function() {
             var isRepeatable = $( '#_cmb2_repeatable_group' ).is( ':checked' );
-			var repeatableOptions = $( '.cmb2-id--cmb2-group-description, .cmb2-id--cmb2-entry-name' );
+			var repeatableOptions = $( '.cmb2-id--cmb2-group-description, .cmb2-id--cmb2-entry-name, .cmb2-id--cmb2-get-post-meta-repeatable, .cmb2-id--cmb2-cmbf-repeatable' );
+			var mainCodeExamples = $( '.repeatable .cmb-type-textarea-code' );
 			repeatableOptions.hide();
+			mainCodeExamples.show();
 			if ( isRepeatable ) {
 				repeatableOptions.show();
+				mainCodeExamples.hide();
 			}
 		},
 
@@ -106,6 +109,9 @@ jQuery( function( $ ) {
             $( '.cmb2-metabox' ).on( 'change keyup', '.field_name', function() {
                 this.displayUsageFunctions();
             }.bind( this ) );
+            $( '#title, #post_name' ).on( 'change keyup', function() {
+                this.displayUsageFunctions();
+            }.bind( this ) );
 		},
 
 		/**
@@ -121,9 +127,16 @@ jQuery( function( $ ) {
 			var wrapper = fieldName.closest( '.cmb-field-list' );
 			var getPostMeta = $( '.get_post_meta', wrapper );
 			var cmbf = $( '.cmbf', wrapper );
+			var getPostMetaRepeatable = $( '.get_post_meta_repeatable' );
+			var cmbfRepeatable = $( '.cmbf_repeatable' );
 			var fieldNameVal = fieldName.val().toLowerCase().replace( / /g, '_' );
+			var postName = $( '#post_name' ).val();
+			postName = postName ? postName : $( '#title' ).val().toLowerCase().replace( / /g, '_' );
+			postName = postName ? postName : $( '#post_ID' ).val();
 			getPostMeta.val( 'get_post_meta( get_the_ID(), \'_' + fieldNameVal + '\', true );' );
 			cmbf.val( 'cmbf( get_the_ID(), \'_' + fieldNameVal + '\' );' );
+			getPostMetaRepeatable.val( 'get_post_meta( get_the_ID(), \'_' + postName + '\', true );' );
+			cmbfRepeatable.val( 'cmbf( get_the_ID(), \'_' + postName + '\' );' );
 		},
 
 		/**

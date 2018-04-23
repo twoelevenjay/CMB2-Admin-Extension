@@ -1,3 +1,10 @@
 .cmb_hide_field {
     display: none;
 }
+
+.cmbf,
+.get_post_meta,
+.cmbf_repeatable,
+.get_post_meta_repeatable {
+	white-space: nowrap;
+}

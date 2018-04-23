@@ -413,7 +413,7 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 				if ( $meta_data['repeatable'] ) {
 
 					$group_field_id = ${ 'cmb_' . $meta_data['id'] }->add_field( array(
-						'id'          => $this->prefix . $meta_data['id'] . '_repeatable_group',
+						'id'          => '_' . $meta_data['id'],
 						'type'        => 'group',
 						'description' => $meta_data['group_desc'],
 						'options'     => array(

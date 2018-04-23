@@ -241,6 +241,11 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 		 */
 		public function init_meta_box_settings() {
 
+			global $post;
+
+										echo '<pre>';
+										print_r( $post );
+										echo '</pre>';
 			$prefix            = $this->prefix;
 			$post_type_objects = get_post_types( '', 'object' );
 			$post_types        = array();
@@ -351,6 +356,34 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 				'id'     => $prefix . 'entry_name',
 				'type'   => 'text',
 				'inline' => true,
+			) );
+
+			$cmb->add_field( array(
+				'name'        => 'Native Usage',
+				'description' => 'This is the WordPress ffunction used to get post meta. This should be treated as a starting point.',
+				'id'          => $prefix . 'get_post_meta_repeatable',
+				'type'        => 'textarea_code',
+				'save_field'  => false,
+				'attributes'  => array(
+					'class'    => 'get_post_meta_repeatable',
+					'rows'     => 2,
+					'readonly' => 'readonly',
+					'disabled' => 'disabled',
+				),
+			) );
+
+			$cmb->add_field( array(
+				'name'        => 'CMB2AE Usage',
+				'description' => 'This is the CMB2 Admin Extension function used to get post meta. This should be treated as a starting point.',
+				'id'          => $prefix . 'cmbf_repeatable',
+				'type'        => 'textarea_code',
+				'save_field'  => false,
+				'attributes'  => array(
+					'class'    => 'cmbf_repeatable',
+					'rows'     => 2,
+					'readonly' => 'readonly',
+					'disabled' => 'disabled',
+				),
 			) );
 		}
 

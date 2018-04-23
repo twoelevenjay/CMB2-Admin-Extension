@@ -2,6 +2,9 @@
 
 ## Changelog
 
+### 0.2.1 beta 04.23.2018
+* Fix show / hide repeatable group additional options.
+
 ### 0.2.0 beta 04.23.2018
 * Add the option to add fields to a repeatable group.
 * Fix showing the correct support fields when adding / removing a field to a metabox.

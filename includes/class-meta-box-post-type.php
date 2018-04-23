@@ -332,6 +332,13 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 				'type' => 'checkbox',
 			) );
 
+			$cmb->add_field( array(
+				'name' => __( 'Repeatable Group', 'cmb2-admin-extension' ),
+				'desc' => __( 'Add these fields to a repeatable group.', 'cmb2-admin-extension' ),
+				'id'   => $prefix . 'repeatable_group',
+				'type' => 'checkbox',
+			) );
+
 		}
 
 		/**

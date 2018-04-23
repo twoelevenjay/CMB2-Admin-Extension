@@ -266,8 +266,9 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 		 * @since  0.2.0
 		 * @param array  $field Field definition.
 		 * @param object $metabox Metabox object.
+		 * @param mixed  $group_field_id If is reaptable group this is the ID, and false otherwise.
 		 */
-		public function add_field( $field, $metabox ) {
+		public function add_field( $field, $metabox, $group_field_id ) {
 
 			$field = wp_parse_args( $field, array(
 				'_cmb2_name_text'           => null,
@@ -320,7 +321,26 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 			foreach ( $should_add as $arg => $value ) {
 				$this->add_arg( $arg, $value );
 			}
+			if ( $group_field_id ) {
+				$metabox->add_group_field( $group_field_id, array(
+					'name' => 'Entry Title',
+					'id'   => 'title',
+					'type' => 'text',
+				) );
+				return;
+			}
 			$metabox->add_field( $this->field_args );
+		}
+
+		/**
+		 * Covert the checkbox value of 'on' / '' to boolean.
+		 *
+		 * @since  0.2.0
+		 * @param string $meta Sting value of checkbox on.
+		 */
+		public function string_to_bool( $meta ) {
+
+			return $meta === 'on' ? true : false;
 		}
 
 		/**
@@ -337,13 +357,13 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 			$meta_data['title']          = get_the_title( $metabox_id );
 			$meta_data['id']             = str_replace( '-', '_', $user_meta_box->post_name );
 			$meta_data['post_type']      = cmbf( $metabox_id, $prefix . 'post_type_multicheckbox' );
-			$post_id_text                = cmbf( $metabox_id, $prefix . 'post_id_text' );
-			$meta_data['show_on']        = $post_id_text !== '' ? explode( ',', $post_id_text ) : array();
+			$meta_data['post_id_text']   = cmbf( $metabox_id, $prefix . 'post_id_text' );
 			$meta_data['context']        = cmbf( $metabox_id, $prefix . 'context_radio' );
 			$meta_data['priority']       = cmbf( $metabox_id, $prefix . 'priority_radio' );
-			$meta_data['show_names']     = cmbf( $metabox_id, $prefix . 'show_names' ) === 'on' ? true : false;
-			$meta_data['disable_styles'] = cmbf( $metabox_id, $prefix . 'disable_styles' ) === 'on' ? true : false;
-			$meta_data['closed']         = cmbf( $metabox_id, $prefix . 'closed' ) === 'on' ? true : false;
+			$meta_data['show_names']     = $this->string_to_bool( cmbf( $metabox_id, $prefix . 'show_names' ) );
+			$meta_data['disable_styles'] = $this->string_to_bool( cmbf( $metabox_id, $prefix . 'disable_styles' ) );
+			$meta_data['closed']         = $this->string_to_bool( cmbf( $metabox_id, $prefix . 'closed' ) );
+			$meta_data['repeatable']     = $this->string_to_bool( cmbf( $metabox_id, $prefix . 'repeatable_group' ) );
 			$meta_data['fields']         = cmbf( $metabox_id, $prefix . 'custom_field' );
 
 			return $meta_data;
@@ -381,16 +401,33 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 					'cmb_styles'   => $meta_data['disable_styles'],
 					'closed'       => $meta_data['closed'],
 				);
-				if ( ! empty( $meta_data['show_on'] ) ) {
+				if ( $meta_data['post_id_text'] !== '' ) {
+
 					$new_cmb2_args['show_on'] = array(
 						'key'   => 'id',
-						'value' => $meta_data['show_on'],
+						'value' => explode( ',', $meta_data['post_id_text'] ),
 					);
 				}
 				${ 'cmb_' . $meta_data['id'] } = new_cmb2_box( $new_cmb2_args );
+				$meta_box                      = ${ 'cmb_' . $meta_data['id'] };
+				$group_field_id                = false;
+				if ( $meta_data['repeatable'] ) {
+
+					$group_field_id = ${ 'cmb_' . $meta_data['id'] }->add_field( array(
+						'id'          => $this->prefix . $meta_data['id'] . 'repeatable_group',
+						'type'        => 'group',
+						'description' => __( 'Generates reusable form entries', 'cmb2' ),
+						'options'     => array(
+							'group_title'   => __( 'Entry {#}', 'cmb2' ),
+							'add_button'    => __( 'Add Another Entry', 'cmb2' ),
+							'remove_button' => __( 'Remove Entry', 'cmb2' ),
+							'sortable'      => true,
+						),
+					) );
+				}
 				foreach ( $meta_data['fields'] as $field ) {
 
-					$this->add_field( $field, ${ 'cmb_' . $meta_data['id'] } );
+					$this->add_field( $field, $meta_box, $group_field_id );
 				}
 			}
 		}

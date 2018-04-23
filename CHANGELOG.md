@@ -2,6 +2,9 @@
 
 ## Changelog
 
+### 0.2.2 beta 04.23.2018
+* Show different example code for repeatable groups.
+
 ### 0.2.1 beta 04.23.2018
 * Fix show / hide repeatable group additional options.
 

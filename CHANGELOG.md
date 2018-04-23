@@ -2,6 +2,10 @@
 
 ## Changelog
 
+### 0.2.0 beta 04.23.2018
+* Add the option to add fields to a repeatable group.
+* Fix showing the correct support fields when adding / removing a field to a metabox.
+
 ### 0.1.8 beta 04.06.2018
 * Fix the argument order in the wp_enqueue_script call.
 

@@ -3,7 +3,7 @@ name: Deploy to WordPress SVN
 on:
   push:
     tags:
-      - 'v*.*.*'  # Trigger deployment when a new tag is pushed.
+      - 'v*.*.*'
 
 jobs:
   deploy:
@@ -12,14 +12,17 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 1
 
-      - name: WordPress Plugin Deploy
-        uses: 10up/action-wordpress-plugin-deploy@v1.4.0
-        with:
-          svn-url: https://plugins.svn.wordpress.org/cmb2-admin-extension/
-          plugin-slug: cmb2-admin-extension
-          svn-username: ${{ secrets.WORDPRESS_USERNAME }}
-          svn-password: ${{ secrets.WORDPRESS_PASSWORD }}
-          generate-zip: true
+      - name: Install Subversion
+        run: sudo apt-get install subversion
+
+      - name: Deploy to WordPress SVN
+        env:
+          SVN_USERNAME: ${{ secrets.WORDPRESS_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.WORDPRESS_PASSWORD }}
+        run: |
+          svn co https://plugins.svn.wordpress.org/cmb2-admin-extension/ svn-dir
+          rsync -av --delete --exclude=".git" ./ svn-dir/trunk/
+          cd svn-dir
+          svn add --force trunk/*
+          svn commit -m "Deploying version ${{ github.ref }}" --username $SVN_USERNAME --password $SVN_PASSWORD --non-interactive

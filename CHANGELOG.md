@@ -2,7 +2,19 @@
 
 ## Changelog
 
-### 1.0.3 beta 10.19.2024
+### 1.0.4 10.19.2024
+* Add tag generation to workflow.
+
+### 1.0.3 10.19.2024
+* Add short description to the readme file.
+
+### 1.0.2 10.19.2024
+* Test version bump
+
+### 1.0.1 10.19.2024
+* Github workflow updates.
+
+### 1.0.0 10.19.2024
 * Major version release with stability improvements and compatibility update for WordPress 6.0.
 * Improved user interface for managing meta boxes from the WordPress admin.
 

@@ -3,26 +3,48 @@ name: Deploy to WordPress SVN
 on:
   push:
     tags:
-      - 'v*.*.*'
+      - 'v*.*.*'  # Trigger deployment only when a new version tag is pushed.
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout the repository
       - name: Checkout Repository
         uses: actions/checkout@v2
 
+      # Step 2: Install Subversion
       - name: Install Subversion
         run: sudo apt-get install subversion
 
-      - name: Deploy to WordPress SVN
+      # Step 3: Deploy to /trunk/ in WordPress SVN
+      - name: Deploy to WordPress SVN /trunk/
         env:
           SVN_USERNAME: ${{ secrets.WORDPRESS_USERNAME }}
           SVN_PASSWORD: ${{ secrets.WORDPRESS_PASSWORD }}
         run: |
+          # Checkout the WordPress.org plugin repository
           svn co https://plugins.svn.wordpress.org/cmb2-admin-extension/ svn-dir
+          
+          # Synchronize files from GitHub repository to the SVN /trunk/ directory
           rsync -av --delete --exclude=".git" ./ svn-dir/trunk/
+          
+          # Navigate to the SVN directory and add all changes
           cd svn-dir
           svn add --force trunk/*
+          
+          # Commit changes to /trunk/
           svn commit -m "Deploying version ${{ github.ref }}" --username $SVN_USERNAME --password $SVN_PASSWORD --non-interactive
+
+      # Step 4: Create a tag in WordPress SVN /tags/
+      - name: Create SVN Tag
+        env:
+          SVN_USERNAME: ${{ secrets.WORDPRESS_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.WORDPRESS_PASSWORD }}
+        run: |
+          # Extract version number from GitHub tag
+          VERSION=${GITHUB_REF/refs\/tags\/v/}
+          
+          # Create a new tag in the WordPress SVN repository by copying /trunk/ to /tags/version_number/
+          svn cp https://plugins.svn.wordpress.org/cmb2-admin-extension/trunk https://plugins.svn.wordpress.org/cmb2-admin-extension/tags/$VERSION -m "Tagging version $VERSION" --username $SVN_USERNAME --password $SVN_PASSWORD --non-interactive

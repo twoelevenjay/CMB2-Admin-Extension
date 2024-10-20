@@ -1,6 +1,10 @@
 # CMB2 Admin Extension
-[![Build Status](https://travis-ci.org/twoelevenjay/CMB2-Admin-Extension.svg?branch=master)](https://travis-ci.org/twoelevenjay/CMB2-Admin-Extension)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/twoelevenjay/CMB2-Admin-Extension/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/twoelevenjay/CMB2-Admin-Extension/?branch=master)  
+
+[![Build Status](https://scrutinizer-ci.com/g/twoelevenjay/CMB2-Admin-Extension/badges/build.png?b=master)](https://scrutinizer-ci.com/g/twoelevenjay/CMB2-Admin-Extension/build-status/master)
+[![Code Quality](https://scrutinizer-ci.com/g/twoelevenjay/CMB2-Admin-Extension/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/twoelevenjay/CMB2-Admin-Extension/)
+[![Code Coverage](https://scrutinizer-ci.com/g/twoelevenjay/CMB2-Admin-Extension/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/twoelevenjay/CMB2-Admin-Extension/)
+[![Reliability](https://scrutinizer-ci.com/g/twoelevenjay/CMB2-Admin-Extension/badges/reliability-score.png?b=master)](https://scrutinizer-ci.com/g/twoelevenjay/CMB2-Admin-Extension/)
+
 **Contributors:**         twoelevenjay  
 **Donate link:**          https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=leon%40211j%2ecom&lc=MQ&item_name=Two%20Eleven%20Jay&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest  
 **Tags:**                 metaboxes, forms, fields, options, settings  

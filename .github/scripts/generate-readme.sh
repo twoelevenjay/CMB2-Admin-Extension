@@ -1,72 +1,85 @@
 #!/bin/bash
 
-# Path to store the readme.txt file
-output_file=${1:-readme.txt}
+# Define the source markdown files and the output file
+README_MD="readme.md"
+CHANGELOG_MD="CHANGELOG.md"
+OUTPUT_FILE=".github/temp/readme.txt"
 
-# Generate readme.txt for WordPress.org from readme.md and changelog.md
+# Create the output directory if it doesn't exist
+mkdir -p .github/temp
 
-# Start with the contents of readme.md
-echo "Generating $output_file from readme.md and changelog.md..."
+# Helper function to extract content based on headers
+extract_section() {
+    local file=$1
+    local start_pattern=$2
+    local end_pattern=$3
+    awk "/$start_pattern/{flag=1;next}/$end_pattern/{flag=0}flag" "$file" | sed 's/\*\*//g' # Remove any '**' markers
+}
 
-# Clear previous readme.txt if it exists
-> "$output_file"
+# Extract the latest version and description from the changelog
+extract_latest_version() {
+    awk '/##/{version=$2; next} /^$/{next} {description=$0; print version, description; exit}' "$CHANGELOG_MD"
+}
 
-# Extract the plugin header section from readme.txt (template)
-cat <<EOT >> "$output_file"
-=== CMB2 Admin Extension ===
-Contributors: twoelevenjay
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=leon%40211j%2ecom&lc=MQ&item_name=Two%20Eleven%20Jay&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
-Tags: metaboxes, forms, fields, options, settings
-Requires at least: 4.5
-Tested up to: 6.6.2
-Requires PHP: 8.1
-Stable tag: 1.0.4
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+# Start generating the readme.txt
+{
+    # Extract the title from the first line of readme.md
+    title=$(head -n 1 "$README_MD" | sed 's/# //')
+    echo "=== $title ==="
 
-EOT
+    # Extract fields from the readme.md file
+    contributors=$(grep -i "Contributors:" "$README_MD" | sed 's/.*Contributors: */Contributors: /;s/\*\*//g')
+    echo "${contributors:-Contributors: Unknown}"
 
-# Append the description from readme.md
-echo "== Description ==" >> "$output_file"
-sed -n '/# CMB2 Admin Extension/,$p' readme.md | sed '1d' >> "$output_file"  # Skipping the first line (header) of readme.md
+    tags=$(grep -i "Tags:" "$README_MD" | sed 's/.*Tags: */Tags: /;s/\*\*//g')
+    echo "${tags:-Tags: Not specified}"
 
-# Add installation instructions
-cat <<EOT >> "$output_file"
+    requires_at_least=$(grep -i "Requires at least:" "$README_MD" | sed 's/.*Requires at least:/Requires at least:/;s/\*\*//g')
+    echo "${requires_at_least:-Requires at least: Not specified}"
 
-== Installation ==
-1. Extract the .zip file and upload its contents to the \`/wp-content/plugins/\` directory. Alternatively, you can install directly through the Plugin directory within your WordPress admin.
-2. Activate the plugin through the 'Plugins' screen in WordPress.
-3. Navigate to the CMB2 Admin Extension interface within the WordPress admin to create and manage meta boxes.
+    tested_up_to=$(grep -i "Tested up to:" "$README_MD" | sed 's/.*Tested up to:/Tested up to:/;s/\*\*//g')
+    echo "${tested_up_to:-Tested up to: Not specified}"
 
-== Frequently Asked Questions ==
-= Do I need CMB2 to use this extension? =
-Yes, CMB2 is required for this extension to work.
+    requires_php=$(grep -i "Requires PHP:" "$README_MD" | sed 's/.*Requires PHP:/Requires PHP:/;s/\*\*//g')
+    echo "${requires_php:-Requires PHP: Not specified}"
 
-= Where can I find documentation? =
-Documentation will be available in the [GitHub wiki](https://github.com/twoelevenjay/CMB2-Admin-Extension/wiki).
+    stable_tag=$(grep -i "Stable tag:" "$README_MD" | sed 's/.*Stable tag:/Stable tag:/;s/\*\*//g')
+    echo "${stable_tag:-Stable tag: Not specified}"
 
-EOT
+    license=$(grep -i "License:" "$README_MD" | sed 's/.*License:/License:/;s/\*\*//g')
+    echo "${license:-License: GPLv2 or later}"
 
-# Add changelog from changelog.md
-echo "== Changelog ==" >> "$output_file"
-cat changelog.md >> "$output_file"
+    license_uri=$(grep -i "License URI:" "$README_MD" | sed 's/.*License URI:/License URI:/;s/\*\*//g')
+    echo "${license_uri:-License URI: http://www.gnu.org/licenses/gpl-2.0.html}"
+    echo ""
 
-# Add upgrade notice
-cat <<EOT >> "$output_file"
+    # Extract description section
+    echo "== Description =="
+    extract_section "$README_MD" "## Description" "##"
+    echo ""
 
-== Upgrade Notice ==
-= 1.0.4 =
-This major version introduces stability improvements and compatibility with the latest WordPress version.
+    # Extract installation section
+    echo "== Installation =="
+    extract_section "$README_MD" "## Installation" "##"
+    echo ""
 
-== Translation ==
-* Available in French and Portuguese. Contributions are welcome for other languages.
+    # Extract FAQ section
+    echo "== Frequently Asked Questions =="
+    extract_section "$README_MD" "## Frequently Asked Questions" "##"
+    echo ""
 
-== 3rd Party Resources ==
-* [CMB2](https://github.com/WebDevStudios/CMB2/) from [WebDevStudios](https://webdevstudios.com).
+    # Extract changelog section from changelog.md
+    echo "== Changelog =="
+    awk '/##/{flag=1;next}/##/{flag=0}flag' "$CHANGELOG_MD"
+    echo ""
 
-== Contribution ==
-All contributions are welcome. Please read the [CONTRIBUTING](https://github.com/twoelevenjay/CMB2-Admin-Extension/blob/master/CONTRIBUTING.md) doc for more details.
+    # Automatically populate the latest version and description for upgrade notice
+    echo "== Upgrade Notice =="
+    latest_version_and_description=$(extract_latest_version)
+    echo "Upgrade to version $latest_version_and_description"
+    echo ""
+    
+} > "$OUTPUT_FILE"
 
-EOT
-
-echo "$output_file generated successfully!"
+# Inform the user of output
+echo "readme.txt has been generated at $OUTPUT_FILE"

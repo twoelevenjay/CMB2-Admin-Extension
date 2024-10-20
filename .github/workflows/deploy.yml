@@ -30,6 +30,7 @@ jobs:
         run: |
           svn co https://plugins.svn.wordpress.org/cmb2-admin-extension/ svn-dir
           rsync -av --delete --exclude=".git" ./ svn-dir/trunk/
+          cp .github/temp/readme.txt svn-dir/trunk/readme.txt  # Copy the newly generated readme.txt
           cd svn-dir
           svn add --force trunk/*
           svn commit -m "Deploying version ${{ github.ref }}" --username $SVN_USERNAME --password $SVN_PASSWORD --non-interactive

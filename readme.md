@@ -11,16 +11,18 @@
 CMB2 Admin Extension adds a user interface for admins to create CMB2 meta boxes from the WordPress admin. Tested with the most current version of CMB2.
 
 ## Description
-
 CMB2 Admin Extension adds a user interface for admins to create CMB2 meta boxes from the WordPress admin.
 
 **[Download plugin on wordpress.org](https://wordpress.org/plugins/cmb2-admin-extension/)**
 
+### Requirements:
 CMB2 Admin Extension requires the most current version of the CMB2 plugin. You can find that [here](https://wordpress.org/plugins/cmb2/) . And you can find documentation on CMB2 [here](https://github.com/WebDevStudios/CMB2/wiki/Field-Types#types).
 
-### Features:
-
-* Publish meta boxes from the post edit screen for the post edit screen
+### Key Features:
+* Create and manage CMB2 meta boxes from the admin panel without writing code.
+* Support for a wide range of field types, including text, file upload, date picker, and more.
+* Seamlessly integrate custom fields into post types, pages, or user profiles.
+* Full compatibility with the latest version of WordPress.
 
 ### Translation
 * French
@@ -31,7 +33,6 @@ CMB2 Admin Extension requires the most current version of the CMB2 plugin. You c
 * CMB2 documentation to come. It will be at [the CMB2 Admin Extension wiki](https://github.com/twoelevenjay/CMB2-Admin-Extension/wiki) on GitHub.
 
 ### 3rd Party Resources
-
 ##### Custom Field Types
 * [CMB2](https://github.com/WebDevStudios/CMB2/) from [WebDevStudios](https://webdevstudios.com).
 
@@ -39,10 +40,9 @@ CMB2 Admin Extension requires the most current version of the CMB2 plugin. You c
 All contributions welcome. Please read the [CONTRIBUTING](https://github.com/twoelevenjay/CMB2-Admin-Extension/blob/master/CONTRIBUTING.md) doc for more details.
 
 ## Installation
-
-1. Extract the .zip file for this plugin and upload its contents to the `/wp-content/plugins/` directory. Alternatively, you can install directly from the Plugin directory within your WordPress Install.
-1. Activate the plugin through the "Plugins" menu in WordPress.
+1. Extract the .zip file and upload its contents to the `/wp-content/plugins/` directory. Alternatively, you can install directly through the Plugin directory within your WordPress admin.
+2. Activate the plugin through the 'Plugins' screen in WordPress.
+3. Navigate to the CMB2 Admin Extension interface within the WordPress admin to create and manage meta boxes.
 
 ## Frequently Asked Questions
-
 FAQ's usually end up in the [github wiki](https://github.com/twoelevenjay/CMB2-Admin-Extension/wiki).

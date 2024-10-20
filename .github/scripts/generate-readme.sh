@@ -68,9 +68,9 @@ extract_latest_version() {
     extract_section "$README_MD" "## Frequently Asked Questions" "##"
     echo ""
 
-    # Extract changelog section from changelog.md
+    # Extract changelog section from changelog.md with version numbers
     echo "== Changelog =="
-    awk '/##/{flag=1;next}/##/{flag=0}flag' "$CHANGELOG_MD"
+    awk '/##/{if (version) print version; version=$0; next} {print}' "$CHANGELOG_MD" | sed 's/## /= /g; s/ beta//g; s/ [0-9]\{2\}\.[0-9]\{2\}\.[0-9]\{4\}//g'
     echo ""
 
     # Automatically populate the latest version and description for upgrade notice

@@ -1,39 +1,38 @@
 filter:
     excluded_paths:
-        - vendor/*            # Exclude any vendor dependencies (if applicable in the future)
-        - node_modules/*      # Exclude Node.js dependencies (if added later)
-        - .github/*           # Exclude GitHub Actions or other build files
-        - tests/*             # Exclude tests (if applicable)
-        - .git/*              # Exclude git metadata
-        - .scrutinizer.yml    # Exclude this configuration file itself
-        - readme.txt          # Exclude the generated readme.txt
+        - vendor/*
+        - node_modules/*
+        - .github/*
+        - tests/*
+        - .git/*
+        - .scrutinizer.yml
+        - readme.txt
 
 build:
     nodes:
         analysis:
             php:
-                version: ['8.2', '8.1', '8.0', '7.4']   # Supported PHP versions for WordPress
+                version: ['8.2', '8.1', '8.0', '7.4']   # Supported PHP versions
 
             before:
-                # Before analysis, ensure PHP CodeSniffer and PHP Mess Detector are available
+                # Ensure PHP CodeSniffer and PHP Mess Detector are available
                 - if [ ! -f ./vendor/bin/phpcs ]; then echo "Please ensure PHPCS is installed."; fi
                 - if [ ! -f ./vendor/bin/phpmd ]; then echo "Please ensure PHPMD is installed."; fi
 
 tools:
     php_analyzer: true            # Enable PHP static analysis
     php_mess_detector:
-        config: phpmd.xml         # Use the existing phpmd.xml configuration for PHPMD analysis
+        config: phpmd.xml         # Link to your provided phpmd.xml file
     php_code_sniffer:
         config:
-            standard: .phpcs.xml.dist  # Use your existing .phpcs.xml.dist for PHPCS configuration
-    php_code_coverage:
-        enabled: false            # No PHPUnit, so code coverage reporting is disabled
+            standard: .phpcs.xml.dist  # Link to your provided .phpcs.xml.dist configuration
+    external_code_coverage: false      # No code coverage for now (since PHPUnit isn't used)
     eslint:
-        enabled: true            # Enable JavaScript linting with ESLint (if applicable)
-        config: .eslintrc.json    # You can specify your ESLint config file here
+        enabled: true            # Enable JavaScript linting with ESLint
+        config: .eslintrc.json    # Reference your ESLint config (if available)
     js_hint:
-        enabled: true            # Enable JS Hint for analyzing JavaScript code
-    javascript: true               # Enable general JavaScript static analysis (if JS is added later)
+        enabled: true            # Enable JS Hint for JavaScript code analysis
+    javascript: true               # Enable general JavaScript static analysis
 
 checks:
     php:
@@ -49,5 +48,5 @@ checks:
 coding_style:
     php:
         spaces:
-            indent_with_spaces: true     # Enforce spaces (not tabs)
+            indent_with_spaces: true     # Enforce spaces instead of tabs
             line_length: 120             # Set max line length to 120 characters

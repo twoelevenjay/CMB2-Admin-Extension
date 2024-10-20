@@ -16,7 +16,7 @@ jobs:
           fetch-depth: 1
 
       - name: WordPress Plugin Deploy
-        uses: 10up/action-wordpress-plugin-deploy@v2
+        uses: 10up/action-wordpress-plugin-deploy@v1
         with:
           svn-url: https://plugins.svn.wordpress.org/cmb2-admin-extension/
           plugin-slug: cmb2-admin-extension

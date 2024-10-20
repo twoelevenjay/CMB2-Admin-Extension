@@ -1,83 +1,67 @@
 const fs = require('fs');
 const path = require('path');
 
-// Paths to markdown files
-const readmeMdPath = path.join(__dirname, '../../readme.md');
-const changelogMdPath = path.join(__dirname, '../../CHANGELOG.md');
-const outputTxtPath = path.join(__dirname, '../temp/readme.txt'); // Output in .github/temp
+const readmePath = path.join(__dirname, '../../readme.md');
+const changelogPath = path.join(__dirname, '../../CHANGELOG.md');
+const outputPath = path.join(__dirname, '../temp/readme.txt');
 
-// Read markdown files
-const readmeMd = fs.readFileSync(readmeMdPath, 'utf-8');
-const changelogMd = fs.readFileSync(changelogMdPath, 'utf-8');
+// Function to detect and remove badge lines
+function shouldRemoveLine(line) {
+  // Check if the line is a badge or related line (e.g., badges inside [])
+  return line.startsWith('[!') || line.includes('![Build Status]') || line.includes('badges/');
+}
 
-// Helper function to format markdown into WordPress plugin format
-function formatLine(line, nextLine) {
-    // Remove line with [Download plugin on wordpress.org] and the blank line before it
-    if (nextLine && nextLine.includes('[Download plugin on wordpress.org]')) {
-        return '';  // Ignore the current (likely blank) line before the removed line
+function formatLine(line) {
+  if (line.startsWith('### ')) {
+    return `= ${line.replace('### ', '').trim()} =\n`;
+  }
+  if (line.startsWith('## ')) {
+    return `== ${line.replace('## ', '').trim()} ==\n`;
+  }
+  if (line.startsWith('# ')) {
+    return `=== ${line.replace('# ', '').trim()} ===\n`;
+  }
+  // Replace **bold** and remove extra spaces
+  return line.replace(/\*\*/g, '').replace(/\s+/g, ' ') + '\n';
+}
+
+// Check if the output path (readme.txt) exists, and if not, create it
+function ensureFileExists(filePath) {
+  const dir = path.dirname(filePath);
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true }); // Create directories if needed
+  }
+  if (!fs.existsSync(filePath)) {
+    fs.writeFileSync(filePath, '', 'utf8'); // Create the file if it doesn't exist
+  }
+}
+
+// Read the files and filter the lines
+function processFiles() {
+  const readmeMd = fs.readFileSync(readmePath, 'utf8').split('\n');
+  const changelogMd = fs.readFileSync(changelogPath, 'utf8').split('\n');
+  const output = [];
+
+  // Process readme.md file
+  readmeMd.forEach(line => {
+    if (!shouldRemoveLine(line)) {
+      output.push(formatLine(line));
     }
+  });
 
-    // Headings
+  // Process changelog.md and format accordingly
+  changelogMd.forEach(line => {
     if (line.startsWith('### ')) {
-        return '=== ' + line.substring(4) + ' ===';
-    } else if (line.startsWith('## ')) {
-        return '== ' + line.substring(3) + ' ==';
-    } else if (line.startsWith('# ')) {
-        return '=== ' + line.substring(2) + ' ===';
+      output.push(`= ${line.replace('### ', '').trim()} =\n`);
+    } else {
+      output.push(line + '\n');
     }
+  });
 
-    // Bold text (WordPress readme uses just plain text for this) and remove extra spaces
-    line = line.replace(/\*\*(.*?)\*\*/g, '$1').replace(/\s{2,}/g, ' ');
-
-    // Unordered lists
-    if (line.startsWith('* ')) {
-        return line; // Keep unordered list as is
-    }
-
-    // Ordered lists (e.g., "1. ")
-    if (/^\d+\.\s/.test(line)) {
-        return line; // Keep ordered list as is
-    }
-
-    // Blank line
-    if (line.trim() === '') {
-        return line;
-    }
-
-    // For any other line, return unchanged but without extra spaces
-    return line.trim();
+  // Ensure the output file exists and write the content
+  ensureFileExists(outputPath);
+  fs.writeFileSync(outputPath, output.join(''), 'utf8');
+  console.log(`readme.txt generated at ${outputPath}`);
 }
 
-// Function to format the changelog
-function formatChangelog(changelogContent) {
-    const changelogLines = changelogContent.split('\n');
-    const formattedChangelog = changelogLines.map(line => {
-        // Match version lines like "### 1.0.0 (10.19.2024)" and convert it to "= 1.0.0 ="
-        const versionMatch = line.match(/###\s+(\d+\.\d+\.\d+)/);
-        if (versionMatch) {
-            return `= ${versionMatch[1]} =`;
-        }
-        // Format the rest of the changelog like the rest of the markdown
-        return formatLine(line, '');
-    });
-    return formattedChangelog.join('\n');
-}
-
-// Split the readme.md into lines
-const lines = readmeMd.split('\n');
-
-// Process each line and format it, while removing the empty line before specific removals
-const formattedReadmeLines = lines.map((line, i) => {
-    const nextLine = lines[i + 1] || '';
-    return formatLine(line, nextLine);
-});
-
-// Process changelog
-const formattedChangelog = formatChangelog(changelogMd);
-
-// Combine readme and changelog
-const finalOutput = [...formattedReadmeLines, '', formattedChangelog];
-
-// Write to readme.txt file
-fs.writeFileSync(outputTxtPath, finalOutput.join('\n').trim());
-console.log(`readme.txt has been generated at ${outputTxtPath}`);
+processFiles();

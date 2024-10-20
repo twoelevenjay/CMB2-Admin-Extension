@@ -2,7 +2,7 @@
 
 ## Changelog
 
-### 1.0.0 beta 10.19.2024
+### 1.0.3 beta 10.19.2024
 * Major version release with stability improvements and compatibility update for WordPress 6.0.
 * Improved user interface for managing meta boxes from the WordPress admin.
 

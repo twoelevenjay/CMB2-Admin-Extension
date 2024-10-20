@@ -5,7 +5,7 @@ Tags: metaboxes, forms, fields, options, settings
 Requires at least: 4.5
 Tested up to: 6.0
 Requires PHP: 7.0
-Stable tag: 1.0.0
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -27,7 +27,7 @@ Yes, CMB2 is required for this extension to work.
 Documentation will be available in the [GitHub wiki](https://github.com/twoelevenjay/CMB2-Admin-Extension/wiki).
 
 == Changelog ==
-= 1.0.0 =
+= 1.0.3 =
 * Major version release with stability improvements and compatibility update for WordPress 6.0.
 * Improved user interface for managing meta boxes from the WordPress admin.
 
@@ -41,7 +41,7 @@ Documentation will be available in the [GitHub wiki](https://github.com/twoeleve
 * Initial release.
 
 == Upgrade Notice ==
-= 1.0.0 =
+= 1.0.3 =
 This major version introduces stability improvements and compatibility with the latest WordPress version.
 
 == Translation ==

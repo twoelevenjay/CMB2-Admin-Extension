@@ -2,6 +2,10 @@
 
 ## Changelog
 
+### 1.0.0 beta 10.19.2024
+* Major version release with stability improvements and compatibility update for WordPress 6.0.
+* Improved user interface for managing meta boxes from the WordPress admin.
+
 ### 0.2.3 beta 04.23.2018
 * Fix headers already sent warning.
 

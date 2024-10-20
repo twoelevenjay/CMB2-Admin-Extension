@@ -1,0 +1,25 @@
+name: Deploy to WordPress SVN
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'  # Trigger deployment only when a new tag is pushed.
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - name: WordPress Plugin Deploy
+        uses: 10up/action-wordpress-plugin-deploy@v2
+        with:
+          svn-url: https://plugins.svn.wordpress.org/cmb2-admin-extension/
+          plugin-slug: cmb2-admin-extension
+          svn-username: ${{ secrets.WORDPRESS_USERNAME }}
+          svn-password: ${{ secrets.WORDPRESS_PASSWORD }}
+          generate-zip: true

@@ -22,20 +22,13 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Ignore .github directory
-.github/
-
 ### Ignore build artifacts ###
 /dist/
 /build/
 /public/
 
-### Ignore the temp folder ###
-/.github/temp/
-
-### Ignore workflow files (remove from tracking) ###
-/.github/scripts/generate-readme.js
-/.github/workflows/deploy.yml
+### Ignore the temp readme.txt file ###
+/.github/temp/readme.txt
 
 ### PHP Composer (if added in the future) ###
 /vendor/

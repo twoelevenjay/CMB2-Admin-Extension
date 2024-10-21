@@ -48,7 +48,7 @@ All contributions welcome. Please read the [CONTRIBUTING](https://github.com/two
 3. Navigate to the CMB2 Admin Extension interface within the WordPress admin to create and manage meta boxes.
 
 ## Frequently Asked Questions
-**Q: Do I need CMB2 to use this extension?**
-**A:** Yes, CMB2 is required for this extension to work.
-**Q: Where can I find documentation?**
+**Q: Do I need CMB2 to use this extension?**  
+**A:** Yes, CMB2 is required for this extension to work.  
+**Q: Where can I find documentation?**  
 **A:** Documentation will be available in the [GitHub wiki](https://github.com/twoelevenjay/CMB2-Admin-Extension/wiki).

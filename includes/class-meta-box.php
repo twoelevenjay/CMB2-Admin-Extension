@@ -66,7 +66,7 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 		 */
 		public static function get_instance() {
 			// If the single instance hasn't been set, set it now.
-			if ( self::$instance === null ) {
+			if ( null === self::$instance ) {
 				self::$instance = new self();
 			}
 
@@ -83,7 +83,7 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 
 			$cmb2_settings = get_option( '_cmb2_settings' );
 
-			if ( empty( $cmb2_settings ) || current_user_can( 'administrator' ) ) {
+			if ( empty( $cmb2_settings ) || current_user_can( 'manage_options' ) ) {
 				// No settings saved.
 				return true;
 			}
@@ -121,7 +121,7 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 		public function enqueue_scripts() {
 
 			$screen = get_current_screen();
-			if ( $screen->post_type === 'meta_box' ) {
+			if ( 'meta_box' === $screen->post_type ) {
 
 				wp_register_style( 'cmb2_admin_styles', CMB2AE_URI . '/css/meta-box-fields.css', array(), '0.0.8' );
 				wp_enqueue_style( 'cmb2_admin_styles' );
@@ -216,7 +216,7 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 		 */
 		public function add_strpos_arg( $arg_value ) {
 
-			if ( strpos( $this->field['_cmb2_field_type_select'], $arg_value[0] ) !== false && isset( $this->field[ $arg_value[2] ] ) && $this->field[ $arg_value[2] ] !== '' ) {
+			if ( strpos( false !== $this->field['_cmb2_field_type_select'], $arg_value[0] ) && isset( $this->field[ $arg_value[2] ] ) && '' !== $this->field[ $arg_value[2] ] ) {
 
 				if ( is_array( $arg_value[1] ) ) {
 					$this->field_args[ $arg_value[1][0] ][ $arg_value[1][1] ] = $this->field[ $arg_value[2] ];
@@ -257,7 +257,7 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 		 */
 		public static function should_add_arg( $field, $field_type, $field_key ) {
 
-			return ( $field['_cmb2_field_type_select'] === $field_type && ( ! empty( $field[ $field_key ] ) && $field[ $field_key ] !== '' ) );
+			return ( $field_type === $field['_cmb2_field_type_select'] && ( ! empty( $field[ $field_key ] ) && '' !== $field[ $field_key ] ) );
 		}
 
 		/**
@@ -270,14 +270,17 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 		 */
 		public function add_field( $field, $metabox, $group_field_id ) {
 
-			$field = wp_parse_args( $field, array(
-				'_cmb2_name_text'           => null,
-				'_cmb2_decription_textarea' => null,
-				'_cmb2_field_type_select'   => null,
-				'_cmb2_options_textarea'    => false,
-				'_cmb2_repeatable_checkbox' => null,
-				'_cmb2_none_checkbox'       => null,
-			) );
+			$field = wp_parse_args(
+				$field,
+				array(
+					'_cmb2_name_text'           => null,
+					'_cmb2_decription_textarea' => null,
+					'_cmb2_field_type_select'   => null,
+					'_cmb2_options_textarea'    => false,
+					'_cmb2_repeatable_checkbox' => null,
+					'_cmb2_none_checkbox'       => null,
+				)
+			);
 
 			$this->field = $field;
 			$field_id    = '_' . strtolower( str_replace( ' ', '_', $field['_cmb2_name_text'] ) );
@@ -301,22 +304,21 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 			foreach ( $should_add_strpos as $arg_value ) {
 				$this->add_strpos_arg( $arg_value );
 			}
-			if ( $field['_cmb2_repeatable_checkbox'] === 'on' && $this->is_repeatable( $field['_cmb2_field_type_select'] ) ) {
+			if ( 'on' === $field['_cmb2_repeatable_checkbox'] && $this->is_repeatable( $field['_cmb2_field_type_select'] ) ) {
 				$this->field_args['repeatable'] = true;
 			}
-			if ( $field['_cmb2_none_checkbox'] === 'on' && $this->has_options( $field['_cmb2_field_type_select'] ) ) {
+			if ( 'on' === $field['_cmb2_none_checkbox'] && $this->has_options( $field['_cmb2_field_type_select'] ) ) {
 				$this->field_args['show_option_none'] = true;
 			}
 			$should_add = array(
 				'text_url'                         => array( 'protocols', '_cmb2_protocols_checkbox' ),
 				'text_money'                       => array( 'before_field', '_cmb2_currency_text' ),
 				'text_time'                        => array( 'time_format', '_cmb2_time_format' ),
-				'text_datetime_timestamp_timezone' => array( 'time_format', '_cmb2_time_format' ),
+				'text_datetime_timestamp_timezone' => array( 'time_format', '_cmb2_time_format', 'timezone_meta_key', '_cmb2_time_zone_key_select' ),
 				'text_datetime_timestamp'          => array( 'time_format', '_cmb2_time_format' ),
 				'text_date'                        => array( 'date_format', '_cmb2_date_format' ),
 				'text_date_timestamp'              => array( 'date_format', '_cmb2_date_format' ),
 				'select_timezone'                  => array( 'timezone_meta_key', '_cmb2_time_zone_key_select' ),
-				'text_datetime_timestamp_timezone' => array( 'timezone_meta_key', '_cmb2_time_zone_key_select' ),
 			);
 			foreach ( $should_add as $arg => $value ) {
 				$this->add_arg( $arg, $value );
@@ -336,7 +338,7 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 		 */
 		public function string_to_bool( $meta ) {
 
-			return $meta === 'on' ? true : false;
+			return 'on' === $meta ? true : false;
 		}
 
 		/**
@@ -400,7 +402,7 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 					'cmb_styles'   => $meta_data['disable_styles'],
 					'closed'       => $meta_data['closed'],
 				);
-				if ( $meta_data['post_id_text'] !== '' ) {
+				if ( '' !== $meta_data['post_id_text'] ) {
 
 					$new_cmb2_args['show_on'] = array(
 						'key'   => 'id',
@@ -412,17 +414,19 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 				$group_field_id                = false;
 				if ( $meta_data['repeatable'] ) {
 
-					$group_field_id = ${ 'cmb_' . $meta_data['id'] }->add_field( array(
-						'id'          => '_' . $meta_data['id'],
-						'type'        => 'group',
-						'description' => $meta_data['group_desc'],
-						'options'     => array(
-							'group_title'   => $meta_data['entry_name'] . __( ' {#}', 'cmb2' ),
-							'add_button'    => __( 'Add Another ', 'cmb2' ) . $meta_data['entry_name'],
-							'remove_button' => __( 'Remove ', 'cmb2' ) . $meta_data['entry_name'],
-							'sortable'      => true,
-						),
-					) );
+					$group_field_id = ${ 'cmb_' . $meta_data['id'] }->add_field(
+						array(
+							'id'          => '_' . $meta_data['id'],
+							'type'        => 'group',
+							'description' => $meta_data['group_desc'],
+							'options'     => array(
+								'group_title'   => $meta_data['entry_name'] . __( ' {#}', 'cmb2' ),
+								'add_button'    => __( 'Add Another ', 'cmb2' ) . $meta_data['entry_name'],
+								'remove_button' => __( 'Remove ', 'cmb2' ) . $meta_data['entry_name'],
+								'sortable'      => true,
+							),
+						)
+					);
 				}
 				foreach ( $meta_data['fields'] as $field ) {
 
@@ -430,17 +434,5 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 				}
 			}
 		}
-	}
-}
-
-if ( ! function_exists( 'cmb2ae_metabox' ) ) {
-	/**
-	 * Main instance of CMB2_Meta_Box.
-	 *
-	 * @since  0.1.0
-	 * @return object Main instance of the CMB2_Meta_Box class.
-	 */
-	function cmb2ae_metabox() {
-		return CMB2_Meta_Box::get_instance();
 	}
 }

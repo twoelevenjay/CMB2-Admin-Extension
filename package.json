@@ -1,0 +1,36 @@
+{
+    "name": "cmb2-admin-extension",
+    "version": "1.0.4",
+    "description": "CMB2 Admin Extension adds a user interface for admins to create CMB2 meta boxes from the WordPress admin. Tested with the most current version of CMB2.",
+    "scripts": {
+      "sass": "sass scss/meta-box-fields.scss css/meta-box-fields.css --no-source-map",
+      "autoprefix": "postcss css/meta-box-fields.css --use autoprefixer -o css/meta-box-fields.css",
+      "minify-js": "terser js/meta-box-fields.js --compress --mangle --output js/min/meta-box-fields.min.js",
+      "build-css": "npm-run-all sass autoprefix",
+      "build": "npm-run-all build-css minify-js",
+      "watch": "npm-watch"
+    },
+    "devDependencies": {
+      "autoprefixer": "^10.3.1",
+      "npm-run-all": "^4.1.5",
+      "postcss": "^8.3.6",
+      "postcss-cli": "^8.3.1",
+      "sass": "^1.35.1",
+      "terser": "^5.7.1",
+      "npm-watch": "^0.6.0"
+    },
+    "watch": {
+      "sass": {
+        "patterns": ["scss/*.scss"],
+        "extensions": ["scss"]
+      },
+      "minify-js": {
+        "patterns": ["js/*.js", "!js/min/*.min.js"],
+        "extensions": ["js"]
+      }
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+  }
+  

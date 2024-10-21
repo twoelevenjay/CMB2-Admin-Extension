@@ -71,7 +71,6 @@ if ( ! class_exists( 'CMB2_Meta_Box_Settings' ) ) {
 				$this->settings_page = add_submenu_page( 'edit.php?post_type=meta_box', __( 'CMB2 Settings', 'cmb2-admin-extension' ), __( 'CMB2 Settings', 'cmb2-admin-extension' ), 'edit_posts', $this->settings_key, array( $this, 'settings_page' ) );
 				add_action( "admin_print_styles-{$this->settings_page}", array( 'CMB2_hookup', 'enqueue_cmb_css' ) );
 			}
-
 		}
 
 		/**
@@ -80,7 +79,6 @@ if ( ! class_exists( 'CMB2_Meta_Box_Settings' ) ) {
 		public function register_settings() {
 
 			register_setting( $this->settings_key, $this->settings_key );
-
 		}
 
 		/**
@@ -96,7 +94,6 @@ if ( ! class_exists( 'CMB2_Meta_Box_Settings' ) ) {
 				<?php cmb2_metabox_form( $this->settings_metabox_id, $this->settings_key, array( 'disable_styles' => false ) ); ?>
 			</div>
 			<?php
-
 		}
 
 		/**
@@ -128,24 +125,27 @@ if ( ! class_exists( 'CMB2_Meta_Box_Settings' ) ) {
 
 			$prefix = $this->prefix;
 
-			$cmb_settings = new_cmb2_box( array(
-				'id'      => $this->settings_metabox_id,
-				'hookup'  => false,
-				'show_on' => array(
-					'key'   => 'options-page',
-					'value' => array( $this->settings_key ),
-				),
-			) );
+			$cmb_settings = new_cmb2_box(
+				array(
+					'id'      => $this->settings_metabox_id,
+					'hookup'  => false,
+					'show_on' => array(
+						'key'   => 'options-page',
+						'value' => array( $this->settings_key ),
+					),
+				)
+			);
 
-			$cmb_settings->add_field( array(
-				'name'    => __( 'Users', 'cmb2-admin-extension' ),
-				'desc'    => __( 'Check the users to grant access to this plugin and the CMB2 plugin. Leave unchecked to grant access to all users.', 'cmb2-admin-extension' ),
-				'id'      => $prefix . 'user_multicheckbox',
-				'type'    => 'multicheck',
-				'options' => $this->user_options(),
-				'inline'  => true,
-			) );
-
+			$cmb_settings->add_field(
+				array(
+					'name'    => __( 'Users', 'cmb2-admin-extension' ),
+					'desc'    => __( 'Check the users to grant access to this plugin and the CMB2 plugin. Leave unchecked to grant access to all users.', 'cmb2-admin-extension' ),
+					'id'      => $prefix . 'user_multicheckbox',
+					'type'    => 'multicheck',
+					'options' => $this->user_options(),
+					'inline'  => true,
+				)
+			);
 		}
 	}
 

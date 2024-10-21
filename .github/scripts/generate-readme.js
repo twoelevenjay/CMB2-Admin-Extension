@@ -7,7 +7,6 @@ const outputPath = path.join(__dirname, '../temp/readme.txt');
 
 // Function to detect and remove badge lines
 function shouldRemoveLine(line) {
-  // Check if the line is a badge or related line (e.g., badges inside [])
   return line.startsWith('[!') || line.includes('![Build Status]') || line.includes('badges/');
 }
 
@@ -20,6 +19,12 @@ function formatLine(line) {
   }
   if (line.startsWith('# ')) {
     return `=== ${line.replace('# ', '').trim()} ===\n`;
+  }
+  if (line.startsWith('**Q:')) {
+    return `= ${line.replace('**Q:', '').replace('**', '').trim()} =\n`;
+  }
+  if (line.startsWith('**A:')) {
+    return `${line.replace('**A:', '').replace('**', '').trim()}\n`;
   }
   // Replace **bold** and remove extra spaces
   return line.replace(/\*\*/g, '').replace(/\s+/g, ' ') + '\n';

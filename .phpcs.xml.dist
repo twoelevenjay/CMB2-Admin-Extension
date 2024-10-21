@@ -10,15 +10,10 @@
 	<!-- Check all files in this directory and the directories below it. -->
 	<file>.</file>
 
-	<!-- ##### Sniffs for PHP cross-version compatibility ##### -->
-	<config name="testVersion" value="5.2-99.0"/>
-	<rule ref="PHPCompatibility"/>
-
 
 	<!-- ##### Code style ##### -->
 	<rule ref="WordPress">
 		<exclude name="WordPress.VIP.PostsPerPage.posts_per_page_posts_per_page"/>
-		<exclude name="WordPress.PHP.YodaConditions.NotYoda"/>
 	</rule>
 
 	<rule ref="WordPress.Arrays.MultipleStatementAlignment">

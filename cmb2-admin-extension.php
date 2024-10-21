@@ -101,6 +101,7 @@ class CMB2_Admin_Extension_Class {
 	 */
 	public static function get_instance() {
 		// If the single instance hasn't been set, set it now.
+		require_once __DIR__ . '/includes/functions.php';
 		if ( null === self::$instance ) {
 			self::$instance = new self();
 		}
@@ -117,9 +118,9 @@ class CMB2_Admin_Extension_Class {
 
 		if ( defined( 'CMB2_LOADED' ) && CMB2_LOADED !== false ) {
 
-			require_once dirname( __FILE__ ) . '/includes/class-meta-box.php';
-			require_once dirname( __FILE__ ) . '/includes/class-meta-box-post-type.php';
-			require_once dirname( __FILE__ ) . '/includes/class-meta-box-settings.php';
+			require_once __DIR__ . '/includes/class-meta-box.php';
+			require_once __DIR__ . '/includes/class-meta-box-post-type.php';
+			require_once __DIR__ . '/includes/class-meta-box-settings.php';
 			cmb2ae_metabox();
 			return;
 		} elseif ( file_exists( WP_PLUGIN_DIR . '/' . CMB2AE_CMB2_PLUGIN_FILE ) ) {
@@ -137,7 +138,7 @@ class CMB2_Admin_Extension_Class {
 	 */
 	public function load_textdomain() {
 
-		$lang_path = plugin_basename( dirname( __FILE__ ) ) . '/languages';
+		$lang_path = plugin_basename( __DIR__ ) . '/languages';
 		$loaded    = load_muplugin_textdomain( 'cmb2-admin-extension', $lang_path );
 		if ( strpos( __FILE__, basename( WPMU_PLUGIN_DIR ) ) === false ) {
 			$loaded = load_plugin_textdomain( 'cmb2-admin-extension', false, $lang_path );
@@ -149,7 +150,7 @@ class CMB2_Admin_Extension_Class {
 
 		if ( ! $loaded ) {
 			$locale = apply_filters( 'plugin_locale', get_locale(), 'cmb2-admin-extension' );
-			$mofile = dirname( __FILE__ ) . '/languages/cmb2-admin-extension-' . $locale . '.mo';
+			$mofile = __DIR__ . '/languages/cmb2-admin-extension-' . $locale . '.mo';
 			load_textdomain( 'cmb2-admin-extension', $mofile );
 		}
 	}
@@ -175,7 +176,6 @@ class CMB2_Admin_Extension_Class {
 				</p>
 			</div>
 		<?php
-
 	}
 
 	/**
@@ -199,24 +199,7 @@ class CMB2_Admin_Extension_Class {
 				</p>
 			</div>
 		<?php
-
 	}
 }
 
 add_action( 'plugins_loaded', array( 'CMB2_Admin_Extension_Class', 'get_instance' ), 20 );
-
-if ( ! function_exists( 'cmbf' ) ) {
-
-	/**
-	 * This function needs documentation.
-	 *
-	 * @todo
-	 *
-	 * @param int    $id    Post ID.
-	 * @param string $field The meta key to retrieve.
-	 */
-	function cmbf( $id, $field ) {
-
-		return get_post_meta( $id, $field, true );
-	}
-}

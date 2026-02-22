@@ -123,9 +123,9 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 			$screen = get_current_screen();
 			if ( 'meta_box' === $screen->post_type ) {
 
-				wp_register_style( 'cmb2_admin_styles', CMB2AE_URI . '/css/meta-box-fields.css', array(), '0.0.8' );
+				wp_register_style( 'cmb2_admin_styles', CMB2AE_URI . '/css/meta-box-fields.css', array(), CMB2_Admin_Extension_Class::VERSION );
 				wp_enqueue_style( 'cmb2_admin_styles' );
-				wp_enqueue_script( 'cmb2_admin_scripts', CMB2AE_URI . '/js/meta-box-fields.js', array( 'jquery' ), '0.0.8', true );
+				wp_enqueue_script( 'cmb2_admin_scripts', CMB2AE_URI . '/js/meta-box-fields.js', array( 'jquery' ), CMB2_Admin_Extension_Class::VERSION, true );
 			}
 		}
 
@@ -216,7 +216,7 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 		 */
 		public function add_strpos_arg( $arg_value ) {
 
-			if ( strpos( false !== $this->field['_cmb2_field_type_select'], $arg_value[0] ) && isset( $this->field[ $arg_value[2] ] ) && '' !== $this->field[ $arg_value[2] ] ) {
+			if ( ! empty( $this->field['_cmb2_field_type_select'] ) && false !== strpos( $this->field['_cmb2_field_type_select'], $arg_value[0] ) && isset( $this->field[ $arg_value[2] ] ) && '' !== $this->field[ $arg_value[2] ] ) {
 
 				if ( is_array( $arg_value[1] ) ) {
 					$this->field_args[ $arg_value[1][0] ][ $arg_value[1][1] ] = $this->field[ $arg_value[2] ];

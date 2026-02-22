@@ -12,11 +12,11 @@ jobs:
     steps:
       # Step 1: Checkout the repository
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       # Step 2: Set up Node.js (use the latest stable version)
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version: 'lts/*'  # Use latest LTS version of Node.js
 

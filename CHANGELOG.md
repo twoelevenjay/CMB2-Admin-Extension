@@ -2,6 +2,14 @@
 
 ## Changelog
 
+### 1.0.5 02.22.2026
+* Compatibility - Tested with WordPress 6.7.
+* Fixed - PHP 8.0+ TypeError in add_strpos_arg() where boolean was passed to strpos().
+* Fixed - VERSION constant mismatch (was 0.2.3, now matches plugin header).
+* Improved - Enqueued asset versions now use plugin VERSION constant instead of hardcoded values.
+* Improved - Updated GitHub Actions workflow to use current checkout and setup-node actions.
+* Added - Requires PHP and Tested up to headers to plugin file.
+
 ### 1.0.4 10.19.2024
 * Add tag generation to workflow.
 

@@ -8,11 +8,11 @@
 **Requires at least:**    5.0
 **Tested up to:**         6.7
 **Requires PHP:**         7.4
-**Stable tag:**           1.0.5
+**Stable tag:**           1.0.6
 **License:**              GPLv2 or later  
 **License URI:**          http://www.gnu.org/licenses/gpl-2.0.html  
 
-CMB2 Admin Extension adds a user interface for admins to create CMB2 meta boxes from the WordPress admin. Tested with the most current version of CMB2.
+Create and manage CMB2 meta boxes from the WordPress admin without writing code.
 
 ## Description
 CMB2 Admin Extension adds a user interface for admins to create CMB2 meta boxes from the WordPress admin.

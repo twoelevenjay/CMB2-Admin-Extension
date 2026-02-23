@@ -2,6 +2,9 @@
 
 ## Changelog
 
+### 1.0.6 02.22.2026
+* Fixed - Shortened short description to comply with WordPress.org 150 character limit.
+
 ### 1.0.5 02.22.2026
 * Compatibility - Tested with WordPress 6.7.
 * Fixed - PHP 8.0+ TypeError in add_strpos_arg() where boolean was passed to strpos().

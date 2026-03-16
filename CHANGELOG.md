@@ -2,6 +2,10 @@
 
 ## Changelog
 
+### 1.0.7 03.16.2026
+* Compatibility - Tested with WordPress 6.9.
+* Fixed - Added null check for get_current_screen() to prevent fatal errors on PHP 8.0+.
+
 ### 1.0.6 02.22.2026
 * Fixed - Shortened short description to comply with WordPress.org 150 character limit.
 

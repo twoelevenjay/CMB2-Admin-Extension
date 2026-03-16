@@ -15,9 +15,9 @@
  * Author:       twoelevenjay
  * Author URI:   http://211j.com
  * Contributors:
- * Version:      1.0.6
+ * Version:      1.0.7
  * Requires at least: 5.0
- * Tested up to:      6.7
+ * Tested up to:      6.9
  * Requires PHP:      7.4
  * Text Domain:  cmb2-admin-extension
  * Domain Path:  /languages
@@ -76,7 +76,7 @@ class CMB2_Admin_Extension_Class {
 	 *
 	 * @var string
 	 */
-	const VERSION = '1.0.6';
+	const VERSION = '1.0.7';
 
 	/**
 	 * Instance of this class.

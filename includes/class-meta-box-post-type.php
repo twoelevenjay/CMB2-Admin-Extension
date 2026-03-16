@@ -189,7 +189,7 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 		public function show_hide_classes( $classes, $field ) {
 
 			$screen = get_current_screen();
-			if ( 'meta_box' === $screen->post_type ) {
+			if ( $screen && 'meta_box' === $screen->post_type ) {
 				$field_classes = array(
 					'repeatable_checkbox'      => 'cmb_hide_field text text_small text_medium text_email text_url text_money textarea textarea_small textarea_code text_date text_timeselect_timezone text_date_timestamp text_datetime_timestamp text_datetime_timestamp_timezone color_picker select multicheck multicheck_inline',
 					'protocols_checkbox'       => 'cmb_hide_field text_url',

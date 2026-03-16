@@ -121,7 +121,7 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 		public function enqueue_scripts() {
 
 			$screen = get_current_screen();
-			if ( 'meta_box' === $screen->post_type ) {
+			if ( $screen && 'meta_box' === $screen->post_type ) {
 
 				wp_register_style( 'cmb2_admin_styles', CMB2AE_URI . '/css/meta-box-fields.css', array(), CMB2_Admin_Extension_Class::VERSION );
 				wp_enqueue_style( 'cmb2_admin_styles' );

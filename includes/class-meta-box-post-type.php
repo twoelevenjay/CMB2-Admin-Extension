@@ -10,6 +10,10 @@
  * @license   GPL-2.0+
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 
 	/**
@@ -79,16 +83,16 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 				'description'         => __( 'Create custom meta boxes and fields', 'cmb2-admin-extension' ),
 				'labels'              => $labels,
 				'hierarchical'        => false,
-				'rewrite'             => true,
+				'rewrite'             => false,
 				'supports'            => array( 'title' ),
-				'public'              => true,
+				'public'              => false,
 				'menu_position'       => 100,
 				'menu_icon'           => 'dashicons-feedback',
 				'show_in_admin_bar'   => false,
 				'show_in_nav_menus'   => false,
 				'can_export'          => true,
 				'has_archive'         => false,
-				'exclude_from_search' => false,
+				'exclude_from_search' => true,
 				'publicly_queryable'  => false,
 				'capability_type'     => 'page',
 			);
@@ -96,7 +100,7 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 			$args['show_ui']      = false;
 			$args['show_in_menu'] = false;
 
-			if ( $this->is_cmb2_allowed() ) {
+			if ( cmb2ae_metabox()->is_cmb2_allowed() ) {
 
 				$args['show_ui']      = true;
 				$args['show_in_menu'] = true;
@@ -131,31 +135,6 @@ if ( ! class_exists( 'CMB2_Meta_Box_Post_Type' ) ) {
 			}
 		}
 
-
-		/**
-		 * Determine if current user has permission to CMB2 view plugins.
-		 *
-		 * @since  0.0.1
-		 */
-		private function is_cmb2_allowed() {
-
-			$cmb2_settings = get_option( '_cmb2_settings' );
-
-			if ( empty( $cmb2_settings ) ) {
-				// No settings saved.
-				return true;
-			}
-
-			$current_user  = wp_get_current_user();
-			$allowed_users = isset( $cmb2_settings['_cmb2_user_multicheckbox'] ) ? $cmb2_settings['_cmb2_user_multicheckbox'] : array();
-
-			if ( empty( $allowed_users ) || in_array( $current_user->ID, $allowed_users, true ) ) {
-
-				return true;
-
-			}
-			return false;
-		}
 
 		/**
 		 * Pass each item in an array through strpos().

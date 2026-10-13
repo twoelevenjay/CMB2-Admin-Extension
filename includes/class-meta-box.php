@@ -10,6 +10,10 @@
  * @license   GPL-2.0+
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 
 	/**
@@ -88,10 +92,9 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 				return true;
 			}
 
-			$current_user  = wp_get_current_user();
-			$allowed_users = isset( $cmb2_settings['_cmb2_user_multicheckbox'] ) ? $cmb2_settings['_cmb2_user_multicheckbox'] : array();
+			$allowed_users = isset( $cmb2_settings['_cmb2_user_multicheckbox'] ) ? array_map( 'absint', (array) $cmb2_settings['_cmb2_user_multicheckbox'] ) : array();
 
-			return empty( $allowed_users ) || in_array( $current_user->ID, $allowed_users, true );
+			return empty( $allowed_users ) || in_array( get_current_user_id(), $allowed_users, true );
 		}
 
 		/**
@@ -103,7 +106,7 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 
 			global $wp_list_table;
 			if ( ! $this->is_cmb2_allowed() ) {
-				$to_hide = array( CMB2AE_CMB2_PLUGIN_FILE, 'cmb2-admin-extension/cmb2-admin-extension.php' );
+				$to_hide = array( CMB2AE_CMB2_PLUGIN_FILE, plugin_basename( CMB2AE_PATH . 'cmb2-admin-extension.php' ) );
 				$plugins = $wp_list_table->items;
 				foreach ( array_keys( $plugins ) as $key ) {
 					if ( in_array( $key, $to_hide, true ) ) {
@@ -200,10 +203,10 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 			foreach ( $field_options as $option ) {
 				$opt_arr = explode( ',', $option );
 				if ( ! isset( $opt_arr[1] ) ) {
-					$options[ $option ] = $option;
+					$options[ self::strip_unsafe( $option ) ] = wp_kses_post( $option );
 					continue;
 				}
-				$options[ $opt_arr[0] ] = $opt_arr[1];
+				$options[ self::strip_unsafe( $opt_arr[0] ) ] = wp_kses_post( $opt_arr[1] );
 			}
 			$this->field_args['options'] = $options;
 		}
@@ -261,6 +264,31 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 		}
 
 		/**
+		 * Remove tags and the characters that could break out of an HTML attribute.
+		 *
+		 * @since  1.0.8
+		 * @param  string $value Raw value.
+		 * @return string
+		 */
+		public static function strip_unsafe( $value ) {
+
+			return str_replace( array( '"', '<', '>' ), '', wp_strip_all_tags( (string) $value ) );
+		}
+
+		/**
+		 * Build the meta key for a field from its name: an underscore plus the
+		 * lowercased name with spaces turned into underscores.
+		 *
+		 * @since  1.0.8
+		 * @param  string $name Field name.
+		 * @return string
+		 */
+		public static function field_key( $name ) {
+
+			return '_' . strtolower( str_replace( ' ', '_', self::strip_unsafe( $name ) ) );
+		}
+
+		/**
 		 * Add the current field to the metabox.
 		 *
 		 * @since  0.2.0
@@ -283,11 +311,11 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 			);
 
 			$this->field = $field;
-			$field_id    = '_' . strtolower( str_replace( ' ', '_', $field['_cmb2_name_text'] ) );
+			$field_id    = self::field_key( $field['_cmb2_name_text'] );
 
 			$this->field_args = array(
-				'name' => $field['_cmb2_name_text'],
-				'desc' => $field['_cmb2_decription_textarea'],
+				'name' => wp_kses_post( (string) $field['_cmb2_name_text'] ),
+				'desc' => wp_kses_post( (string) $field['_cmb2_decription_textarea'] ),
 				'id'   => $field_id,
 				'type' => $field['_cmb2_field_type_select'],
 			);
@@ -362,9 +390,9 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 			$meta_data['disable_styles'] = $this->string_to_bool( cmbf( $metabox_id, $prefix . 'disable_styles' ) );
 			$meta_data['closed']         = $this->string_to_bool( cmbf( $metabox_id, $prefix . 'closed' ) );
 			$meta_data['repeatable']     = $this->string_to_bool( cmbf( $metabox_id, $prefix . 'repeatable_group' ) );
-			$meta_data['group_desc']     = cmbf( $metabox_id, $prefix . 'group_description' );
-			$entry_name                  = cmbf( $metabox_id, $prefix . 'entry_name' );
-			$meta_data['entry_name']     = $entry_name ? $entry_name : 'Entry';
+			$meta_data['group_desc']     = wp_kses_post( (string) cmbf( $metabox_id, $prefix . 'group_description' ) );
+			$entry_name                  = wp_strip_all_tags( (string) cmbf( $metabox_id, $prefix . 'entry_name' ) );
+			$meta_data['entry_name']     = $entry_name ? $entry_name : __( 'Entry', 'cmb2-admin-extension' );
 			$meta_data['fields']         = cmbf( $metabox_id, $prefix . 'custom_field' );
 
 			return $meta_data;
@@ -409,24 +437,28 @@ if ( ! class_exists( 'CMB2_Meta_Box' ) ) {
 						'value' => explode( ',', $meta_data['post_id_text'] ),
 					);
 				}
-				${ 'cmb_' . $meta_data['id'] } = new_cmb2_box( $new_cmb2_args );
-				$meta_box                      = ${ 'cmb_' . $meta_data['id'] };
-				$group_field_id                = false;
+				$meta_box       = new_cmb2_box( $new_cmb2_args );
+				$group_field_id = false;
 				if ( $meta_data['repeatable'] ) {
 
-					$group_field_id = ${ 'cmb_' . $meta_data['id'] }->add_field(
+					$group_field_id = $meta_box->add_field(
 						array(
 							'id'          => '_' . $meta_data['id'],
 							'type'        => 'group',
 							'description' => $meta_data['group_desc'],
 							'options'     => array(
-								'group_title'   => $meta_data['entry_name'] . __( ' {#}', 'cmb2' ),
-								'add_button'    => __( 'Add Another ', 'cmb2' ) . $meta_data['entry_name'],
-								'remove_button' => __( 'Remove ', 'cmb2' ) . $meta_data['entry_name'],
+								'group_title'   => $meta_data['entry_name'] . ' {#}',
+								/* translators: %s: entry name of the repeatable group. */
+								'add_button'    => sprintf( __( 'Add Another %s', 'cmb2-admin-extension' ), $meta_data['entry_name'] ),
+								/* translators: %s: entry name of the repeatable group. */
+								'remove_button' => sprintf( __( 'Remove %s', 'cmb2-admin-extension' ), $meta_data['entry_name'] ),
 								'sortable'      => true,
 							),
 						)
 					);
+				}
+				if ( ! is_array( $meta_data['fields'] ) ) {
+					continue;
 				}
 				foreach ( $meta_data['fields'] as $field ) {
 

@@ -10,6 +10,10 @@
  * @package CMB2_Admin_Extension
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Retrieve the main instance of the CMB2_Meta_Box class.
  *

@@ -10,6 +10,10 @@
  * @license   GPL-2.0+
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 if ( ! class_exists( 'CMB2_Meta_Box_Settings' ) ) {
 
 	/**
@@ -68,7 +72,7 @@ if ( ! class_exists( 'CMB2_Meta_Box_Settings' ) ) {
 		public function add_settings_page() {
 
 			if ( cmb2ae_metabox()->is_cmb2_allowed() ) {
-				$this->settings_page = add_submenu_page( 'edit.php?post_type=meta_box', __( 'CMB2 Settings', 'cmb2-admin-extension' ), __( 'CMB2 Settings', 'cmb2-admin-extension' ), 'edit_posts', $this->settings_key, array( $this, 'settings_page' ) );
+				$this->settings_page = add_submenu_page( 'edit.php?post_type=meta_box', __( 'CMB2 Settings', 'cmb2-admin-extension' ), __( 'CMB2 Settings', 'cmb2-admin-extension' ), 'manage_options', $this->settings_key, array( $this, 'settings_page' ) );
 				add_action( "admin_print_styles-{$this->settings_page}", array( 'CMB2_hookup', 'enqueue_cmb_css' ) );
 			}
 		}
@@ -78,7 +82,31 @@ if ( ! class_exists( 'CMB2_Meta_Box_Settings' ) ) {
 		 */
 		public function register_settings() {
 
-			register_setting( $this->settings_key, $this->settings_key );
+			register_setting(
+				$this->settings_key,
+				$this->settings_key,
+				array(
+					'type'              => 'array',
+					'sanitize_callback' => array( $this, 'sanitize_settings' ),
+				)
+			);
+		}
+
+		/**
+		 * Sanitize the saved settings: keep only the allowed user IDs as integers.
+		 *
+		 * @since  1.0.8
+		 * @param  mixed $value Raw option value.
+		 * @return array
+		 */
+		public function sanitize_settings( $value ) {
+
+			$users = array();
+			if ( is_array( $value ) && isset( $value[ $this->prefix . 'user_multicheckbox' ] ) ) {
+				$users = array_values( array_filter( array_map( 'absint', (array) $value[ $this->prefix . 'user_multicheckbox' ] ) ) );
+			}
+
+			return array( $this->prefix . 'user_multicheckbox' => $users );
 		}
 
 		/**

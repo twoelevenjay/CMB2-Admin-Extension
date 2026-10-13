@@ -129,20 +129,18 @@ jQuery(function ($) {
      *
      */
     displayUsageFunctions: function () {
-      var fieldName = $(".field_name");
-      var wrapper = fieldName.closest(".cmb-field-list");
-      var getPostMeta = $(".get_post_meta", wrapper);
-      var cmbf = $(".cmbf", wrapper);
-      var getPostMetaRepeatable = $(".get_post_meta_repeatable");
-      var cmbfRepeatable = $(".cmbf_repeatable");
-      var fieldNameVal = fieldName.val().toLowerCase().replace(/ /g, "_");
+      $(".field_name").each(function () {
+        var wrapper = $(this).closest(".cmb-field-list");
+        var fieldNameVal = String($(this).val()).replace(/<[^>]*>/g, "").replace(/["<>]/g, "").trim().toLowerCase().replace(/ /g, "_");
+        $(".get_post_meta", wrapper).val("get_post_meta( get_the_ID(), '_" + fieldNameVal + "', true );");
+        $(".cmbf", wrapper).val("cmbf( get_the_ID(), '_" + fieldNameVal + "' );");
+      });
       var postName = $("#post_name").val();
-      postName = postName ? postName : $("#title").val().toLowerCase().replace(/ /g, "_");
+      postName = postName ? postName : String($("#title").val() || "").toLowerCase().replace(/ /g, "_");
       postName = postName ? postName : $("#post_ID").val();
-      getPostMeta.val("get_post_meta( get_the_ID(), '_" + fieldNameVal + "', true );");
-      cmbf.val("cmbf( get_the_ID(), '_" + fieldNameVal + "' );");
-      getPostMetaRepeatable.val("get_post_meta( get_the_ID(), '_" + postName + "', true );");
-      cmbfRepeatable.val("cmbf( get_the_ID(), '_" + postName + "' );");
+      postName = String(postName).replace(/-/g, "_");
+      $(".get_post_meta_repeatable").val("get_post_meta( get_the_ID(), '_" + postName + "', true );");
+      $(".cmbf_repeatable").val("cmbf( get_the_ID(), '_" + postName + "' );");
     },
 
     /**
@@ -156,6 +154,7 @@ jQuery(function ($) {
     bindActionsToEvents: function () {
       $(document).on("click", ".cmb-add-group-row, .cmb-remove-group-row, .cmb-shift-rows", function () {
         cmb2MetaBoxField.showHideOnLoad();
+        cmb2MetaBoxField.displayUsageFunctions();
       });
       $("#_cmb2_repeatable_group").on("change", function () {
         cmb2MetaBoxField.showHideSide();

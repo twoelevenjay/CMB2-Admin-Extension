@@ -2,6 +2,16 @@
 
 ## Changelog
 
+### 1.0.8 10.13.2026
+* Compatibility - Tested with WordPress 7.1.
+* Fixed - Choosing users on the CMB2 Settings page no longer hides the plugin from the administrators who chose them.
+* Fixed - The usage code shown for each field now uses that field's own meta key, not the first field's.
+* Fixed - The usage code for repeatable groups now matches the saved meta key when the meta box slug has hyphens.
+* Fixed - No PHP warning for a published meta box that has no fields yet.
+* Security - The CMB2 Settings page now requires the manage_options capability and its saved value is sanitized.
+* Security - Field names, descriptions and options are sanitized before they are rendered in the editor.
+* Security - Meta box definitions are no longer public and no longer appear in front end search results.
+* Improved - Direct file access protection, a License header, and translatable repeatable group buttons.
 ### 1.0.7 03.16.2026
 * Compatibility - Tested with WordPress 6.9.
 * Fixed - Added null check for get_current_screen() to prevent fatal errors on PHP 8.0+.

@@ -1,6 +1,6 @@
 {
     "name": "cmb2-admin-extension",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "description": "CMB2 Admin Extension adds a user interface for admins to create CMB2 meta boxes from the WordPress admin. Tested with the most current version of CMB2.",
     "scripts": {
       "sass": "sass scss/meta-box-fields.scss css/meta-box-fields.css --no-source-map",
